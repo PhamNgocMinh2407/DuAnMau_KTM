@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <title>Điều khoản sử dụng - Laptop Store</title>
+</head>
+
+<body>
+
+<div class="container header-top">
+
+  <button class="back-btn" onclick="history.back()"> ← </button>
+
+  <h1 class="logo">Laptop Store</h1>
+
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
+
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
+
+    <div class="profile-menu" id="profile-menu">
+      <a href="profile.html">Profile</a>
+      <a href="2.order-history.html">Lịch sử đơn hàng</a>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
+    </div>
+  </div>
+
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+
+    <div class="cart-menu" id="cart-menu">
+      <div class="cart-items-list" id="cart-items-list">
+        <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
+      </div>
+      <div class="cart-footer" id="cart-footer" style="display:none;">
+        <div class="cart-total">
+          <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+        </div>
+        <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="header-bottom">
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.terms.html">Điều khoản</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section style="
+  background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+  url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+  padding:80px 15px;
+  color:#fff;
+">
+  <div style="max-width:1200px; margin:auto; text-align:center;">
+    <div style="font-size:13px; opacity:0.9; margin-bottom:8px;">
+      Trang chủ / Điều khoản sử dụng
+    </div>
+    <h1 style="margin:0; font-size:40px; font-weight:700;">Điều khoản sử dụng</h1>
+    <p style="margin:10px auto 0; max-width:760px; font-size:15px; color:#f3f3f3; line-height:1.7;">
+      Quy định và chính sách áp dụng khi người dùng truy cập, đăng ký tài khoản và sử dụng website Laptop Store.
+    </p>
+  </div>
+</section>
+
+<main style="background:#f3f4f6; padding:50px 15px 60px;">
+  <div style="
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 280px 1fr;
+    gap:24px;
+    align-items:start;
+  ">
+
+    <!-- Sidebar -->
+    <aside style="
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:10px;
+      padding:20px;
+      position:sticky;
+      top:20px;
+    ">
+      <h3 style="margin:0 0 14px; font-size:20px; color:#111;">Nội dung chính</h3>
+
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+        <a href="#section1" style="text-decoration:none; color:#111; font-weight:600;">1. Phạm vi áp dụng</a>
+        <a href="#section2" style="text-decoration:none; color:#111; font-weight:600;">2. Tài khoản và bảo mật</a>
+        <a href="#section3" style="text-decoration:none; color:#111; font-weight:600;">3. Sản phẩm và giá bán</a>
+        <a href="#section4" style="text-decoration:none; color:#111; font-weight:600;">4. Đặt hàng và thanh toán</a>
+        <a href="#section5" style="text-decoration:none; color:#111; font-weight:600;">5. Giao hàng, đổi trả, bảo hành</a>
+        <a href="#section6" style="text-decoration:none; color:#111; font-weight:600;">6. Quyền và trách nhiệm người dùng</a>
+        <a href="#section7" style="text-decoration:none; color:#111; font-weight:600;">7. Giới hạn trách nhiệm</a>
+        <a href="#section8" style="text-decoration:none; color:#111; font-weight:600;">8. Liên hệ</a>
+      </div>
+    </aside>
+
+    <!-- Content -->
+    <div style="
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:10px;
+      padding:30px 28px;
+    ">
+
+      <div style="
+        background:#f8f8f8;
+        border:1px solid #e5e7eb;
+        border-radius:8px;
+        padding:14px 16px;
+        margin-bottom:24px;
+        color:#555;
+        font-size:14px;
+      ">
+        Cập nhật gần nhất: 2026 · Áp dụng cho website Laptop Store
+      </div>
+
+      <section id="section1" style="margin-bottom:28px;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">1. Phạm vi áp dụng</h2>
+        <p style="margin:0; color:#555; line-height:1.8;">
+          Điều khoản này áp dụng cho tất cả người dùng truy cập và sử dụng website Laptop Store. Khi tiếp tục sử dụng website, bạn được xem là đã đọc, hiểu và đồng ý với các nội dung được quy định trong trang này.
+        </p>
+      </section>
+
+      <section id="section2" style="margin-bottom:28px;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">2. Tài khoản và bảo mật</h2>
+        <ul style="margin:0; padding-left:20px; color:#555; line-height:1.9;">
+          <li>Người dùng có trách nhiệm cung cấp thông tin chính xác khi đăng ký tài khoản.</li>
+          <li>Không chia sẻ mật khẩu hoặc thông tin đăng nhập cho người khác.</li>
+          <li>Người dùng tự chịu trách nhiệm đối với mọi hoạt động phát sinh từ tài khoản của mình.</li>
+          <li>Nếu phát hiện hành vi truy cập trái phép, vui lòng liên hệ ngay với hệ thống để được hỗ trợ.</li>
+        </ul>
+      </section>
+
+      <section id="section3" style="margin-bottom:28px;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">3. Sản phẩm và giá bán</h2>
+        <ul style="margin:0; padding-left:20px; color:#555; line-height:1.9;">
+          <li>Thông tin sản phẩm, hình ảnh, cấu hình và giá bán được hiển thị nhằm mục đích giới thiệu.</li>
+          <li>Màu sắc và một số chi tiết sản phẩm thực tế có thể khác nhẹ so với hình ảnh hiển thị.</li>
+          <li>Giá bán và khuyến mãi có thể thay đổi theo thời điểm mà không cần thông báo trước.</li>
+          <li>Hệ thống có quyền điều chỉnh thông tin sản phẩm nếu phát hiện sai sót kỹ thuật hoặc nhập liệu.</li>
+        </ul>
+      </section>
+
+      <section id="section4" style="margin-bottom:28px;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">4. Đặt hàng và thanh toán</h2>
+        <p style="margin:0 0 10px; color:#555; line-height:1.8;">
+          Khi người dùng thực hiện đặt hàng, hệ thống sẽ ghi nhận thông tin đơn hàng để xử lý theo quy trình của cửa hàng.
+        </p>
+        <ul style="margin:0; padding-left:20px; color:#555; line-height:1.9;">
+          <li>Đơn hàng chỉ được xác nhận khi thông tin cung cấp đầy đủ và hợp lệ.</li>
+          <li>Phương thức thanh toán có thể bao gồm thanh toán khi nhận hàng hoặc thanh toán trực tuyến tùy giai đoạn triển khai.</li>
+          <li>Trong một số trường hợp, hệ thống có thể liên hệ lại để xác minh thông tin trước khi xử lý đơn.</li>
+        </ul>
+      </section>
+
+      <section id="section5" style="margin-bottom:28px;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">5. Giao hàng, đổi trả, bảo hành</h2>
+        <ul style="margin:0; padding-left:20px; color:#555; line-height:1.9;">
+          <li>Thời gian giao hàng phụ thuộc vào khu vực, đối tác vận chuyển và tình trạng hàng hóa.</li>
+          <li>Người dùng cần kiểm tra hàng hóa khi nhận để đảm bảo đúng sản phẩm và tình trạng.</li>
+          <li>Chính sách đổi trả và bảo hành sẽ áp dụng theo điều kiện cụ thể của từng sản phẩm hoặc nhà sản xuất.</li>
+          <li>Các trường hợp hư hỏng do người dùng sử dụng sai cách có thể không thuộc phạm vi hỗ trợ bảo hành.</li>
+        </ul>
+      </section>
+
+      <section id="section6" style="margin-bottom:28px;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">6. Quyền và trách nhiệm người dùng</h2>
+        <ul style="margin:0; padding-left:20px; color:#555; line-height:1.9;">
+          <li>Người dùng không sử dụng website vào mục đích gian lận, phá hoại hoặc vi phạm pháp luật.</li>
+          <li>Không đăng tải nội dung sai sự thật, gây hiểu nhầm hoặc ảnh hưởng đến hệ thống.</li>
+          <li>Tuân thủ các chính sách, điều khoản và hướng dẫn được công bố trên website.</li>
+        </ul>
+      </section>
+
+      <section id="section7" style="margin-bottom:28px;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">7. Giới hạn trách nhiệm</h2>
+        <p style="margin:0; color:#555; line-height:1.8;">
+          Laptop Store không chịu trách nhiệm đối với các thiệt hại phát sinh từ lỗi mạng, lỗi thiết bị của người dùng, gián đoạn truy cập do nguyên nhân kỹ thuật ngoài tầm kiểm soát hoặc các trường hợp bất khả kháng. Nội dung trên website có thể được cập nhật, chỉnh sửa hoặc thay đổi mà không cần báo trước.
+        </p>
+      </section>
+
+      <section id="section8" style="margin-bottom:0;">
+        <h2 style="margin:0 0 10px; font-size:24px; color:#111;">8. Liên hệ</h2>
+        <p style="margin:0; color:#555; line-height:1.8;">
+          Nếu bạn có câu hỏi liên quan đến điều khoản sử dụng hoặc cần hỗ trợ thêm, vui lòng truy cập trang
+          <a href="1.contact.html" style="color:#111; font-weight:600; text-decoration:none;">Liên hệ</a>
+          hoặc gọi tổng đài để được hỗ trợ.
+        </p>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <h3>TẢI ỨNG DỤNG</h3>
+
+      <div class="app-box">
+        <img src="imgae/qr-download-app-fptshop.png" class="qr">
+
+        <div class="store">
+          <a href="https://apps.apple.com/vn/app/fpt-shop/id6475874688" target="_blank">
+            <img src="imgae/appstore.png">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=vn.frt.fptshop.app" target="_blank">
+            <img src="imgae/button-chplay.png">
+          </a>
+        </div>
+      </div>
+
+      <h3>KẾT NỐI</h3>
+
+      <div class="social">
+        <span>
+          <a href="https://www.facebook.com/FPTShopOnline" target="_blank">
+            <img src="imgae/facebook_icon_8543190720.svg" alt="facebook">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.youtube.com/@FPTShop_" target="_blank">
+            <img src="imgae/youtube_icon_b492d61ba5.svg" alt="youtube">
+          </a>
+        </span>
+        <span>
+          <a href="https://zalo.me/2659487666103055748" target="_blank">
+            <img src="imgae/zalo_icon_8cbef61812.svg" alt="zalo">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.tiktok.com/@fptshop.official" target="_blank">
+            <img src="imgae/tiktok_icon_faabbeeb61.svg" alt="tiktok">
+          </a>
+        </span>
+      </div>
+
+      <h3>TỔNG ĐÀI MIỄN PHÍ</h3>
+      <p>1800.6601 (Mua hàng)</p>
+      <p>1800.6601 (Hỗ trợ kỹ thuật)</p>
+      <p>1800.6616 (Góp ý)</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>VỀ CHÚNG TÔI</h3>
+      <ul>
+        <li>Giới thiệu công ty</li>
+        <li>Quy chế hoạt động</li>
+        <li>Tin tức khuyến mãi</li>
+        <li>Giới thiệu máy đổi trả</li>
+        <li>Tra cứu bảo hành</li>
+        <li>Câu hỏi thường gặp</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>CHÍNH SÁCH</h3>
+      <ul>
+        <li>Chính sách bảo hành</li>
+        <li>Chính sách đổi trả</li>
+        <li>Chính sách bảo mật</li>
+        <li>Chính sách trả góp</li>
+        <li>Chính sách giao hàng</li>
+        <li>Chính sách khách hàng</li>
+        <li><a href="2.terms.html" style="color:inherit; text-decoration:none;">Điều khoản sử dụng</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>HỖ TRỢ THANH TOÁN</h3>
+
+      <div class="payment">
+        <img src="imgae/visa.png">
+        <img src="imgae/VNpay.jpg">
+        <img src="imgae/zalo.png">
+        <img src="imgae/momo.png">
+        <img src="imgae/SSPay.jpg">
+        <img src="imgae/JCB.jpg">
+      </div>
+
+      <h3>CHỨNG NHẬN</h3>
+
+      <div class="cert">
+        <a href="https://www.dmca.com/Protection/Status.aspx?ID=98d66f66-5a62-47e9-b45c-edaebfb0c9b3&refurl=https://fptshop.com.vn/" target="_blank">
+          <img src="imgae/dmca_icon_8fc6622bd5.svg">
+        </a>
+
+        <img src="imgae/thuong_hieu_manh_2013_icon_b56f772475.svg">
+
+        <a href="http://online.gov.vn/Home/WebDetails/21883" target="_blank">
+          <img src="imgae/da_thong_bao_bo_cong_thuong_icon_64785fb3f7.svg">
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>Website cùng hệ thống</p>
+
+    <div class="footer-logos">
+      <span>F.Studio</span>
+      <span>F.Care</span>
+      <span>Long Châu</span>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem("cart")) || []; }
+    catch { return []; }
+  }
+
+  function updateCartCount() {
+    const cart = getCart();
+    const total = cart.reduce((sum, i) => sum + (i.qty || i.quantity || 1), 0);
+    const el = document.getElementById("cart-count");
+    if (el) el.innerText = total;
+  }
+
+  function openCart() {
+    window.location.href = "1.cart.html";
+  }
+
+  updateCartCount();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

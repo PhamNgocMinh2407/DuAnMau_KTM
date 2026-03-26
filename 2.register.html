@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <title>Đăng ký - Laptop Store</title>
+</head>
+
+<body>
+
+<div class="container header-top">
+  <button class="back-btn" onclick="history.back()"> ← </button>
+
+  <h1 class="logo">Laptop Store</h1>
+
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
+
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
+    <div class="profile-menu" id="profile-menu">
+      <a href="profile.html">Profile</a>
+      <a href="2.order-history.html">Lịch sử đơn hàng</a>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
+    </div>
+  </div>
+
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+
+    <div class="cart-menu" id="cart-menu">
+      <div class="cart-items-list" id="cart-items-list">
+        <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
+      </div>
+      <div class="cart-footer" id="cart-footer" style="display:none;">
+        <div class="cart-total">
+          <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+        </div>
+        <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="header-bottom">
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.terms.html">Điều khoản</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
+</div>
+
+<section style="
+  background:linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+  url('https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+  padding:80px 15px;
+  color:#fff;
+">
+  <div style="max-width:1200px; margin:auto; text-align:center;">
+    <div style="font-size:13px; opacity:0.9; margin-bottom:8px;">
+      Trang chủ / Tài khoản / Đăng ký
+    </div>
+    <h1 style="margin:0; font-size:40px; font-weight:700;">Đăng ký tài khoản</h1>
+    <p style="margin:10px auto 0; max-width:700px; font-size:15px; color:#f3f3f3;">
+      Tạo tài khoản mới để lưu thông tin, theo dõi đơn hàng và mua sắm tiện lợi hơn tại Laptop Store.
+    </p>
+  </div>
+</section>
+
+<main style="background:#f5f5f5; padding:60px 20px;">
+  <div style="
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:30px;
+    align-items:stretch;
+  ">
+
+    <div style="
+      background:#fff;
+      padding:28px;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    ">
+      <h2 style="margin-bottom:16px; color:#111;">Tạo tài khoản mới</h2>
+      <p style="color:#555; margin-bottom:20px; line-height:1.7;">
+        Đăng ký tài khoản để lưu địa chỉ nhận hàng, xem lịch sử mua sắm và nhận các cập nhật mới từ cửa hàng.
+      </p>
+
+      <div style="
+        background:#fafafa;
+        border:1px solid #e5e5e5;
+        padding:14px;
+        border-radius:8px;
+        margin-bottom:12px;
+        color:#333;
+      ">
+        ✅ Lưu thông tin cá nhân nhanh chóng
+      </div>
+
+      <div style="
+        background:#fafafa;
+        border:1px solid #e5e5e5;
+        padding:14px;
+        border-radius:8px;
+        margin-bottom:12px;
+        color:#333;
+      ">
+        ✅ Mua hàng và theo dõi đơn hàng dễ hơn
+      </div>
+
+      <div style="
+        background:#fafafa;
+        border:1px solid #e5e5e5;
+        padding:14px;
+        border-radius:8px;
+        color:#333;
+      ">
+        ✅ Nhận ưu đãi và thông tin mới nhất
+      </div>
+
+      <div style="margin-top:24px;">
+        <p style="font-size:14px; color:#666; margin-bottom:10px;">Bạn đã có tài khoản?</p>
+        <a href="2.login.html" style="
+          display:inline-block;
+          background:#111;
+          color:#fff;
+          text-decoration:none;
+          padding:12px 18px;
+          border-radius:6px;
+          font-weight:600;
+        ">
+          Đăng nhập ngay
+        </a>
+      </div>
+    </div>
+
+    <div style="
+      background:#fff;
+      padding:28px;
+      border-radius:10px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    ">
+      <h2 style="margin-bottom:18px; color:#111; text-align:center;">Đăng ký tài khoản</h2>
+
+      <form id="registerForm">
+        <div style="margin-bottom:18px;">
+          <label for="name" style="font-size:14px; font-weight:600; color:#222;">Họ và tên</label><br>
+          <input
+            id="name"
+            type="text"
+            placeholder="Ví dụ: Nguyễn Văn A"
+            required
+            style="
+              width:100%;
+              padding:12px;
+              margin-top:8px;
+              border:1px solid #ccc;
+              border-radius:6px;
+              background:#fff;
+              box-sizing:border-box;
+            "
+          >
+        </div>
+
+        <div style="margin-bottom:18px;">
+          <label for="email" style="font-size:14px; font-weight:600; color:#222;">Email</label><br>
+          <input
+            id="email"
+            type="email"
+            placeholder="example@gmail.com"
+            required
+            style="
+              width:100%;
+              padding:12px;
+              margin-top:8px;
+              border:1px solid #ccc;
+              border-radius:6px;
+              background:#fff;
+              box-sizing:border-box;
+            "
+          >
+        </div>
+
+        <div style="margin-bottom:18px;">
+          <label for="password" style="font-size:14px; font-weight:600; color:#222;">Mật khẩu</label><br>
+          <input
+            id="password"
+            type="password"
+            placeholder="Tối thiểu 6 ký tự"
+            required
+            style="
+              width:100%;
+              padding:12px;
+              margin-top:8px;
+              border:1px solid #ccc;
+              border-radius:6px;
+              background:#fff;
+              box-sizing:border-box;
+            "
+          >
+        </div>
+
+        <div style="
+          margin-bottom:18px;
+          padding:12px 14px;
+          background:#fafafa;
+          border:1px solid #e5e5e5;
+          border-radius:8px;
+          font-size:14px;
+          color:#444;
+          line-height:1.7;
+        ">
+          <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer;">
+            <input
+              id="agreeTerms"
+              type="checkbox"
+              style="margin-top:3px;"
+            >
+            <span>
+              Tôi đồng ý với
+              <a href="2.terms.html" target="_blank" style="color:#111; font-weight:600; text-decoration:none;">
+                Điều khoản sử dụng
+              </a>
+              của Laptop Store
+            </span>
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          style="
+            width:100%;
+            padding:12px 20px;
+            border:none;
+            background:#111;
+            color:#fff;
+            cursor:pointer;
+            border-radius:6px;
+            font-size:15px;
+            font-weight:600;
+          "
+        >
+          Đăng ký ngay
+        </button>
+      </form>
+
+      <div style="text-align:center; margin-top:16px; font-size:14px; color:#555;">
+        Bạn đã có tài khoản?
+        <a href="2.login.html" style="color:#111; text-decoration:none; font-weight:600;">
+          Đăng nhập
+        </a>
+      </div>
+
+      <div style="text-align:center; margin-top:10px;">
+        <a href="index.html" style="color:#555; text-decoration:none; font-size:14px;">
+          ← Quay lại trang chủ
+        </a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <h3>TẢI ỨNG DỤNG</h3>
+      <div class="app-box">
+        <img src="imgae/qr-download-app-fptshop.png" class="qr">
+
+        <div class="store">
+          <img src="imgae/appstore.png">
+          <img src="imgae/button-chplay.png">
+        </div>
+      </div>
+
+      <h3>KẾT NỐI</h3>
+      <div class="social">
+        <img src="imgae/facebook_icon_8543190720.svg" alt="fb" style="width:30px">
+        <img src="imgae/youtube_icon_b492d61ba5.svg" alt="yt" style="width:30px">
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>VỀ CHÚNG TÔI</h3>
+      <ul style="list-style:none; padding:0;">
+        <li>Giới thiệu công ty</li>
+        <li>Chính sách bảo mật</li>
+        <li>Câu hỏi thường gặp</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>TỔNG ĐÀI MIỄN PHÍ</h3>
+      <p>1800.6601 (Mua hàng)</p>
+      <p>1800.6616 (Góp ý)</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>HỖ TRỢ THANH TOÁN</h3>
+      <div class="payment">
+        <img src="imgae/visa.png" style="width:40px">
+        <img src="imgae/momo.png" style="width:40px">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom" style="text-align:center; padding:20px; border-top:1px solid #eee;">
+    <p>© 2024 Laptop Store</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("registerForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const agreeTerms = document.getElementById("agreeTerms").checked;
+
+    if(name === "" || email === "" || password === ""){
+      alert("Vui lòng nhập đầy đủ thông tin");
+      return;
+    }
+
+    if(password.length < 6){
+      alert("Mật khẩu phải từ 6 ký tự trở lên!");
+      return;
+    }
+
+    if(!agreeTerms){
+      alert("Vui lòng đồng ý với Điều khoản sử dụng trước khi đăng ký");
+      return;
+    }
+
+    const user = { name, email, password };
+    localStorage.setItem("user", JSON.stringify(user));
+
+    alert("Đăng ký thành công! Bạn sẽ được chuyển đến trang đăng nhập.");
+    window.location.href = "2.login.html";
+  });
+
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem("cart")) || []; }
+    catch { return []; }
+  }
+
+  function updateCartCount() {
+    const cart = getCart();
+    const total = cart.reduce((sum, i) => sum + (i.qty || i.quantity || 1), 0);
+    const el = document.getElementById("cart-count");
+    if (el) el.innerText = total;
+  }
+
+  function openCart() {
+    window.location.href = "1.cart.html";
+  }
+
+  updateCartCount();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

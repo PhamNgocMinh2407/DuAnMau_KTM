@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giỏ hàng</title>
+  <link rel="stylesheet" href="cart.css" />
+
+</head>
+
+<body>
+
+  <!-- ===== HEADER ===== -->
+<div class="container header-top">
+
+  <button class="back-btn" onclick="history.back()"> ← </button>
+
+  <h1 class="logo">Laptop Store</h1>
+
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
+
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
+
+
+  </div>
+
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
+</div>
+
+<div class="header-bottom">
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.terms.html">Điều khoản</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
+</div>
+
+
+
+
+  <main class="shop-layout">
+
+  <!-- LEFT: cart -->
+  <section class="products">
+    <div class="page-box">
+
+      <div class="cart-container">
+
+        <h1>🛒 Giỏ hàng của bạn</h1>
+        <div id="cart-list"></div>
+        <div class="total-box" id="total"></div>
+
+        <div style="text-align:right; margin-top:15px;">
+          <button id="checkout-btn">
+            Thanh toán
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RIGHT: sidebar -->
+  <aside class="sidebar">
+
+    <h3>Customers also bought</h3>
+
+    <div class="side-product">
+      <img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=60">
+      <div>
+        <div class="side-title">Laptop Keyboard</div>
+        <div class="side-price">299.000₫</div>
+        <button class="side-btn"
+          data-name="Laptop Sleeve Case"
+          data-price="299000"
+          data-image="https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=60">
+          Add to cart
+        </button>
+      </div>
+    </div>
+
+    <div class="side-product">
+      <img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=400&q=60">
+      <div>
+        <div class="side-title">Wireless Mouse</div>
+        <div class="side-price">399.000₫</div>
+        <button class="side-btn"
+          data-name="Wireless Mouse"
+          data-price="399000"
+          data-image="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?auto=format&fit=crop&w=400&q=60">
+          Add to cart
+        </button>
+      </div>
+    </div>
+
+    <div class="side-product">
+      <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=400&q=60">
+      <div>
+        <div class="side-title">USB-C Hub</div>
+        <div class="side-price">450.000₫</div>
+        <button class="side-btn"
+          data-name="USB-C Hub"
+          data-price="450000"
+          data-image="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?auto=format&fit=crop&w=400&q=60">
+          Add to cart
+        </button>
+      </div>
+    </div>
+
+  </aside>
+
+</main>
+
+
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+    <!-- COL 1 -->
+    <div class="footer-col">
+
+      <h3>TẢI ỨNG DỤNG</h3>
+
+      <div class="app-box">
+        <img src="imgae/qr-download-app-fptshop.png" class="qr" alt="QR tải ứng dụng">
+
+        <div class="store">
+          <a href="https://apps.apple.com/vn/app/fpt-shop/id6475874688" target="_blank">
+            <img src="imgae/appstore.png" alt="App Store">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=vn.frt.fptshop.app" target="_blank">
+            <img src="imgae/button-chplay.png" alt="Google Play">
+          </a>
+        </div>
+      </div>
+
+      <h3>KẾT NỐI</h3>
+
+      <div class="social">
+        <span>
+          <a href="https://www.facebook.com/FPTShopOnline" target="_blank">
+            <img src="imgae/facebook_icon_8543190720.svg" alt="facebook">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.youtube.com/@FPTShop_" target="_blank">
+            <img src="imgae/youtube_icon_b492d61ba5.svg" alt="youtube">
+          </a>
+        </span>
+        <span>
+          <a href="https://zalo.me/2659487666103055748" target="_blank">
+            <img src="imgae/zalo_icon_8cbef61812.svg" alt="zalo">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.tiktok.com/@fptshop.official" target="_blank">
+            <img src="imgae/tiktok_icon_faabbeeb61.svg" alt="tiktok">
+          </a>
+        </span>
+      </div>
+
+      <h3>TỔNG ĐÀI MIỄN PHÍ</h3>
+      <p>1800.6601 (Mua hàng)</p>
+      <p>1800.6601 (Hỗ trợ kỹ thuật)</p>
+      <p>1800.6616 (Góp ý)</p>
+
+    </div>
+
+    <!-- COL 2 -->
+    <div class="footer-col">
+      <h3>VỀ CHÚNG TÔI</h3>
+      <ul>
+        <li>Giới thiệu công ty</li>
+        <li>Quy chế hoạt động</li>
+        <li>Tin tức khuyến mãi</li>
+        <li>Giới thiệu máy đổi trả</li>
+        <li>Tra cứu bảo hành</li>
+        <li>Câu hỏi thường gặp</li>
+      </ul>
+    </div>
+
+    <!-- COL 3 -->
+    <div class="footer-col">
+      <h3>CHÍNH SÁCH</h3>
+      <ul>
+        <li>Chính sách bảo hành</li>
+        <li>Chính sách đổi trả</li>
+        <li>Chính sách bảo mật</li>
+        <li>Chính sách trả góp</li>
+        <li>Chính sách giao hàng</li>
+        <li>Chính sách khách hàng</li>
+        <li><a href="2.terms.html" style="color:inherit; text-decoration:none;">Điều khoản sử dụng</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 4 -->
+    <div class="footer-col">
+
+      <h3>HỖ TRỢ THANH TOÁN</h3>
+
+      <div class="payment">
+        <img src="imgae/visa.png" alt="Visa">
+        <img src="imgae/VNpay.jpg" alt="VNPAY">
+        <img src="imgae/zalo.png" alt="ZaloPay">
+        <img src="imgae/momo.png" alt="MoMo">
+        <img src="imgae/SSPay.jpg" alt="SmartPay">
+        <img src="imgae/JCB.jpg" alt="JCB">
+      </div>
+
+      <h3>CHỨNG NHẬN</h3>
+
+      <div class="cert">
+        <a href="https://www.dmca.com/Protection/Status.aspx?ID=98d66f66-5a62-47e9-b45c-edaebfb0c9b3&refurl=https://fptshop.com.vn/" target="_blank">
+          <img src="imgae/dmca_icon_8fc6622bd5.svg" alt="DMCA">
+        </a>
+
+        <img src="imgae/thuong_hieu_manh_2013_icon_b56f772475.svg" alt="Thương hiệu mạnh">
+
+        <a href="http://online.gov.vn/Home/WebDetails/21883" target="_blank">
+          <img src="imgae/da_thong_bao_bo_cong_thuong_icon_64785fb3f7.svg" alt="Đã thông báo Bộ Công Thương">
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>Website cùng hệ thống</p>
+
+    <div class="footer-logos">
+      <span>F.Studio</span>
+      <span>F.Care</span>
+      <span>Long Châu</span>
+    </div>
+  </div>
+
+</footer>
+
+  <script>
+
+    function formatPrice(num) {
+      return num.toLocaleString('vi-VN') + "₫";
+    }
+
+    function loadCart() {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const cartList = document.getElementById("cart-list");
+      const totalBox = document.getElementById("total");
+
+      cartList.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartList.innerHTML = "<div class='empty'>Giỏ hàng đang trống 🥲</div>";
+        totalBox.innerHTML = "";
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+
+        const div = document.createElement("div");
+        div.className = "cart-item";
+
+        div.innerHTML = `
+      <img src="${item.image}">
+      <div class="cart-info">
+        <div class="cart-title">${item.name}</div>
+        <div class="cart-price">${formatPrice(item.price)}</div>
+
+        <div class="qty-controls">
+          <button onclick="changeQty(${index}, -1)">-</button>
+          <span>${item.quantity}</span>
+          <button onclick="changeQty(${index}, 1)">+</button>
+        </div>
+      </div>
+
+      <button class="remove-btn" onclick="removeItem(${index})">Xóa</button>
+    `;
+
+        cartList.appendChild(div);
+      });
+
+      totalBox.innerHTML = "Tổng tiền: " + formatPrice(total);
+    }
+
+    function changeQty(index, amount) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      cart[index].quantity += amount;
+
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart();
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      loadCart();
+    }
+
+    loadCart();
+
+    document.getElementById("checkout-btn").addEventListener("click", function () {
+      window.location.href = "checkout.html";
+    });
+
+
+
+    document.querySelectorAll(".side-btn").forEach(btn => {
+
+      btn.addEventListener("click", function () {
+
+        const name = this.dataset.name
+        const price = Number(this.dataset.price)
+        const image = this.dataset.image
+
+        let cart = JSON.parse(localStorage.getItem("cart")) || []
+
+        const existing = cart.find(item => item.name === name)
+
+        if (existing) {
+          existing.quantity += 1
+        } else {
+          cart.push({
+            name: name,
+            price: price,
+            image: image,
+            quantity: 1
+          })
+        }
+
+        localStorage.setItem("cart", JSON.stringify(cart))
+
+        loadCart()
+
+      })
+
+    })
+  </script>
+
+</body>
+
+</html>

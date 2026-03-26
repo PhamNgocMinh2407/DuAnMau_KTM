@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <title>Sản phẩm - Laptop Store</title>
+</head>
+
+<body>
+
+<div class="container header-top">
+  <button class="back-btn" onclick="history.back()"> ← </button>
+
+  <h1 class="logo">Laptop Store</h1>
+
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
+
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
+    <div class="profile-menu" id="profile-menu">
+      <a href="profile.html">Profile</a>
+      <a href="2.order-history.html">Lịch sử đơn hàng</a>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
+    </div>
+  </div>
+
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+    <div class="cart-menu" id="cart-menu">
+      <div class="cart-items-list" id="cart-items-list">
+        <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
+      </div>
+      <div class="cart-footer" id="cart-footer" style="display:none;">
+        <div class="cart-total">
+          <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+        </div>
+        <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="header-bottom">
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.terms.html">Điều khoản</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
+</div>
+
+<section style="background:#f5f5f5; padding:22px 15px 12px;">
+  <div style="max-width:1200px; margin:auto;">
+    <div style="
+      background:#fff;
+      border:1px solid #e5e5e5;
+      border-radius:12px;
+      padding:24px;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+    ">
+      <div style="font-size:13px; color:#666; margin-bottom:10px;">
+        Trang chủ / Sản phẩm
+      </div>
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:flex-start;
+        gap:16px;
+        flex-wrap:wrap;
+      ">
+        <div>
+          <h1 style="margin:0; font-size:34px; color:#111;">Danh sách laptop</h1>
+          <p style="margin:8px 0 0; color:#555; line-height:1.7; max-width:760px;">
+            Chọn theo nhu cầu: học tập, văn phòng, creator hoặc gaming hiệu năng cao.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span style="padding:8px 12px; background:#111; color:#fff; border-radius:999px; font-size:13px;">Laptop chính hãng</span>
+          <span style="padding:8px 12px; background:#f3f4f6; color:#111; border:1px solid #e5e5e5; border-radius:999px; font-size:13px;">Trả góp 0%</span>
+          <span style="padding:8px 12px; background:#f3f4f6; color:#111; border:1px solid #e5e5e5; border-radius:999px; font-size:13px;">Giao nhanh</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main style="background:#f5f5f5; padding:16px 15px 45px;">
+  <div style="max-width:1200px; margin:auto;">
+
+    <div style="
+      background:#fff;
+      border:1px solid #e5e5e5;
+      border-radius:10px;
+      padding:16px;
+      margin-bottom:18px;
+    ">
+      <div style="font-size:15px; font-weight:700; color:#111; margin-bottom:12px;">
+        Danh mục nổi bật
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        <a href="category-gaming.html" style="text-decoration:none; padding:10px 14px; background:#111; color:#fff; border-radius:8px;">🎮 Gaming</a>
+        <a href="category-office.html" style="text-decoration:none; padding:10px 14px; background:#f3f4f6; color:#111; border:1px solid #ddd; border-radius:8px;">💼 Văn phòng</a>
+        <a href="category-creator.html" style="text-decoration:none; padding:10px 14px; background:#f3f4f6; color:#111; border:1px solid #ddd; border-radius:8px;">🎨 Creator</a>
+        <a href="category-student.html" style="text-decoration:none; padding:10px 14px; background:#f3f4f6; color:#111; border:1px solid #ddd; border-radius:8px;">🧑‍🎓 Học tập</a>
+      </div>
+    </div>
+
+    <div id="productGrid" style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:18px;
+    "></div>
+
+    <div style="margin-top:18px; color:#666; font-size:13px;">
+      *Giá tham khảo theo cấu hình phổ biến. Có thể thay đổi theo từng thời điểm và chương trình khuyến mãi.
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <h3>TẢI ỨNG DỤNG</h3>
+      <div class="app-box">
+        <img src="imgae/qr-download-app-fptshop.png" class="qr">
+        <div class="store">
+          <img src="imgae/appstore.png">
+          <img src="imgae/button-chplay.png">
+        </div>
+      </div>
+
+      <h3>KẾT NỐI</h3>
+      <div class="social">
+        <img src="imgae/facebook_icon_8543190720.svg" alt="facebook">
+        <img src="imgae/youtube_icon_b492d61ba5.svg" alt="youtube">
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>VỀ CHÚNG TÔI</h3>
+      <ul>
+        <li>Giới thiệu công ty</li>
+        <li>Quy chế hoạt động</li>
+        <li>Tin tức khuyến mãi</li>
+        <li>Câu hỏi thường gặp</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>CHÍNH SÁCH</h3>
+      <ul>
+        <li>Chính sách bảo hành</li>
+        <li>Chính sách đổi trả</li>
+        <li>Chính sách bảo mật</li>
+        <li><a href="2.terms.html" style="color:inherit; text-decoration:none;">Điều khoản sử dụng</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>HỖ TRỢ THANH TOÁN</h3>
+      <div class="payment">
+        <img src="imgae/visa.png">
+        <img src="imgae/momo.png">
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>Website cùng hệ thống</p>
+    <div class="footer-logos">
+      <span>F.Studio</span>
+      <span>F.Care</span>
+      <span>Long Châu</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const productData = {
+    "ins15": {
+      category: "Văn phòng",
+      name: "Dell Inspiron 15 (i5)",
+      price: 15990000,
+      oldPrice: 17990000,
+      image: "imgae/dell inspiron 15.jpg",
+      specs: "Intel Core i5 • 8GB RAM • 512GB SSD • 15.6 inch FHD",
+      badge: "Trả góp 0%"
+    },
+    "vivobook14": {
+      category: "Học tập",
+      name: "ASUS VivoBook 14",
+      price: 14490000,
+      oldPrice: 15990000,
+      image: "imgae/asus vivo 14.jpg",
+      specs: "Ryzen 5 • 8GB RAM • 512GB SSD • 14 inch FHD",
+      badge: "Giá tốt"
+    },
+    "pav14": {
+      category: "Creator",
+      name: "HP Pavilion 14 (16GB)",
+      price: 18990000,
+      oldPrice: 20990000,
+      image: "imgae/pavillion 14.jpg",
+      specs: "Intel Core i5 • 16GB RAM • 512GB SSD • Màn đẹp",
+      badge: "Hot"
+    },
+    "nitro5": {
+      category: "Gaming",
+      name: "Acer Nitro 5 (RTX)",
+      price: 24990000,
+      oldPrice: 27990000,
+      image: "imgae/nitro 5.jpg",
+      specs: "Intel Core i5 • 16GB RAM • 512GB SSD • RTX • 144Hz",
+      badge: "Gaming"
+    },
+    "thinkpad-e14": {
+      category: "Văn phòng",
+      name: "Lenovo ThinkPad E14",
+      price: 19490000,
+      oldPrice: 21490000,
+      image: "imgae/thinkpad e14.jpg",
+      specs: "Intel Core i5 • 16GB RAM • 512GB SSD • Bền bỉ",
+      badge: "Bán chạy"
+    },
+    "mac-air-m1": {
+      category: "Creator",
+      name: "MacBook Air M1",
+      price: 19990000,
+      oldPrice: 22990000,
+      image: "imgae/air m1.jpg",
+      specs: "Apple M1 • 8GB RAM • 256GB SSD • Pin trâu",
+      badge: "Apple"
+    },
+    "msi-modern15": {
+      category: "Học tập",
+      name: "MSI Modern 15",
+      price: 16990000,
+      oldPrice: 18990000,
+      image: "imgae/modern 15.jpg",
+      specs: "Intel Core i5 • 8GB RAM • 512GB SSD • 15.6 inch",
+      badge: "Sinh viên"
+    },
+    "asus-tuf-f15": {
+      category: "Gaming",
+      name: "ASUS TUF Gaming F15",
+      price: 26490000,
+      oldPrice: 29490000,
+      image: "imgae/tuf 15 gaming.jpg",
+      specs: "Intel Core i7 • 16GB RAM • 512GB SSD • RTX",
+      badge: "Hiệu năng cao"
+    }
+  };
+
+  function formatPrice(n) {
+    return n.toLocaleString("vi-VN") + "đ";
+  }
+
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem("cart")) || []; }
+    catch { return []; }
+  }
+
+  function setCart(cart) {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
+  function updateCartCount() {
+    const cart = getCart();
+    document.getElementById("cart-count").innerText =
+      cart.reduce((sum, i) => sum + (i.qty || 1), 0);
+  }
+
+  function openCart() {
+    window.location.href = "1.cart.html";
+  }
+
+  const grid = document.getElementById("productGrid");
+
+  Object.entries(productData).forEach(([id, p]) => {
+    const sale = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
+
+    const card = document.createElement("div");
+    card.style = `
+      background:#fff;
+      border:1px solid #e5e5e5;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow:0 2px 8px rgba(0,0,0,0.04);
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    `;
+
+    card.innerHTML = `
+      <div style="position:relative; padding:14px 14px 0;">
+        <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px; z-index:2;">
+          ${p.badge}
+        </div>
+
+        <div style="position:absolute; top:12px; right:12px; background:#d70018; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px; z-index:2;">
+          -${sale}%
+        </div>
+
+        <div style="
+          background:#fff;
+          border-radius:10px;
+          padding:14px;
+          border:1px solid #f0f0f0;
+        ">
+          <img src="${p.image}" alt="${p.name}" style="width:100%; height:190px; object-fit:cover; border-radius:8px; display:block;">
+        </div>
+      </div>
+
+      <div style="padding:14px 16px 16px; display:flex; flex-direction:column; flex:1;">
+        <div style="font-size:13px; color:#666; margin-bottom:6px;">${p.category}</div>
+
+        <h3 style="margin:0 0 8px; font-size:17px; line-height:1.45; color:#111; min-height:50px;">
+          ${p.name}
+        </h3>
+
+        <div style="margin-bottom:4px;">
+          <span style="font-size:22px; font-weight:800; color:#d70018;">${formatPrice(p.price)}</span>
+        </div>
+
+        <div style="font-size:13px; color:#888; text-decoration:line-through; margin-bottom:10px;">
+          ${formatPrice(p.oldPrice)}
+        </div>
+
+        <div style="
+          background:#f8fafc;
+          border:1px solid #e5e7eb;
+          border-radius:8px;
+          padding:10px;
+          font-size:13px;
+          color:#444;
+          line-height:1.6;
+          margin-bottom:14px;
+        ">
+          ${p.specs}
+        </div>
+
+        <div style="margin-top:auto; display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="2.product-detail.html?id=${id}" style="
+            text-decoration:none;
+            flex:1;
+            min-width:110px;
+            text-align:center;
+            padding:11px 12px;
+            background:#111;
+            color:#fff;
+            border-radius:8px;
+            font-weight:600;
+          ">
+            Xem chi tiết
+          </a>
+
+          <button class="add-to-cart" data-id="${id}" style="
+            border:none;
+            cursor:pointer;
+            flex:1;
+            min-width:110px;
+            padding:11px 12px;
+            background:#f3f4f6;
+            color:#111;
+            border-radius:8px;
+            font-weight:600;
+          ">
+            Thêm giỏ
+          </button>
+        </div>
+      </div>
+    `;
+
+    grid.appendChild(card);
+  });
+
+  document.querySelectorAll(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id");
+      const p = productData[id];
+      if (!p) return;
+
+      const cart = getCart();
+      const existing = cart.find(x => x.id === id);
+
+      if (existing) existing.qty += 1;
+      else cart.push({
+        id,
+        name: p.name,
+        price: p.price,
+        image: p.image,
+        qty: 1
+      });
+
+      setCart(cart);
+      updateCartCount();
+
+      btn.innerText = "Đã thêm ✓";
+      setTimeout(() => btn.innerText = "Thêm giỏ", 900);
+    });
+  });
+
+  updateCartCount();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

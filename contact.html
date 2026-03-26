@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao diện FPT Shop</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+ <!-- ===== HEADER ===== -->
+<div class="container header-top">
+
+  <button class="back-btn" onclick="history.back()"> ← </button>
+
+  <h1 class="logo">Laptop Store</h1>
+
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
+
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
+
+
+  </div>
+
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
+</div>
+
+<div class="header-bottom">
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.terms.html">Điều khoản</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
+</div>
+
+
+
+
+    <div class="sidebar-nav">
+        <a href="#retail-system" title="Hệ thống bán lẻ">●</a>
+        <a href="#contact-section" title="Liên hệ">●</a>
+        <button onclick="window.scrollBy(0, 500)" class="scroll-down-btn">↓</button>
+    </div>
+
+    <main class="container">
+        
+        <section id="retail-system" class="section">
+            <div class="section-header">
+                <h2>Hệ Thống Bán Lẻ Khắp Ba Miền</h2>
+                <p>Hệ thống bán lẻ khắp ba miền, trải khắp 34 tỉnh thành luôn luôn mở rộng để phục vụ Quý Khách trên toàn quốc. Cung cấp dịch vụ bán hàng và phục vụ hàng đầu.</p>
+            </div>
+
+
+
+
+        <section id="contact-section" class="section contact-grid">
+            
+            <div class="contact-form-box">
+                <h2>Liên Hệ Với Chúng Tôi</h2>
+                <p>Điền thông tin bên dưới và chúng tôi sẽ liên hệ lại với bạn sớm nhất.</p>
+                <form>
+                    <div class="form-group">
+                        <label>Họ và Tên *</label>
+                        <input type="text" placeholder="Nhập họ và tên của bạn">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Số Điện Thoại</label>
+                            <input type="tel" placeholder="0123 456 789">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Chủ Đề *</label>
+                        <input type="text" placeholder="Vấn đề bạn muốn hỏi">
+                    </div>
+                    <div class="form-group">
+                        <label>Nội Dung *</label>
+                        <textarea rows="5" placeholder="Nhập nội dung chi tiết..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">✈ Gửi Thông Tin</button>
+                </form>
+            </div>
+
+            <div class="store-list-box">
+                <h3>Hệ Thống Cửa Hàng</h3>
+                <p>Hệ thống bán lẻ khắp ba miền, trải khắp 34 tỉnh thành</p>
+                
+                <div class="store-scroll">
+                    <div class="store-item">
+                        <span class="badge">TP. Hồ Chí Minh</span>
+                        <h4>261 - 263 Khánh Hội</h4>
+                        <p>📍 P. Vĩnh Hội, Quận 4, TP. HCM</p>
+                        <p>📞 1900 6601 | 🕒 8:00 - 22:00</p>
+                    </div>
+                    <div class="store-item">
+                        <span class="badge">Khánh Hòa</span>
+                        <h4>96 Thái Nguyên</h4>
+                        <p>📍 P. Tây Nha Trang, TP. Nha Trang</p>
+                        <p>📞 1900 6601 | 🕒 8:00 - 22:00</p>
+                    </div>
+                    <div class="store-item">
+                        <span class="badge">TP. Hồ Chí Minh</span>
+                        <h4>418 Nguyễn Văn Nghi</h4>
+                        <p>📍 P. 7, Gò Vấp, TP. HCM</p>
+                        <p>📞 1900 6601 | 🕒 8:00 - 22:00</p>
+                    </div>
+                    <div class="store-item">
+                        <span class="badge">TP. Hồ Chí Minh</span>
+                        <h4>176 Ông Ích Khiêm</h4>
+                        <p>📍 Quận 11, TP. HCM</p>
+                        <p>📞 1900 6601 | 🕒 8:00 - 22:00</p>
+                    </div>
+                </div>
+                <a href="#" class="view-all">Xem tất cả cửa hàng →</a>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+<div class="store-gallery">
+    <div class="gallery-item">
+        <img src="imgae/image1.jpg" alt="Store 1">
+    </div>
+    <div class="gallery-item">
+        <img src="imgae/image2.jpg" alt="Store 2">
+    </div>
+    <div class="gallery-item">
+        <img src="imgae/image3.jpg" alt="Store 3">
+    </div>
+    <div class="gallery-item">
+        <img src="imgae/image4.jpg" alt="Store 4">
+    </div>
+</div>
+
+   <hr class="divider">
+
+<div class="contact-info-section">
+    <div class="info-item">
+        <div class="info-icon">
+            <img src="imgae/app-icon.png" alt="App">
+        </div>
+        <div class="info-content">
+            <span class="info-label">ỨNG DỤNG CSKH</span>
+            <span class="info-value">Hi FPT</span>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <div class="info-icon">
+            <img src="imgae/hotline.png" alt="Hotline">
+        </div>
+        <div class="info-content">
+            <span class="info-label">HOTLINE BÁN HÀNG</span>
+            <span class="info-value">1900 6600</span>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <div class="info-icon">
+            <img src="imgae/call.png" alt="CSKH">
+        </div>
+        <div class="info-content">
+            <span class="info-label">TỔNG ĐÀI CSKH</span>
+            <span class="info-value">1900 6600</span>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <div class="info-icon">
+            <img src="imgae/email.png" alt="Email">
+        </div>
+        <div class="info-content">
+            <span class="info-label">EMAIL</span>
+            <span class="info-value">hotrokhachhang@fpt.com</span>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <div class="info-icon">
+            <img src="imgae/livechat.png" alt="Chat">
+        </div>
+        <div class="info-content">
+            <span class="info-label">LIVE CHAT</span>
+            <span class="info-value">Giải đáp mọi thắc mắc</span>
+        </div>
+    </div>
+
+    <div class="info-item">
+        <div class="info-icon">
+            <img src="imgae/facebook.png" alt="Facebook">
+        </div>
+        <div class="info-content">
+            <span class="info-label">FACEBOOK</span>
+            <span class="info-value">www.facebook.com/fpttelecom</span>
+        </div>
+    </div>
+</div>
+
+
+   <hr class="divider">
+
+
+
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">👤</div>
+                    <h3>Nhân viên nhiệt tình</h3>
+                    <p>Đỗ xe tiện lợi, phục vụ nhiệt tình, Quý Khách có thể hoàn toàn tin tưởng để mua sắm.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🏠</div>
+                    <h3>Cửa hàng chính hãng</h3>
+                    <p>Nhà phân phối các sản phẩm Apple, Samsung, Xiaomi, OPPO,... chính hãng.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">📦</div>
+                    <h3>Sản phẩm đa dạng</h3>
+                    <p>Mọi nhu cầu về giá, hãng sản xuất,... với nhiều ưu đãi khuyến mãi hấp dẫn.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🚚</div>
+                    <h3>Giao hàng miễn phí</h3>
+                    <p>Giao hàng tận nơi và miễn phí trong phạm vi bán kính lên đến 20km.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">💳</div>
+                    <h3>Thanh toán tiện lợi</h3>
+                    <p>Thanh toán nhanh chóng từ tiền mặt đến thẻ ATM nội địa, VISA, MasterCard,...</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">ℹ️</div>
+                    <h3>Thông tin sản phẩm</h3>
+                    <p>Kiểm tra thông tin sản phẩm nhanh chóng tại các shop trên toàn quốc.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">%</div>
+                    <h3>Chính sách trả góp</h3>
+                    <p>Hỗ trợ bán trả góp với các đơn vị tài chính uy tín hàng đầu.</p>
+                    <a href="#" class="more-link">Tìm hiểu thêm →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🔄</div>
+                    <h3>Chính sách đổi trả</h3>
+                    <p>Hỗ trợ đổi trả linh hoạt với nhiều hình thức, điều kiện thuận tiện.</p>
+                    <a href="#" class="more-link">Tìm hiểu thêm →</a>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🛡️</div>
+                    <h3>Chính sách bảo hành</h3>
+                    <p>Bảo hành chính hãng cho tất cả các sản phẩm được bán ra.</p>
+                    <a href="#" class="more-link">Tìm hiểu thêm →</a>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+
+    
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+    <!-- COL 1 -->
+    <div class="footer-col">
+
+      <h3>TẢI ỨNG DỤNG</h3>
+
+      <div class="app-box">
+        <img src="imgae/qr-download-app-fptshop.png" class="qr" alt="QR tải ứng dụng">
+
+        <div class="store">
+          <a href="https://apps.apple.com/vn/app/fpt-shop/id6475874688" target="_blank">
+            <img src="imgae/appstore.png" alt="App Store">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=vn.frt.fptshop.app" target="_blank">
+            <img src="imgae/button-chplay.png" alt="Google Play">
+          </a>
+        </div>
+      </div>
+
+      <h3>KẾT NỐI</h3>
+
+      <div class="social">
+        <span>
+          <a href="https://www.facebook.com/FPTShopOnline" target="_blank">
+            <img src="imgae/facebook_icon_8543190720.svg" alt="facebook">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.youtube.com/@FPTShop_" target="_blank">
+            <img src="imgae/youtube_icon_b492d61ba5.svg" alt="youtube">
+          </a>
+        </span>
+        <span>
+          <a href="https://zalo.me/2659487666103055748" target="_blank">
+            <img src="imgae/zalo_icon_8cbef61812.svg" alt="zalo">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.tiktok.com/@fptshop.official" target="_blank">
+            <img src="imgae/tiktok_icon_faabbeeb61.svg" alt="tiktok">
+          </a>
+        </span>
+      </div>
+
+      <h3>TỔNG ĐÀI MIỄN PHÍ</h3>
+      <p>1800.6601 (Mua hàng)</p>
+      <p>1800.6601 (Hỗ trợ kỹ thuật)</p>
+      <p>1800.6616 (Góp ý)</p>
+
+    </div>
+
+    <!-- COL 2 -->
+    <div class="footer-col">
+      <h3>VỀ CHÚNG TÔI</h3>
+      <ul>
+        <li>Giới thiệu công ty</li>
+        <li>Quy chế hoạt động</li>
+        <li>Tin tức khuyến mãi</li>
+        <li>Giới thiệu máy đổi trả</li>
+        <li>Tra cứu bảo hành</li>
+        <li>Câu hỏi thường gặp</li>
+      </ul>
+    </div>
+
+    <!-- COL 3 -->
+    <div class="footer-col">
+      <h3>CHÍNH SÁCH</h3>
+      <ul>
+        <li>Chính sách bảo hành</li>
+        <li>Chính sách đổi trả</li>
+        <li>Chính sách bảo mật</li>
+        <li>Chính sách trả góp</li>
+        <li>Chính sách giao hàng</li>
+        <li>Chính sách khách hàng</li>
+        <li><a href="2.terms.html" style="color:inherit; text-decoration:none;">Điều khoản sử dụng</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 4 -->
+    <div class="footer-col">
+
+      <h3>HỖ TRỢ THANH TOÁN</h3>
+
+      <div class="payment">
+        <img src="imgae/visa.png" alt="Visa">
+        <img src="imgae/VNpay.jpg" alt="VNPAY">
+        <img src="imgae/zalo.png" alt="ZaloPay">
+        <img src="imgae/momo.png" alt="MoMo">
+        <img src="imgae/SSPay.jpg" alt="SmartPay">
+        <img src="imgae/JCB.jpg" alt="JCB">
+      </div>
+
+      <h3>CHỨNG NHẬN</h3>
+
+      <div class="cert">
+        <a href="https://www.dmca.com/Protection/Status.aspx?ID=98d66f66-5a62-47e9-b45c-edaebfb0c9b3&refurl=https://fptshop.com.vn/" target="_blank">
+          <img src="imgae/dmca_icon_8fc6622bd5.svg" alt="DMCA">
+        </a>
+
+        <img src="imgae/thuong_hieu_manh_2013_icon_b56f772475.svg" alt="Thương hiệu mạnh">
+
+        <a href="http://online.gov.vn/Home/WebDetails/21883" target="_blank">
+          <img src="imgae/da_thong_bao_bo_cong_thuong_icon_64785fb3f7.svg" alt="Đã thông báo Bộ Công Thương">
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>Website cùng hệ thống</p>
+
+    <div class="footer-logos">
+      <span>F.Studio</span>
+      <span>F.Care</span>
+      <span>Long Châu</span>
+    </div>
+  </div>
+
+</footer>
+
+</body>
+</html>

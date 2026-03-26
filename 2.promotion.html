@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <title>Tin tức & Khuyến mãi</title>
+</head>
+
+<body>
+
+<div class="container header-top">
+
+<button class="back-btn" onclick="history.back()"> ← </button>
+
+<h1 class="logo">Laptop Store</h1>
+
+<div class="search-box">
+<input type="text" placeholder="Tìm kiếm laptop...">
+<button>🔍</button>
+</div>
+
+<div class="account" onclick="handleAccountClick()">
+👤 <span id="profile-name">Tài khoản</span>
+
+<div class="profile-menu" id="profile-menu">
+
+<a href="profile.html">Profile</a>
+
+<a href="2.order-history.html">Lịch sử đơn hàng</a>
+
+<a href="index.html">Trang chủ</a>
+
+<a href="#" onclick="logout()">Đăng xuất</a>
+
+</div>
+
+</div>
+<div class="cart-icon" onclick="openCart()">
+      🛒 <span id="cart-count">0</span>
+      
+      <div class="cart-menu" id="cart-menu">
+        <div class="cart-items-list" id="cart-items-list">
+          <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
+        </div>
+        <div class="cart-footer" id="cart-footer" style="display:none;">
+          <div class="cart-total">
+            <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+          </div>
+          <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+        </div>
+      </div>
+</div>
+
+</div>
+
+<div class="header-bottom">
+<nav class="nav">
+<a href="index.html">Trang chủ</a>
+<a href="2.product.html">Sản phẩm</a>
+<a href="news.html">Tin tức</a>
+<a href="1.contact.html">Liên hệ</a>
+<a href="2.login.html">Đăng nhập</a>
+</nav>
+</div>
+
+<!-- Banner -->
+<div align="center" style="padding:45px 15px; background:linear-gradient(135deg,#4f8cff,#6b5cff); color:white;">
+  <div style="font-size:42px; margin-bottom:10px;">📰</div>
+  <h1 style="margin:0;">Tin tức & Khuyến mãi</h1>
+  <p style="margin:8px 0 0; opacity:0.95;">Cập nhật ưu đãi và thông tin mới nhất từ Laptop Store</p>
+</div>
+
+<main>
+  <div align="center" style="margin-top:25px; padding:0 15px;">
+
+    <!-- highlight -->
+    <div style="width:100%; max-width:980px; background:#fff; border-radius:14px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,0.08); text-align:left;">
+      <div style="color:#666; font-size:13px;">Chương trình nổi bật</div>
+      <h2 style="margin:6px 0 8px;">Ưu đãi đặc biệt cho sinh viên</h2>
+      <p style="margin:0; color:#555; line-height:1.6;">
+        Giảm trực tiếp khi mua laptop học tập/văn phòng, tặng kèm phụ kiện cơ bản và hỗ trợ cài đặt phần mềm.
+        Áp dụng theo số lượng và thời gian chương trình.
+      </p>
+      <div style="margin-top:12px;">
+        <a href="product.html" style="display:inline-block; padding:10px 14px; background:#4f8cff; color:white; border-radius:10px; text-decoration:none;">
+          Xem sản phẩm áp dụng
+        </a>
+        <a href="contact.html" style="display:inline-block; padding:10px 14px; background:#f3f5ff; color:#2c3e66; border-radius:10px; text-decoration:none; margin-left:8px;">
+          Nhận tư vấn
+        </a>
+      </div>
+    </div>
+
+    <!-- news list -->
+    <div style="
+      width:100%;
+      max-width:980px;
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:14px;
+      text-align:left;
+    ">
+
+      <!-- Card 1 -->
+      <div style="background:#fff; border-radius:14px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,0.08);">
+        <div style="font-size:12px; color:#666;">Khuyến mãi • Back to School</div>
+        <h3 style="margin:8px 0 8px;">Giảm giá laptop học tập – tặng balo & chuột</h3>
+        <p style="margin:0; color:#555; line-height:1.6;">
+          Combo dành cho sinh viên: máy học tập + phụ kiện cơ bản để sử dụng ngay khi nhận máy.
+        </p>
+        <div style="margin-top:12px;">
+          <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">Xem chi tiết →</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div style="background:#fff; border-radius:14px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,0.08);">
+        <div style="font-size:12px; color:#666;">Tin tức • Hướng dẫn</div>
+        <h3 style="margin:8px 0 8px;">Chọn laptop văn phòng: nên ưu tiên gì?</h3>
+        <p style="margin:0; color:#555; line-height:1.6;">
+          Gợi ý chọn CPU/RAM/SSD phù hợp, mẹo kiểm tra màn hình và bàn phím để làm việc lâu dài.
+        </p>
+        <div style="margin-top:12px;">
+          <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">Xem chi tiết →</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div style="background:#fff; border-radius:14px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,0.08);">
+        <div style="font-size:12px; color:#666;">Khuyến mãi • Gaming</div>
+        <h3 style="margin:8px 0 8px;">Ưu đãi gaming: hỗ trợ nâng RAM/SSD</h3>
+        <p style="margin:0; color:#555; line-height:1.6;">
+          Áp dụng cho một số mẫu gaming/creator, hỗ trợ nâng cấp để tối ưu hiệu năng khi chơi game và đồ hoạ.
+        </p>
+        <div style="margin-top:12px;">
+          <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">Xem chi tiết →</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div style="background:#fff; border-radius:14px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,0.08);">
+        <div style="font-size:12px; color:#666;">Tin tức • Dịch vụ</div>
+        <h3 style="margin:8px 0 8px;">Chính sách bảo hành & hỗ trợ cài đặt</h3>
+        <p style="margin:0; color:#555; line-height:1.6;">
+          Hỗ trợ kiểm tra máy, vệ sinh cơ bản, cài đặt phần mềm cần thiết và hướng dẫn sử dụng ban đầu.
+        </p>
+        <div style="margin-top:12px;">
+          <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">Xem chi tiết →</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+    <div style="background:#fff; border-radius:14px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,0.08);">
+    <div style="font-size:12px; color:#666;">Tin tức • Tư vấn</div>
+    <h3 style="margin:8px 0 8px;">Nên mua laptop cấu hình bao nhiêu là đủ?</h3>
+    <p style="margin:0; color:#555; line-height:1.6;">
+      Phân tích nhu cầu học tập, văn phòng, đồ hoạ và gaming để chọn cấu hình phù hợp, tránh lãng phí.
+    </p>
+    <div style="margin-top:12px;">
+      <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">Xem chi tiết →</a>
+    </div>
+</div>
+<!-- Card 6 -->
+  <div style="background:#fff; border-radius:14px; padding:18px; box-shadow:0 10px 25px rgba(0,0,0,0.08);">
+    <div style="font-size:12px; color:#666;">Khuyến mãi • Văn phòng</div>
+    <h3 style="margin:8px 0 8px;">Ưu đãi laptop văn phòng tháng này</h3>
+    <p style="margin:0; color:#555; line-height:1.6;">
+      Giảm giá trực tiếp cho một số mẫu laptop văn phòng, hỗ trợ cài đặt và kiểm tra máy miễn phí.
+    </p>
+    <div style="margin-top:12px;">
+      <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">Xem chi tiết →</a>
+    </div>
+  </div>
+    </div>
+
+    <div style="max-width:980px; margin:16px auto 0; color:#666; font-size:13px;">
+      *Nội dung mang tính mô phỏng cho đồ án. Khi triển khai thực tế có thể kết nối dữ liệu từ hệ thống quản lý khuyến mãi/tin tức.
+    </div>
+
+  </div>
+</main>
+
+<script>
+  // cart count (nếu bạn đã dùng localStorage cart ở trang product)
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem("cart")) || []; }
+    catch { return []; }
+  }
+  function updateCartCount() {
+    const cart = getCart();
+    const total = cart.reduce((sum, i) => sum + (i.qty || 1), 0);
+    const el = document.getElementById("cart-count");
+    if (el) el.innerText = total;
+  }
+  function openCart() {
+    window.location.href = "cart.html";
+  }
+  updateCartCount();
+</script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us</title>
+  <link rel="stylesheet" href="about.css" />
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+<div class="container header-top">
+
+  <button class="back-btn" onclick="history.back()"> ← </button>
+
+  <h1 class="logo">Laptop Store</h1>
+
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
+
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
+
+
+  </div>
+
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+  </div>
+
+</div>
+
+<div class="header-bottom">
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.terms.html">Điều khoản</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
+</div>
+
+
+
+  <main class="about-page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <img src="imgae/hero.jpg" alt=" " class="hero-img">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+     
+        <h1>About Us</h1>
+        <p class="hero-text">We help you find the right laptop for work, study, design, or gaming.</p>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section intro-section">
+      <div class="container intro-grid">
+        <article class="intro-card">
+          <div class="intro-image">
+            <img src="imgae/start.jpg" alt="How we started">
+          </div>
+          <div class="intro-body">
+            <h2>How We Started</h2>
+            <p>
+              We started with one simple goal: make laptop shopping easier.
+              No confusing choices, no random specs, just honest guidance and reliable machines.
+            </p>
+            <p>
+              What began as a small passion project grew into a store built around quality,
+              clarity, and customer trust.
+            </p>
+          </div>
+        </article>
+
+        <article class="intro-card reverse">
+          <div class="intro-image">
+            <img src="imgae/belief.jpg" alt="What we believe">
+          </div>
+          <div class="intro-body">
+            <h2>What We Believe In</h2>
+            <p>
+              We believe buying a laptop should feel simple. The right device should match
+              your needs, your budget, and your workflow.
+            </p>
+            <p>
+              That is why we focus on dependable products, clear recommendations, and support
+              that stays useful after checkout.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section team-section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="section-kicker">The People Behind It</p>
+          <h2>Meet The Team</h2>
+        </div>
+
+        <div class="team-grid">
+          <article class="team-card">
+            <img src="imgae/team1.jpg" alt="Team member 1">
+            <div class="team-body">
+              <h3>Phạm Ngọc Minh</h3>
+              <span>Lead Product Sourcing</span>
+              <p>Checks performance, parts, and reliability so the lineup stays strong.</p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="imgae/team2.jpg" alt="Team member 2">
+            <div class="team-body">
+              <h3>Nguyễn Hồng Đức</h3>
+              <span>Creative Design Director</span>
+              <p>Makes sure the site stays clean, polished, and easy to browse.</p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="imgae/team3.jpg" alt="Team member 3">
+            <div class="team-body">
+              <h3>Phan Thành Luân</h3>
+              <span>Customer Success Manager</span>
+              <p>Helps customers get quick answers and smooth support from start to finish.</p>
+            </div>
+          </article>
+
+          <article class="team-card">
+            <img src="imgae/team4.jpg" alt="Team member 4">
+            <div class="team-body">
+              <h3>Edward Lê Jon</h3>
+              <span>Founder & Visionary</span>
+              <p>Leads the mission to make laptop shopping smarter and simpler.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION -->
+    <section class="section mission-section">
+      <div class="container mission-box">
+        <h2>Your Success Is Our Mission</h2>
+        <p>
+          We are here to help students, creators, professionals, and gamers choose the right laptop
+          with confidence. The goal is simple: make sure your next device actually fits your life.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+    <!-- COL 1 -->
+    <div class="footer-col">
+
+      <h3>TẢI ỨNG DỤNG</h3>
+
+      <div class="app-box">
+        <img src="imgae/qr-download-app-fptshop.png" class="qr" alt="QR tải ứng dụng">
+
+        <div class="store">
+          <a href="https://apps.apple.com/vn/app/fpt-shop/id6475874688" target="_blank">
+            <img src="imgae/appstore.png" alt="App Store">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=vn.frt.fptshop.app" target="_blank">
+            <img src="imgae/button-chplay.png" alt="Google Play">
+          </a>
+        </div>
+      </div>
+
+      <h3>KẾT NỐI</h3>
+
+      <div class="social">
+        <span>
+          <a href="https://www.facebook.com/FPTShopOnline" target="_blank">
+            <img src="imgae/facebook_icon_8543190720.svg" alt="facebook">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.youtube.com/@FPTShop_" target="_blank">
+            <img src="imgae/youtube_icon_b492d61ba5.svg" alt="youtube">
+          </a>
+        </span>
+        <span>
+          <a href="https://zalo.me/2659487666103055748" target="_blank">
+            <img src="imgae/zalo_icon_8cbef61812.svg" alt="zalo">
+          </a>
+        </span>
+        <span>
+          <a href="https://www.tiktok.com/@fptshop.official" target="_blank">
+            <img src="imgae/tiktok_icon_faabbeeb61.svg" alt="tiktok">
+          </a>
+        </span>
+      </div>
+
+      <h3>TỔNG ĐÀI MIỄN PHÍ</h3>
+      <p>1800.6601 (Mua hàng)</p>
+      <p>1800.6601 (Hỗ trợ kỹ thuật)</p>
+      <p>1800.6616 (Góp ý)</p>
+
+    </div>
+
+    <!-- COL 2 -->
+    <div class="footer-col">
+      <h3>VỀ CHÚNG TÔI</h3>
+      <ul>
+        <li>Giới thiệu công ty</li>
+        <li>Quy chế hoạt động</li>
+        <li>Tin tức khuyến mãi</li>
+        <li>Giới thiệu máy đổi trả</li>
+        <li>Tra cứu bảo hành</li>
+        <li>Câu hỏi thường gặp</li>
+      </ul>
+    </div>
+
+    <!-- COL 3 -->
+    <div class="footer-col">
+      <h3>CHÍNH SÁCH</h3>
+      <ul>
+        <li>Chính sách bảo hành</li>
+        <li>Chính sách đổi trả</li>
+        <li>Chính sách bảo mật</li>
+        <li>Chính sách trả góp</li>
+        <li>Chính sách giao hàng</li>
+        <li>Chính sách khách hàng</li>
+        <li><a href="2.terms.html" style="color:inherit; text-decoration:none;">Điều khoản sử dụng</a></li>
+      </ul>
+    </div>
+
+    <!-- COL 4 -->
+    <div class="footer-col">
+
+      <h3>HỖ TRỢ THANH TOÁN</h3>
+
+      <div class="payment">
+        <img src="imgae/visa.png" alt="Visa">
+        <img src="imgae/VNpay.jpg" alt="VNPAY">
+        <img src="imgae/zalo.png" alt="ZaloPay">
+        <img src="imgae/momo.png" alt="MoMo">
+        <img src="imgae/SSPay.jpg" alt="SmartPay">
+        <img src="imgae/JCB.jpg" alt="JCB">
+      </div>
+
+      <h3>CHỨNG NHẬN</h3>
+
+      <div class="cert">
+        <a href="https://www.dmca.com/Protection/Status.aspx?ID=98d66f66-5a62-47e9-b45c-edaebfb0c9b3&refurl=https://fptshop.com.vn/" target="_blank">
+          <img src="imgae/dmca_icon_8fc6622bd5.svg" alt="DMCA">
+        </a>
+
+        <img src="imgae/thuong_hieu_manh_2013_icon_b56f772475.svg" alt="Thương hiệu mạnh">
+
+        <a href="http://online.gov.vn/Home/WebDetails/21883" target="_blank">
+          <img src="imgae/da_thong_bao_bo_cong_thuong_icon_64785fb3f7.svg" alt="Đã thông báo Bộ Công Thương">
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    <p>Website cùng hệ thống</p>
+
+    <div class="footer-logos">
+      <span>F.Studio</span>
+      <span>F.Care</span>
+      <span>Long Châu</span>
+    </div>
+  </div>
+
+</footer>
+
+</body>
+</html>

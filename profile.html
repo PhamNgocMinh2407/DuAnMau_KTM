@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <style>
+        .profile-container {
+            display: flex;
+            max-width: 1200px;
+            margin: 30px auto;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .profile-sidebar {
+            flex: 0 0 300px;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFB366 0%, #FF8C42 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .profile-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .profile-phone {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 15px;
+        }
+
+        .view-info-btn {
+            color: #0066FF;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .profile-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .profile-menu li {
+            margin: 0;
+        }
+
+        .profile-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 8px;
+            transition: background 0.3s;
+            margin-bottom: 5px;
+        }
+
+        .profile-menu a:hover {
+            background: #f5f5f5;
+        }
+
+        .profile-menu a.active {
+            color: #ff4d4d;
+            background: #fff5f5;
+            font-weight: 600;
+        }
+
+        .profile-menu a span {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #FFE5CC 0%, #FFDAB3 100%);
+            padding: 15px;
+            border-radius: 12px;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .promo-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .promo-text {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .promo-btn {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .profile-main {
+            flex: 1;
+        }
+
+        .profile-form {
+            background: white;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .profile-title {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .profile-title h2 {
+            font-size: 20px;
+            color: #333;
+            margin: 0;
+        }
+
+        .avatar-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .large-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FFB366 0%, #FF8C42 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .change-avatar {
+            color: #0066FF;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ff4d4d;
+            box-shadow: 0 0 0 3px rgba(255,77,77,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-row-three {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 8px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .update-btn {
+            width: 100%;
+            padding: 12px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .update-btn:hover {
+            background: #ff3333;
+        }
+
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column;
+            }
+
+            .profile-sidebar {
+                flex: 1;
+            }
+
+            .form-row,
+            .form-row-three {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <title>Thông tin cá nhân</title>
+</head>
+
+<body>
+
+<div class="container header-top">
+    <button class="back-btn" onclick="history.back()"> ← </button>
+    <h1 class="logo">Laptop Store</h1>
+
+    <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm laptop...">
+        <button>🔍</button>
+    </div>
+
+    <div class="account" onclick="handleAccountClick()">
+        👤 <span id="profile-name">Tài khoản</span>
+
+        <div class="profile-menu" id="profile-menu">
+            <a href="profile.html">Profile</a>
+            <a href="2.order-history.html">Lịch sử đơn hàng</a>
+            <a href="index.html">Trang chủ</a>
+            <a href="#" onclick="logout()">Đăng xuất</a>
+        </div>
+    </div>
+    <div class="cart-icon" onclick="openCart()">
+        🛒 <span id="cart-count">0</span>
+        
+        <div class="cart-menu" id="cart-menu">
+            <div class="cart-items-list" id="cart-items-list">
+                <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
+            </div>
+            <div class="cart-footer" id="cart-footer" style="display:none;">
+                <div class="cart-total">
+                    <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+                </div>
+                <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="header-bottom">
+    <nav class="nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="2.product.html">Sản phẩm</a>
+        <a href="news.html">Tin tức</a>
+        <a href="1.contact.html">Liên hệ</a>
+        <a href="2.login.html">Đăng nhập</a>
+    </nav>
+</div>
+
+<div class="profile-container">
+    <!-- Sidebar -->
+    <div class="profile-sidebar">
+        <div class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-name" id="sidebar-name">Quy Khách</div>
+                <div class="profile-phone" id="sidebar-phone">03750905596</div>
+                <a href="javascript:void(0)" class="view-info-btn" onclick="scrollToProfile()">Xem hộ sơ ▶</a>
+            </div>
+        </div>
+
+        <ul class="profile-menu">
+            <li><a href="javascript:void(0)" class="active"><span>🏠</span>Tổng quan</a></li>
+            <li><a href="2.order-history.html"><span>📦</span>Đơn hàng của tôi</a></li>
+            <li><a href="javascript:void(0)"><span>🔔</span>Thông báo của tôi</a></li>
+        </ul>
+
+        <div class="promo-banner">
+            <div class="promo-title">Quý khách chưa là thành viên tại FPT Shop</div>
+            <div class="promo-text">Mua hàng tích điểm độc quyền</div>
+            <button class="promo-btn">Mua sắm ngay</button>
+        </div>
+
+        <ul class="profile-menu">
+            <li><a href="javascript:void(0)"><span>🎁</span>Ưu đãi của tôi</a></li>
+            <li><a href="javascript:void(0)"><span>⭐</span>Lịch sử điểm thưởng</a></li>
+            <li><a href="javascript:void(0)"><span>💳</span>Dịch vụ thu hộ đã thanh toán</a></li>
+            <li><a href="javascript:void(0)"><span>🛡️</span>Thông tin bảo hành</a></li>
+            <li><a href="javascript:void(0)"><span>📍</span>Số địa chỉ nhận hàng</a></li>
+            <li><a href="javascript:void(0)"><span>📤</span>Đăng xuất</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="profile-main">
+        <div class="profile-form" id="profileForm">
+            <div class="profile-title">
+                <h2>Thông tin cá nhân</h2>
+            </div>
+
+            <div class="avatar-section">
+                <div class="large-avatar">👤</div>
+                <a href="javascript:void(0)" class="change-avatar">Thay đổi ảnh đại diện</a>
+            </div>
+
+            <form id="profileInfo">
+                <div class="form-group">
+                    <label>Họ và tên</label>
+                    <input type="text" id="fullName" placeholder="Nhập họ tên">
+                </div>
+
+                <div class="form-group">
+                    <label>Số điện thoại</label>
+                    <input type="tel" id="phone" placeholder="0375090596" disabled style="background: #f5f5f5;">
+                </div>
+
+                <div class="form-group">
+                    <label>Giới tính</label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="gender" value="male" checked> Nam
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="female"> Nữ
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Ngày sinh</label>
+                    <div class="form-row-three">
+                        <select id="day">
+                            <option value="">Ngày</option>
+                            <script>
+                                for(let i=1; i<=31; i++) {
+                                    document.write(`<option value="${i}">${String(i).padStart(2,'0')}</option>`);
+                                }
+                            </script>
+                        </select>
+                        <select id="month">
+                            <option value="">Tháng</option>
+                            <script>
+                                for(let i=1; i<=12; i++) {
+                                    document.write(`<option value="${i}">${String(i).padStart(2,'0')}</option>`);
+                                }
+                            </script>
+                        </select>
+                        <select id="year">
+                            <option value="">Năm</option>
+                            <script>
+                                const currentYear = new Date().getFullYear();
+                                for(let i=currentYear; i>=currentYear-100; i--) {
+                                    document.write(`<option value="${i}">${i}</option>`);
+                                }
+                            </script>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="Nhập địa chỉ email">
+                </div>
+
+                <button type="button" class="update-btn" onclick="updateProfile()">Cập nhật thông tin</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    const user = JSON.parse(localStorage.getItem("currentUser"));
+
+    function scrollToProfile() {
+        const profileSection = document.getElementById("profileForm");
+        profileSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    if(!user) {
+        window.location.href = "2.login.html";
+    } else {
+        // Load user data
+        document.getElementById("fullName").value = user.name || "";
+        document.getElementById("email").value = user.email || "";
+        document.getElementById("phone").value = user.phone || "03750905596";
+        
+        // Load gender
+        if(user.gender) {
+            document.querySelector(`input[name="gender"][value="${user.gender}"]`).checked = true;
+        }
+        
+        // Load date of birth
+        if(user.dob) {
+            const parts = user.dob.split('/');
+            if(parts.length === 3) {
+                document.getElementById("day").value = parts[0];
+                document.getElementById("month").value = parts[1];
+                document.getElementById("year").value = parts[2];
+            }
+        }
+        
+        // Update sidebar
+        document.getElementById("sidebar-name").innerText = user.name || "Quy Khách";
+        document.getElementById("sidebar-phone").innerText = user.phone || "03750905596";
+    }
+
+    function updateProfile() {
+        const fullName = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const gender = document.querySelector('input[name="gender"]:checked').value;
+        const day = document.getElementById("day").value;
+        const month = document.getElementById("month").value;
+        const year = document.getElementById("year").value;
+
+        if(!fullName || !email) {
+            alert("Vui lòng điền đầy đủ thông tin bắt buộc");
+            return;
+        }
+
+        const updatedUser = {
+            ...user,
+            name: fullName,
+            email: email,
+            gender: gender,
+            dob: day && month && year ? `${day}/${month}/${year}` : ""
+        };
+
+        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+        alert("Cập nhật thông tin thành công!");
+        location.reload();
+    }
+
+    function logout(){
+        localStorage.removeItem("currentUser");
+        alert("Bạn đã đăng xuất");
+        window.location.href = "index.html";
+    }
+</script>
+<script src="script.js"></script>
+</body>
+</html>
