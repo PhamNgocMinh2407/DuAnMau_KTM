@@ -4,17 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Laptop Văn phòng - Laptop Store</title>
+  <title>Laptop Gaming - Laptop Store</title>
 </head>
 <body>
 
 <div class="container header-top">
   <button class="back-btn" onclick="history.back()">←</button>
   <h1 class="logo">Laptop Store</h1>
+
   <div class="search-box">
     <input type="text" placeholder="Tìm kiếm laptop...">
     <button>🔍</button>
   </div>
+
   <div class="account" onclick="handleAccountClick()">
     👤 <span id="profile-name">Tài khoản</span>
     <div class="profile-menu" id="profile-menu">
@@ -24,6 +26,7 @@
       <a href="#" onclick="logout()">Đăng xuất</a>
     </div>
   </div>
+
   <div class="cart-icon" onclick="openCart()">🛒 <span id="cart-count">0</span></div>
 </div>
 
@@ -41,9 +44,9 @@
 <section style="background:#f5f5f5; padding:22px 15px 12px;">
   <div style="max-width:1200px; margin:auto;">
     <div style="background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:24px;">
-      <div style="font-size:13px; color:#666; margin-bottom:10px;">Trang chủ / Sản phẩm / Văn phòng</div>
-      <h1 style="margin:0; font-size:32px; color:#111;">Laptop Văn phòng</h1>
-      <p style="margin:8px 0 0; color:#555;">Những mẫu laptop bền, ổn định, phù hợp làm việc và học tập hằng ngày.</p>
+      <div style="font-size:13px; color:#666; margin-bottom:10px;">Trang chủ / Sản phẩm / Gaming</div>
+      <h1 style="margin:0; font-size:32px; color:#111;">Laptop Gaming</h1>
+      <p style="margin:8px 0 0; color:#555;">Những mẫu laptop dành cho game thủ, hiệu năng mạnh và tản nhiệt tốt.</p>
     </div>
   </div>
 </section>
@@ -109,7 +112,6 @@
     </a>
   </div>
 </div>
-
     <div id="productGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:18px;"></div>
   </div>
 </main>
@@ -127,54 +129,64 @@
 <script>
   const products = [
     {
-      id: "dell-latitude-3450",
-      category: "Văn phòng",
-      name: "Dell Latitude 3450",
-      price: 18990000,
-      oldPrice: 20990000,
-      image: "imgae/dell-latitude-3450.jpg",
-      specs: "Core i5-1335U • 16GB • 512GB SSD • 14 inch FHD",
-      badge: "Doanh nhân"
+      id: "rog-zephyrus-ga403wm",
+      category: "Gaming",
+      name: "ROG Zephyrus GA403WM",
+      price: 65900000,
+      oldPrice: 73900000,
+      image: "imgae/rog-zephyrus.jpg",
+      specs: "Ryzen AI 9 HX 370 • 32GB • 1TB SSD • RTX 5060 • 14 inch 3K",
+      badge: "Cao cấp"
     },
     {
-      id: "dell-vostro-3420",
-      category: "Văn phòng",
-      name: "Dell Vostro 14 3420",
-      price: 17990000,
-      oldPrice: 19990000,
-      image: "imgae/dell-vostro-3420.jpg",
-      specs: "Core i5-1235U • 16GB • 512GB SSD • 14 inch FHD",
-      badge: "Giá tốt"
+      id: "tuf-gaming-f16-fx607vu",
+      category: "Gaming",
+      name: "TUF Gaming F16 FX607VU",
+      price: 32900000,
+      oldPrice: 35900000,
+      image: "imgae/tuf-f16.jpg",
+      specs: "Core 5-210H • 16GB • 512GB SSD • RTX 4050 • 16 inch FHD+",
+      badge: "TUF"
     },
     {
-      id: "hp-probook-14-r5-220",
-      category: "Văn phòng",
-      name: "HP ProBook 14 R5-220",
-      price: 16990000,
-      oldPrice: 18990000,
-      image: "imgae/hp-probook-14.jpg",
-      specs: "Ryzen 5 • 16GB • 512GB SSD • 14 inch HD/FHD",
-      badge: "Bền bỉ"
+      id: "asus-gaming-v16-v3607vh",
+      category: "Gaming",
+      name: "ASUS Gaming V16 V3607VH",
+      price: 28900000,
+      oldPrice: 31900000,
+      image: "imgae/v16.jpg",
+      specs: "Core 7 240H • 16GB • 512GB SSD • RTX 5050 • 16 inch WUXGA",
+      badge: "Mới"
     },
     {
-      id: "ins15",
-      category: "Văn phòng",
-      name: "Dell Inspiron 15 (i5)",
-      price: 15990000,
-      oldPrice: 17990000,
-      image: "imgae/dell inspiron 15.jpg",
-      specs: "Intel Core i5 • 8GB • 512GB SSD • 15.6 inch FHD",
-      badge: "Trả góp 0%"
+      id: "lenovo-loq-e-15iax9e",
+      category: "Gaming",
+      name: "Laptop Lenovo Gaming LOQ E 15IAX9E",
+      price: 21990000,
+      oldPrice: 24990000,
+      image: "imgae/lenovo-loq.jpg",
+      specs: "Core i5-12450HX • 16GB • 512GB SSD • RTX 3050 • 15.6 inch FHD",
+      badge: "LOQ"
     },
     {
-      id: "thinkpad-e14",
-      category: "Văn phòng",
-      name: "Lenovo ThinkPad E14",
-      price: 19490000,
-      oldPrice: 21490000,
-      image: "imgae/thinkpad e14.jpg",
-      specs: "Intel Core i5 • 16GB • 512GB SSD • Bền bỉ",
-      badge: "Bán chạy"
+      id: "nitro5",
+      category: "Gaming",
+      name: "Acer Nitro 5 (RTX)",
+      price: 24990000,
+      oldPrice: 27990000,
+      image: "imgae/nitro 5.jpg",
+      specs: "Intel Core i5 • 16GB • 512GB SSD • RTX • 144Hz",
+      badge: "Gaming"
+    },
+    {
+      id: "asus-tuf-f15",
+      category: "Gaming",
+      name: "ASUS TUF Gaming F15",
+      price: 26490000,
+      oldPrice: 29490000,
+      image: "imgae/tuf 15 gaming.jpg",
+      specs: "Intel Core i7 • 16GB • 512GB SSD • RTX",
+      badge: "Hiệu năng cao"
     }
   ];
 
