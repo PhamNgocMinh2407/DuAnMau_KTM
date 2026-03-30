@@ -1,72 +1,551 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <title>Document</title>
+  <title>Chi tiết khuyến mãi - Laptop Store</title>
+
+  <style>
+    .promo-page-wrap{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .promo-hero{
+      background:linear-gradient(135deg,#0f172a,#1d4ed8 60%,#60a5fa);
+      color:#fff;
+      border-radius:22px;
+      padding:32px 24px;
+      box-shadow:0 16px 32px rgba(15,23,42,0.12);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .promo-hero h1{
+      margin:0;
+      font-size:36px;
+      line-height:1.25;
+    }
+
+    .promo-hero p{
+      margin:10px 0 0;
+      max-width:760px;
+      color:rgba(255,255,255,0.88);
+      line-height:1.7;
+    }
+
+    .promo-badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .promo-badges span{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.16);
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .promo-layout{
+      display:grid;
+      grid-template-columns:1.15fr 0.85fr;
+      gap:20px;
+      align-items:start;
+      margin-top:20px;
+    }
+
+    .promo-main,
+    .promo-side,
+    .promo-product-card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      box-shadow:0 8px 24px rgba(15,23,42,0.05);
+    }
+
+    .promo-main{
+      overflow:hidden;
+    }
+
+    .promo-main-banner{
+      background:linear-gradient(135deg,#ef4444,#f97316);
+      color:#fff;
+      padding:28px 24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .promo-main-banner::after{
+      content:"";
+      position:absolute;
+      right:-40px;
+      top:-40px;
+      width:180px;
+      height:180px;
+      border-radius:50%;
+      background:rgba(255,255,255,0.10);
+    }
+
+    .promo-main-banner h2{
+      margin:0 0 10px;
+      font-size:30px;
+      position:relative;
+      z-index:1;
+    }
+
+    .promo-main-banner p{
+      margin:0;
+      line-height:1.7;
+      color:rgba(255,255,255,0.92);
+      position:relative;
+      z-index:1;
+      max-width:720px;
+    }
+
+    .promo-main-content{
+      padding:22px;
+    }
+
+    .section-title{
+      margin:0 0 14px;
+      font-size:22px;
+      font-weight:800;
+      color:#111827;
+    }
+
+    .section-text{
+      color:#475569;
+      line-height:1.8;
+      margin:0 0 18px;
+      font-size:15px;
+    }
+
+    .highlight-box{
+      background:#fff7ed;
+      border:1px solid #fdba74;
+      color:#9a3412;
+      border-radius:14px;
+      padding:16px;
+      line-height:1.8;
+      margin-bottom:18px;
+    }
+
+    .promo-code-row{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .promo-code{
+      background:#111827;
+      color:#fff;
+      border-radius:12px;
+      padding:14px 16px;
+      font-weight:800;
+      letter-spacing:0.5px;
+      min-width:180px;
+      text-align:center;
+    }
+
+    .promo-tag{
+      background:#eff6ff;
+      border:1px solid #bfdbfe;
+      color:#1d4ed8;
+      border-radius:12px;
+      padding:14px 16px;
+      font-weight:700;
+      min-width:180px;
+      text-align:center;
+    }
+
+    .rule-list{
+      margin:0;
+      padding-left:18px;
+      color:#475569;
+      line-height:1.9;
+    }
+
+    .promo-side{
+      padding:20px;
+      position:sticky;
+      top:14px;
+    }
+
+    .promo-side h3{
+      margin:0 0 14px;
+      font-size:20px;
+      color:#111827;
+    }
+
+    .side-box{
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:14px;
+      padding:16px;
+      margin-bottom:14px;
+    }
+
+    .side-box-title{
+      font-weight:800;
+      color:#111827;
+      margin-bottom:8px;
+    }
+
+    .side-box p{
+      margin:0;
+      color:#64748b;
+      line-height:1.7;
+      font-size:14px;
+    }
+
+    .cta-btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      text-decoration:none;
+      background:#111827;
+      color:#fff;
+      padding:13px 16px;
+      border-radius:12px;
+      font-weight:700;
+      margin-top:10px;
+    }
+
+    .secondary-btn{
+      display:block;
+      width:100%;
+      text-align:center;
+      text-decoration:none;
+      background:#f3f4f6;
+      color:#111827;
+      padding:13px 16px;
+      border-radius:12px;
+      font-weight:700;
+      margin-top:10px;
+      border:1px solid #e5e7eb;
+    }
+
+    .promo-products{
+      margin-top:22px;
+    }
+
+    .promo-products-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .promo-product-card{
+      overflow:hidden;
+      transition:0.25s;
+    }
+
+    .promo-product-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 14px 28px rgba(15,23,42,0.08);
+    }
+
+    .promo-product-card img{
+      width:100%;
+      height:190px;
+      object-fit:cover;
+      display:block;
+      background:#fff;
+    }
+
+    .promo-product-body{
+      padding:16px;
+    }
+
+    .promo-product-category{
+      font-size:12px;
+      color:#64748b;
+      margin-bottom:6px;
+    }
+
+    .promo-product-name{
+      font-size:16px;
+      font-weight:700;
+      color:#111827;
+      line-height:1.5;
+      min-height:48px;
+      margin-bottom:10px;
+    }
+
+    .promo-product-price{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:12px;
+    }
+
+    .promo-sale{
+      font-size:21px;
+      font-weight:800;
+      color:#d70018;
+    }
+
+    .promo-old{
+      font-size:13px;
+      color:#94a3b8;
+      text-decoration:line-through;
+    }
+
+    .promo-discount{
+      font-size:12px;
+      font-weight:700;
+      color:#ef4444;
+    }
+
+    .promo-product-btn{
+      display:inline-block;
+      text-decoration:none;
+      padding:10px 14px;
+      border-radius:10px;
+      background:#111827;
+      color:#fff;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    @media (max-width: 992px){
+      .promo-layout{
+        grid-template-columns:1fr;
+      }
+
+      .promo-side{
+        position:static;
+      }
+
+      .promo-products-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .promo-hero h1{
+        font-size:28px;
+      }
+
+      .promo-main-banner h2{
+        font-size:24px;
+      }
+
+      .promo-products-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="container header-top">
+  <button class="back-btn" onclick="history.back()"> ← </button>
 
-<button class="back-btn" onclick="history.back()"> ← </button>
+  <h1 class="logo">Laptop Store</h1>
 
-<h1 class="logo">Laptop Store</h1>
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
 
-<div class="search-box">
-<input type="text" placeholder="Tìm kiếm laptop...">
-<button>🔍</button>
-</div>
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
 
-<div class="account" onclick="handleAccountClick()">
-👤 <span id="profile-name">Tài khoản</span>
+    <div class="profile-menu" id="profile-menu">
+      <a href="profile.html">Profile</a>
+      <a href="2.order-history.html">Lịch sử đơn hàng</a>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
+    </div>
+  </div>
 
-<div class="profile-menu" id="profile-menu">
-
-<a href="profile.html">Profile</a>
-
-<a href="2.order-history.html">Lịch sử đơn hàng</a>
-
-<a href="index.html">Trang chủ</a>
-
-<a href="#" onclick="logout()">Đăng xuất</a>
-
-</div>
-
-</div>
-<div class="cart-icon" onclick="openCart()">
-      🛒 <span id="cart-count">0</span>
-      
-      <div class="cart-menu" id="cart-menu">
-        <div class="cart-items-list" id="cart-items-list">
-          <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
-        </div>
-        <div class="cart-footer" id="cart-footer" style="display:none;">
-          <div class="cart-total">
-            <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
-          </div>
-          <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
-        </div>
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+    
+    <div class="cart-menu" id="cart-menu">
+      <div class="cart-items-list" id="cart-items-list">
+        <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
       </div>
-</div>
-
+      <div class="cart-footer" id="cart-footer" style="display:none;">
+        <div class="cart-total">
+          <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+        </div>
+        <a href="cart.html" class="checkout-btn">Xem giỏ hàng</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="header-bottom">
-<nav class="nav">
-<a href="index.html">Trang chủ</a>
-<a href="2.product.html">Sản phẩm</a>
-<a href="news.html">Tin tức</a>
-<a href="1.contact.html">Liên hệ</a>
-<a href="2.login.html">Đăng nhập</a>
-</nav>
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
 </div>
-<main>
-  <h2>Khuyến mãi lớn</h2>
-  <p>Giảm đến 20% laptop gaming</p>
+
+<section style="background:#f5f5f5; padding:22px 15px 12px;">
+  <div class="promo-page-wrap">
+    <div class="promo-hero">
+      <div>
+        <div style="font-size:13px; opacity:0.85; margin-bottom:8px;">Trang chủ / Tin tức / Khuyến mãi</div>
+        <h1>Khuyến mãi lớn cho mùa mua sắm</h1>
+        <p>Áp dụng cho nhiều dòng laptop gaming, văn phòng và creator. Săn deal tốt, ưu đãi trực tiếp và chọn nhanh những mẫu đang được quan tâm nhất.</p>
+      </div>
+
+      <div class="promo-badges">
+        <span>Giảm đến 20%</span>
+        <span>Trả góp 0%</span>
+        <span>Giao nhanh</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main style="background:#f5f5f5; padding:8px 15px 45px;">
+  <div class="promo-page-wrap">
+    <div class="promo-layout">
+
+      <section class="promo-main">
+        <div class="promo-main-banner">
+          <h2>Giảm đến 20% laptop gaming</h2>
+          <p>Chương trình áp dụng trong thời gian giới hạn cho một số mẫu laptop gaming và creator đang có sẵn hàng tại Laptop Store.</p>
+        </div>
+
+        <div class="promo-main-content">
+          <h3 class="section-title">Thông tin chương trình</h3>
+          <p class="section-text">
+            Đây là đợt ưu đãi nổi bật dành cho khách hàng đang tìm kiếm laptop hiệu năng cao với mức giá dễ tiếp cận hơn. 
+            Bạn có thể áp dụng ưu đãi trực tiếp trên giá bán, kết hợp cùng hỗ trợ trả góp 0% hoặc nhận thêm quà tặng theo từng model.
+          </p>
+
+          <div class="promo-code-row">
+            <div class="promo-code">Mã: GAMING20</div>
+            <div class="promo-tag">Ưu đãi tối đa 20%</div>
+          </div>
+
+          <div class="highlight-box">
+            🔥 Áp dụng cho các mẫu laptop gaming / creator chọn lọc<br>
+            🔥 Số lượng có hạn theo từng thời điểm<br>
+            🔥 Có thể thay đổi tuỳ model và chính sách chương trình
+          </div>
+
+          <h3 class="section-title">Điều kiện áp dụng</h3>
+          <ul class="rule-list">
+            <li>Áp dụng cho sản phẩm nằm trong danh sách chương trình.</li>
+            <li>Không áp dụng đồng thời với một số voucher khác nếu có quy định riêng.</li>
+            <li>Ưu đãi có thể kết thúc sớm khi hết số lượng quà tặng hoặc hết thời gian chương trình.</li>
+            <li>Thông tin giá và quà tặng được cập nhật theo từng thời điểm bán hàng.</li>
+          </ul>
+
+          <div class="promo-products">
+            <h3 class="section-title">Sản phẩm nổi bật trong chương trình</h3>
+
+            <div class="promo-products-grid">
+              <article class="promo-product-card">
+                <img src="imgae/tuf 15 gaming.jpg" alt="ASUS TUF Gaming F15">
+                <div class="promo-product-body">
+                  <div class="promo-product-category">Gaming</div>
+                  <div class="promo-product-name">ASUS TUF Gaming F15</div>
+                  <div class="promo-product-price">
+                    <span class="promo-sale">26.490.000đ</span>
+                    <span class="promo-old">29.490.000đ</span>
+                    <span class="promo-discount">-10%</span>
+                  </div>
+                  <a href="2.product-detail.html?id=asus-tuf-f15" class="promo-product-btn">Xem chi tiết</a>
+                </div>
+              </article>
+
+              <article class="promo-product-card">
+                <img src="imgae/nitro 5.jpg" alt="Acer Nitro 5">
+                <div class="promo-product-body">
+                  <div class="promo-product-category">Gaming</div>
+                  <div class="promo-product-name">Acer Nitro 5</div>
+                  <div class="promo-product-price">
+                    <span class="promo-sale">24.990.000đ</span>
+                    <span class="promo-old">27.990.000đ</span>
+                    <span class="promo-discount">-10%</span>
+                  </div>
+                  <a href="2.product-detail.html?id=nitro5" class="promo-product-btn">Xem chi tiết</a>
+                </div>
+              </article>
+
+              <article class="promo-product-card">
+                <img src="imgae/ASUS ZenBook 14 OLED.webp" alt="ASUS ZenBook 14 OLED">
+                <div class="promo-product-body">
+                  <div class="promo-product-category">Creator</div>
+                  <div class="promo-product-name">ASUS ZenBook 14 OLED</div>
+                  <div class="promo-product-price">
+                    <span class="promo-sale">27.990.000đ</span>
+                    <span class="promo-old">30.990.000đ</span>
+                    <span class="promo-discount">-10%</span>
+                  </div>
+                  <a href="2.product-detail.html?id=zenbook14-oled" class="promo-product-btn">Xem chi tiết</a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="promo-side">
+        <h3>Ưu đãi nhanh</h3>
+
+        <div class="side-box">
+          <div class="side-box-title">Thời gian áp dụng</div>
+          <p>Từ hôm nay đến khi kết thúc chương trình hoặc hết số lượng ưu đãi.</p>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">Nhóm sản phẩm</div>
+          <p>Laptop gaming, creator, văn phòng và một số mẫu học tập đang có deal tốt.</p>
+        </div>
+
+        <div class="side-box">
+          <div class="side-box-title">Hỗ trợ thêm</div>
+          <p>Trả góp 0%, giao hàng tận nơi, hỗ trợ tư vấn chọn máy theo nhu cầu.</p>
+        </div>
+
+        <a href="2.product.html" class="cta-btn">Xem toàn bộ sản phẩm</a>
+        <a href="1.contact.html" class="secondary-btn">Liên hệ tư vấn</a>
+      </aside>
+
+    </div>
+  </div>
 </main>
+
+<script>
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem("cart")) || []; }
+    catch { return []; }
+  }
+
+  function updateCartCount() {
+    const cart = getCart();
+    const total = cart.reduce((sum, i) => sum + (i.quantity || i.qty || 1), 0);
+    const el = document.getElementById("cart-count");
+    if (el) el.innerText = total;
+  }
+
+  function openCart() {
+    window.location.href = "cart.html";
+  }
+
+  updateCartCount();
+</script>
 <script src="script.js"></script>
 </body>
 </html>

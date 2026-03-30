@@ -1,161 +1,676 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <title>Lịch sử đơn hàng</title>
+  <title>Lịch sử đơn hàng - Laptop Store</title>
+
+  <style>
+    .page-wrap{
+      max-width:1200px;
+      margin:auto;
+    }
+
+    .history-banner{
+      background: linear-gradient(135deg,#0f172a,#1e3a8a 55%,#2563eb);
+      color:#fff;
+      border-radius:20px;
+      padding:28px 24px;
+      box-shadow:0 14px 30px rgba(0,0,0,0.12);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .history-banner h1{
+      margin:0;
+      font-size:34px;
+    }
+
+    .history-banner p{
+      margin:10px 0 0;
+      color:rgba(255,255,255,0.88);
+      line-height:1.7;
+      max-width:720px;
+    }
+
+    .banner-badges{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .banner-badges span{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .history-stats{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(180px,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .stat-card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:18px;
+      box-shadow:0 6px 18px rgba(15,23,42,0.05);
+    }
+
+    .stat-label{
+      font-size:13px;
+      color:#64748b;
+      margin-bottom:8px;
+    }
+
+    .stat-value{
+      font-size:28px;
+      font-weight:800;
+      color:#111827;
+    }
+
+    .history-layout{
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:18px;
+      margin-top:20px;
+      align-items:start;
+    }
+
+    .side-box,
+    .main-box{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      box-shadow:0 8px 24px rgba(15,23,42,0.05);
+    }
+
+    .side-box{
+      padding:18px;
+      position:sticky;
+      top:14px;
+    }
+
+    .side-box h3,
+    .main-box h2{
+      margin:0 0 14px;
+      color:#111827;
+    }
+
+    .filter-chip{
+      display:block;
+      width:100%;
+      border:none;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:12px 14px;
+      text-align:left;
+      margin-bottom:10px;
+      cursor:pointer;
+      font-weight:600;
+      color:#334155;
+      transition:0.2s;
+    }
+
+    .filter-chip.active,
+    .filter-chip:hover{
+      background:#111827;
+      color:#fff;
+      border-color:#111827;
+    }
+
+    .mini-note{
+      margin-top:14px;
+      padding:12px;
+      border-radius:12px;
+      background:#eff6ff;
+      border:1px solid #bfdbfe;
+      color:#1e3a8a;
+      font-size:13px;
+      line-height:1.7;
+    }
+
+    .main-box{
+      padding:20px;
+    }
+
+    .top-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+
+    .search-order{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .search-order input,
+    .search-order select{
+      padding:11px 12px;
+      border:1px solid #d1d5db;
+      border-radius:10px;
+      min-width:180px;
+    }
+
+    .order-list{
+      display:grid;
+      gap:16px;
+    }
+
+    .order-card{
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:18px;
+      background:#fff;
+      transition:0.2s;
+    }
+
+    .order-card:hover{
+      box-shadow:0 10px 24px rgba(15,23,42,0.06);
+      transform:translateY(-2px);
+    }
+
+    .order-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+
+    .order-id{
+      font-size:18px;
+      font-weight:800;
+      color:#111827;
+      margin-bottom:6px;
+    }
+
+    .order-date{
+      color:#64748b;
+      font-size:14px;
+    }
+
+    .status-badge{
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:700;
+      white-space:nowrap;
+    }
+
+    .status-success{
+      background:#ecfdf5;
+      color:#059669;
+      border:1px solid #a7f3d0;
+    }
+
+    .status-processing{
+      background:#fff7ed;
+      color:#ea580c;
+      border:1px solid #fdba74;
+    }
+
+    .status-cancel{
+      background:#fef2f2;
+      color:#dc2626;
+      border:1px solid #fecaca;
+    }
+
+    .order-body{
+      display:grid;
+      grid-template-columns:100px 1fr 180px;
+      gap:16px;
+      align-items:center;
+      margin-bottom:14px;
+    }
+
+    .order-thumb{
+      width:100px;
+      height:78px;
+      object-fit:cover;
+      border-radius:12px;
+      border:1px solid #e5e7eb;
+      background:#fff;
+    }
+
+    .order-product{
+      color:#111827;
+      font-weight:700;
+      margin-bottom:6px;
+    }
+
+    .order-spec{
+      color:#64748b;
+      font-size:14px;
+      line-height:1.6;
+    }
+
+    .order-price{
+      text-align:right;
+    }
+
+    .order-price .label{
+      font-size:13px;
+      color:#64748b;
+      margin-bottom:6px;
+    }
+
+    .order-price .value{
+      font-size:22px;
+      font-weight:800;
+      color:#d70018;
+    }
+
+    .timeline{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      padding:12px 0 14px;
+      border-top:1px solid #f1f5f9;
+      border-bottom:1px solid #f1f5f9;
+      margin-bottom:14px;
+    }
+
+    .timeline-step{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#64748b;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .timeline-dot{
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:#cbd5e1;
+    }
+
+    .timeline-step.done .timeline-dot{
+      background:#22c55e;
+    }
+
+    .timeline-step.current .timeline-dot{
+      background:#f59e0b;
+    }
+
+    .timeline-line{
+      flex:1;
+      min-width:24px;
+      height:2px;
+      background:#e5e7eb;
+    }
+
+    .order-actions{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .order-meta{
+      color:#64748b;
+      font-size:13px;
+    }
+
+    .action-group{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn-main,
+    .btn-sub{
+      display:inline-block;
+      text-decoration:none;
+      padding:11px 14px;
+      border-radius:10px;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    .btn-main{
+      background:#111827;
+      color:#fff;
+    }
+
+    .btn-sub{
+      background:#f3f4f6;
+      color:#111827;
+      border:1px solid #e5e7eb;
+    }
+
+    .bottom-link{
+      margin-top:18px;
+      text-align:center;
+    }
+
+    .bottom-link a{
+      color:#2563eb;
+      font-weight:700;
+      text-decoration:none;
+    }
+
+    @media (max-width: 992px){
+      .history-layout{
+        grid-template-columns:1fr;
+      }
+
+      .side-box{
+        position:static;
+      }
+
+      .history-stats{
+        grid-template-columns:repeat(2, minmax(180px,1fr));
+      }
+
+      .order-body{
+        grid-template-columns:1fr;
+      }
+
+      .order-price{
+        text-align:left;
+      }
+    }
+
+    @media (max-width: 640px){
+      .history-banner h1{
+        font-size:28px;
+      }
+
+      .history-stats{
+        grid-template-columns:1fr;
+      }
+
+      .search-order{
+        width:100%;
+      }
+
+      .search-order input,
+      .search-order select{
+        width:100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-
 <div class="container header-top">
+  <button class="back-btn" onclick="history.back()"> ← </button>
 
-<button class="back-btn" onclick="history.back()"> ← </button>
+  <h1 class="logo">Laptop Store</h1>
 
-<h1 class="logo">Laptop Store</h1>
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
 
-<div class="search-box">
-<input type="text" placeholder="Tìm kiếm laptop...">
-<button>🔍</button>
-</div>
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
 
-<div class="account" onclick="handleAccountClick()">
-👤 <span id="profile-name">Tài khoản</span>
+    <div class="profile-menu" id="profile-menu">
+      <a href="profile.html">Profile</a>
+      <a href="2.order-history.html">Lịch sử đơn hàng</a>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
+    </div>
+  </div>
 
-<div class="profile-menu" id="profile-menu">
-
-<a href="profile.html">Profile</a>
-
-<a href="2.order-history.html">Lịch sử đơn hàng</a>
-
-<a href="index.html">Trang chủ</a>
-
-<a href="#" onclick="logout()">Đăng xuất</a>
-
-</div>
-
-</div>
-<div class="cart-icon" onclick="openCart()">
-      🛒 <span id="cart-count">0</span>
-      
-      <div class="cart-menu" id="cart-menu">
-        <div class="cart-items-list" id="cart-items-list">
-          <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
-        </div>
-        <div class="cart-footer" id="cart-footer" style="display:none;">
-          <div class="cart-total">
-            <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
-          </div>
-          <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
-        </div>
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+    
+    <div class="cart-menu" id="cart-menu">
+      <div class="cart-items-list" id="cart-items-list">
+        <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
       </div>
-</div>
-
+      <div class="cart-footer" id="cart-footer" style="display:none;">
+        <div class="cart-total">
+          <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+        </div>
+        <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="header-bottom">
-<nav class="nav">
-<a href="index.html">Trang chủ</a>
-<a href="2.product.html">Sản phẩm</a>
-<a href="news.html">Tin tức</a>
-<a href="1.contact.html">Liên hệ</a>
-<a href="2.login.html">Đăng nhập</a>
-</nav>
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="contact.html">Liên hệ</a>
+    <a href="2.terms.html">Điều khoản</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
 </div>
 
-<!-- Banner -->
-<div align="center" style="padding:45px 15px; background:linear-gradient(135deg,#4f8cff,#6b5cff); color:white;">
-  <div style="font-size:42px; margin-bottom:10px;">📦</div>
-  <h1 style="margin:0;">Lịch sử đơn hàng</h1>
-  <p style="margin:8px 0 0; opacity:0.95;">
-    Theo dõi các đơn hàng bạn đã đặt tại Laptop Store
-  </p>
-</div>
-
-<main>
-  <div align="center" style="padding:30px 15px;">
-
-    <div style="
-      width:100%;
-      max-width:980px;
-      background:#fff;
-      border-radius:16px;
-      padding:24px;
-      box-shadow:0 12px 28px rgba(0,0,0,0.10);
-      text-align:left;
-    ">
-
-      <h2 style="margin-top:0;">Danh sách đơn hàng</h2>
-
-      <!-- Order 1 -->
-      <div style="border:1px solid #eee; border-radius:12px; padding:16px; margin-bottom:14px;">
-        <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-          <strong>Đơn hàng #DH001</strong>
-          <span style="color:#4caf50; font-weight:600;">Hoàn thành</span>
-        </div>
-        <div style="margin-top:8px; color:#555;">
-          Sản phẩm: Dell Inspiron 15 (i5)<br>
-          Ngày đặt: 12/03/2026<br>
-          Tổng tiền: <strong>15.990.000đ</strong>
-        </div>
-        <div style="margin-top:10px;">
-          <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">
-            Xem chi tiết đơn →
-          </a>
-        </div>
+<section style="background:#f5f5f5; padding:22px 15px 10px;">
+  <div class="page-wrap">
+    <div class="history-banner">
+      <div>
+        <div style="font-size:13px; opacity:0.85; margin-bottom:8px;">Trang chủ / Tài khoản / Đơn hàng</div>
+        <h1>Lịch sử đơn hàng</h1>
+        <p>Theo dõi trạng thái xử lý, xem lại sản phẩm đã mua và quản lý những đơn hàng gần đây tại Laptop Store.</p>
       </div>
 
-      <!-- Order 2 -->
-      <div style="border:1px solid #eee; border-radius:12px; padding:16px; margin-bottom:14px;">
-        <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-          <strong>Đơn hàng #DH002</strong>
-          <span style="color:#ff9800; font-weight:600;">Đang xử lý</span>
-        </div>
-        <div style="margin-top:8px; color:#555;">
-          Sản phẩm: ASUS TUF Gaming F15<br>
-          Ngày đặt: 20/03/2026<br>
-          Tổng tiền: <strong>26.490.000đ</strong>
-        </div>
-        <div style="margin-top:10px;">
-          <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">
-            Xem chi tiết đơn →
-          </a>
-        </div>
+      <div class="banner-badges">
+        <span>Theo dõi đơn hàng</span>
+        <span>Mua lại nhanh</span>
+        <span>Hỗ trợ đổi trả</span>
       </div>
-
-      <!-- Order 3 -->
-      <div style="border:1px solid #eee; border-radius:12px; padding:16px;">
-        <div style="display:flex; justify-content:space-between; flex-wrap:wrap;">
-          <strong>Đơn hàng #DH003</strong>
-          <span style="color:#f44336; font-weight:600;">Đã huỷ</span>
-        </div>
-        <div style="margin-top:8px; color:#555;">
-          Sản phẩm: MacBook Air M1<br>
-          Ngày đặt: 01/04/2026<br>
-          Tổng tiền: <strong>19.990.000đ</strong>
-        </div>
-        <div style="margin-top:10px;">
-          <a href="#" style="color:#4f8cff; text-decoration:none; font-weight:600;">
-            Xem chi tiết đơn →
-          </a>
-        </div>
-      </div>
-
-      <div style="margin-top:18px; color:#777; font-size:13px;">
-        *Trang lịch sử đơn hàng mang tính mô phỏng cho đồ án. Dữ liệu đơn hàng được hiển thị mẫu.
-      </div>
-
     </div>
 
-    <div style="margin-top:16px;">
-      <a href="product.html" style="text-decoration:none; color:#4f8cff; font-weight:600;">
-        ← Tiếp tục mua sắm
-      </a>
+    <div class="history-stats">
+      <div class="stat-card">
+        <div class="stat-label">Tổng đơn hàng</div>
+        <div class="stat-value">03</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Đang xử lý</div>
+        <div class="stat-value">01</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Hoàn thành</div>
+        <div class="stat-value">01</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-label">Đã huỷ</div>
+        <div class="stat-value">01</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main style="background:#f5f5f5; padding:10px 15px 45px;">
+  <div class="page-wrap">
+    <div class="history-layout">
+
+      <aside class="side-box">
+        <h3>Bộ lọc nhanh</h3>
+
+        <button class="filter-chip active">Tất cả đơn hàng</button>
+        <button class="filter-chip">Đang xử lý</button>
+        <button class="filter-chip">Hoàn thành</button>
+        <button class="filter-chip">Đã huỷ</button>
+
+        <div class="mini-note">
+          Bạn có thể theo dõi đơn hàng, xem lại sản phẩm đã mua hoặc chọn mua lại nhanh những mẫu đang quan tâm.
+        </div>
+      </aside>
+
+      <section class="main-box">
+        <div class="top-row">
+          <h2>Danh sách đơn hàng</h2>
+
+          <div class="search-order">
+            <input type="text" placeholder="Tìm mã đơn hoặc tên sản phẩm...">
+            <select>
+              <option>Mới nhất</option>
+              <option>Cũ nhất</option>
+              <option>Giá cao đến thấp</option>
+              <option>Giá thấp đến cao</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="order-list">
+
+          <article class="order-card">
+            <div class="order-head">
+              <div>
+                <div class="order-id">Đơn hàng #DH001</div>
+                <div class="order-date">Đặt ngày 12/03/2026 • Thanh toán thành công</div>
+              </div>
+              <span class="status-badge status-success">Hoàn thành</span>
+            </div>
+
+            <div class="order-body">
+              <img class="order-thumb" src="imgae/dell inspiron 15.jpg" alt="Dell Inspiron 15">
+              <div>
+                <div class="order-product">Dell Inspiron 15 (i5)</div>
+                <div class="order-spec">Intel Core i5 • 8GB RAM • 512GB SSD • 15.6 inch FHD</div>
+              </div>
+              <div class="order-price">
+                <div class="label">Tổng thanh toán</div>
+                <div class="value">15.990.000đ</div>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-step done"><span class="timeline-dot"></span>Đặt hàng</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step done"><span class="timeline-dot"></span>Xác nhận</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step done"><span class="timeline-dot"></span>Đang giao</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step done"><span class="timeline-dot"></span>Hoàn tất</div>
+            </div>
+
+            <div class="order-actions">
+              <div class="order-meta">1 sản phẩm • Giao tiêu chuẩn • Đã nhận hàng</div>
+              <div class="action-group">
+                <a href="2.product-detail.html?id=ins15" class="btn-sub">Xem chi tiết</a>
+                <a href="2.product-detail.html?id=ins15" class="btn-main">Mua lại</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="order-card">
+            <div class="order-head">
+              <div>
+                <div class="order-id">Đơn hàng #DH002</div>
+                <div class="order-date">Đặt ngày 20/03/2026 • Chờ giao đến bạn</div>
+              </div>
+              <span class="status-badge status-processing">Đang xử lý</span>
+            </div>
+
+            <div class="order-body">
+              <img class="order-thumb" src="imgae/tuf 15 gaming.jpg" alt="ASUS TUF Gaming F15">
+              <div>
+                <div class="order-product">ASUS TUF Gaming F15</div>
+                <div class="order-spec">Intel Core i7 • 16GB RAM • 512GB SSD • RTX</div>
+              </div>
+              <div class="order-price">
+                <div class="label">Tổng thanh toán</div>
+                <div class="value">26.490.000đ</div>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-step done"><span class="timeline-dot"></span>Đặt hàng</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step current"><span class="timeline-dot"></span>Đang xác nhận</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step"><span class="timeline-dot"></span>Đang giao</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step"><span class="timeline-dot"></span>Hoàn tất</div>
+            </div>
+
+            <div class="order-actions">
+              <div class="order-meta">1 sản phẩm • Thanh toán khi nhận hàng</div>
+              <div class="action-group">
+                <a href="2.product-detail.html?id=asus-tuf-f15" class="btn-sub">Xem chi tiết</a>
+                <a href="2.product-detail.html?id=asus-tuf-f15" class="btn-main">Mua lại</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="order-card">
+            <div class="order-head">
+              <div>
+                <div class="order-id">Đơn hàng #DH003</div>
+                <div class="order-date">Đặt ngày 01/04/2026 • Đơn hàng đã huỷ</div>
+              </div>
+              <span class="status-badge status-cancel">Đã huỷ</span>
+            </div>
+
+            <div class="order-body">
+              <img class="order-thumb" src="imgae/air m1.jpg" alt="MacBook Air M1">
+              <div>
+                <div class="order-product">MacBook Air M1</div>
+                <div class="order-spec">Apple M1 • 8GB RAM • 256GB SSD • Retina</div>
+              </div>
+              <div class="order-price">
+                <div class="label">Tổng thanh toán</div>
+                <div class="value">19.990.000đ</div>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-step done"><span class="timeline-dot"></span>Đặt hàng</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step done"><span class="timeline-dot"></span>Xác nhận</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step"><span class="timeline-dot"></span>Đang giao</div>
+              <div class="timeline-line"></div>
+              <div class="timeline-step"><span class="timeline-dot"></span>Hoàn tất</div>
+            </div>
+
+            <div class="order-actions">
+              <div class="order-meta">Đơn bị huỷ theo yêu cầu khách hàng</div>
+              <div class="action-group">
+                <a href="2.product-detail.html?id=mac-air-m1" class="btn-sub">Xem chi tiết</a>
+                <a href="2.product-detail.html?id=mac-air-m1" class="btn-main">Mua lại</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div style="margin-top:18px; color:#64748b; font-size:13px;">
+          *Trang lịch sử đơn hàng mang tính mô phỏng cho đồ án. Có thể kết nối localStorage hoặc dữ liệu thật nếu bạn muốn làm tiếp.
+        </div>
+      </section>
     </div>
 
+    <div class="bottom-link">
+      <a href="2.product.html">← Tiếp tục mua sắm</a>
+    </div>
   </div>
 </main>
 
@@ -164,15 +679,18 @@
     try { return JSON.parse(localStorage.getItem("cart")) || []; }
     catch { return []; }
   }
+
   function updateCartCount() {
     const cart = getCart();
-    const total = cart.reduce((sum, i) => sum + (i.qty || 1), 0);
+    const total = cart.reduce((sum, i) => sum + (i.quantity || i.qty || 1), 0);
     const el = document.getElementById("cart-count");
     if (el) el.innerText = total;
   }
+
   function openCart() {
     window.location.href = "cart.html";
   }
+
   updateCartCount();
 </script>
 <script src="script.js"></script>

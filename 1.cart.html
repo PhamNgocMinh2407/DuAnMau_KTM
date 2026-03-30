@@ -272,7 +272,8 @@
       let total = 0;
 
       cart.forEach((item, index) => {
-        total += item.price * item.quantity;
+        const itemQty = item.quantity || item.qty || 1;
+        total += item.price * itemQty;
 
         const div = document.createElement("div");
         div.className = "cart-item";
@@ -285,7 +286,7 @@
 
         <div class="qty-controls">
           <button onclick="changeQty(${index}, -1)">-</button>
-          <span>${item.quantity}</span>
+          <span>${item.quantity || item.qty || 1}</span>
           <button onclick="changeQty(${index}, 1)">+</button>
         </div>
       </div>
@@ -302,9 +303,18 @@
     function changeQty(index, amount) {
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-      cart[index].quantity += amount;
+      const currentQty = cart[index].quantity || cart[index].qty || 1;
+      const newQty = currentQty + amount;
 
-      if (cart[index].quantity <= 0) {
+      if (cart[index].quantity !== undefined) 
+        {
+          cart[index].quantity = newQty;
+        } else {
+          cart[index].qty = newQty;
+        }
+
+      if (newQty <= 0) 
+      {
         cart.splice(index, 1);
       }
 

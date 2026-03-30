@@ -220,7 +220,8 @@ const orderList = document.getElementById("order-list");
 let subtotal = 0;
 
 cart.forEach(item=>{
-  subtotal += item.price * item.quantity;
+  const itemQty = item.quantity || item.qty || 1;
+  subtotal += item.price * itemQty;
 
   const div = document.createElement("div");
   div.className = "order-item";
@@ -228,7 +229,7 @@ cart.forEach(item=>{
     <img src="${item.image}">
     <div>
       <div>${item.name}</div>
-      <small>${item.quantity} x ${formatPrice(item.price)}</small>
+      <small>${item.quantity || item.qty || 1} x ${formatPrice(item.price)}</small>
     </div>
   `;
   orderList.appendChild(div);

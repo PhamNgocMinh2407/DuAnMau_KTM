@@ -1,873 +1,765 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <style>
-        .news-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .news-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #222;
-        }
-
-        .review-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .review-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-        }
-
-        .review-video {
-            width: 100%;
-            aspect-ratio: 9/16;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: #000;
-        }
-
-        .review-video.video-1 {
-            background: #000;
-        }
-
-        .review-video.video-2 {
-            background: #000;
-        }
-
-        .review-video.video-3 {
-            background: #000;
-        }
-
-        .review-video.video-4 {
-            background: #000;
-        }
-
-        .review-footer {
-            padding: 12px;
-            background: white;
-        }
-
-        .product-info {
-            display: flex;
-            gap: 10px;
-        }
-
-        .product-thumb {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            border-radius: 6px;
-            background: #f5f5f5;
-            border: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .product-details {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .product-name {
-            font-size: 12px;
-            color: #666;
-            white-space: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 6px;
-            line-height: 1.4;
-        }
-
-        .product-price {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 13px;
-        }
-
-        .original-price {
-            color: #999;
-            text-decoration: line-through;
-            font-size: 11px;
-        }
-
-        .discount {
-            color: #ff4d4d;
-            font-weight: 600;
-            font-size: 12px;
-        }
-
-        .sale-price {
-            color: #ff4d4d;
-            font-weight: 700;
-            font-size: 13px;
-        }
-
-        @media (max-width: 1200px) {
-            .review-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .review-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .news-container {
-                padding: 25px 15px;
-            }
-
-            .news-title {
-                font-size: 24px;
-                margin-bottom: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .review-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Banner Section Styles */
-        .deals-section {
-            margin-bottom: 50px;
-        }
-
-        .deals-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        .deals-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #222;
-        }
-
-        .see-more-link {
-            color: #0066FF;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .deals-content {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .promo-banner {
-            background: linear-gradient(135deg, #ff6b9d 0%, #ff8c8c 100%);
-            border-radius: 12px;
-            padding: 25px;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promo-banner::before {
-            content: '';
-            position: absolute;
-            right: -20px;
-            top: -20px;
-            width: 150px;
-            height: 150px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-        }
-
-        .promo-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .promo-subtitle {
-            font-size: 13px;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .promo-btn {
-            background: white;
-            color: #ff6b9d;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            font-size: 13px;
-            position: relative;
-            z-index: 1;
-            transition: transform 0.3s;
-        }
-
-        .promo-btn:hover {
-            transform: scale(1.05);
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .category-section {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        .category-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 15px;
-        }
-
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-
-        .item-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px;
-            background: #f9f9f9;
-            border-radius: 8px;
-            text-decoration: none;
-            color: #333;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .item-card:hover {
-            background: #f0f0f0;
-            transform: translateY(-2px);
-        }
-
-        .item-icon {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .item-name {
-            font-size: 12px;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .benefits-section {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-        }
-
-        .benefit-card {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .benefit-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
-        }
-
-        .benefit-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 6px;
-        }
-
-        .benefit-text {
-            font-size: 12px;
-            color: #666;
-        }
-
-        @media (max-width: 1024px) {
-            .deals-content {
-                grid-template-columns: 1fr;
-            }
-
-            .categories-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .benefits-section {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .benefits-section {
-                grid-template-columns: 1fr;
-            }
-
-            .deals-title {
-                font-size: 24px;
-            }
-        }
-
-        /* Highlight Section Styles */
-        .highlight-section {
-            margin-bottom: 50px;
-        }
-
-        .highlight-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: #222;
-        }
-
-        .highlight-content {
-            display: grid;
-            grid-template-columns: 400px 1fr;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .featured-article {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            height: fit-content;
-        }
-
-        .featured-article:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-        }
-
-        .featured-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .featured-content {
-            padding: 20px;
-        }
-
-        .featured-author {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-        }
-
-        .author-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #eee;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .author-name {
-            font-size: 13px;
-            font-weight: 500;
-            color: #222;
-        }
-
-        .featured-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .featured-meta {
-            font-size: 12px;
-            color: #999;
-        }
-
-        .highlight-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .highlight-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .highlight-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-        }
-
-        .highlight-card-image {
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #a855f7 0%, #6d28d9 100%);
-            object-fit: cover;
-        }
-
-        .highlight-card-content {
-            padding: 15px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .highlight-card-author {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 8px;
-        }
-
-        .highlight-card-author-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            background: #eee;
-            font-size: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .highlight-card-author-name {
-            font-size: 12px;
-            font-weight: 500;
-            color: #222;
-        }
-
-        .highlight-card-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #222;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .highlight-card-meta {
-            font-size: 11px;
-            color: #999;
-            margin-top: auto;
-        }
-
-        @media (max-width: 1024px) {
-            .highlight-content {
-                grid-template-columns: 1fr;
-            }
-
-            .featured-article {
-                height: auto;
-            }
-
-            .highlight-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .highlight-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .highlight-title {
-                font-size: 24px;
-            }
-        }
-    </style>
-    <title>Góc review dành cho bạn</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <title>Tin tức - Góc review | Laptop Store</title>
+
+  <style>
+    .news-page-wrap{
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .news-hero{
+      background: linear-gradient(135deg,#0f172a,#1d4ed8 60%,#60a5fa);
+      color:#fff;
+      border-radius: 22px;
+      padding: 30px 24px;
+      box-shadow: 0 16px 32px rgba(15,23,42,0.12);
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .news-hero h1{
+      margin:0;
+      font-size:34px;
+      line-height:1.25;
+    }
+
+    .news-hero p{
+      margin:10px 0 0;
+      max-width:760px;
+      color:rgba(255,255,255,0.88);
+      line-height:1.7;
+    }
+
+    .hero-tags{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+    }
+
+    .hero-tags span{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.16);
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .section-title{
+      font-size:28px;
+      font-weight:800;
+      color:#111827;
+      margin:0 0 18px;
+    }
+
+    .section-sub{
+      color:#64748b;
+      font-size:14px;
+      margin:0 0 22px;
+      line-height:1.7;
+    }
+
+    .featured-layout{
+      display:grid;
+      grid-template-columns:1.15fr 0.95fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .featured-main,
+    .featured-side-card,
+    .deal-panel,
+    .mini-cat-box,
+    .review-card,
+    .benefit-item{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      box-shadow:0 8px 24px rgba(15,23,42,0.05);
+    }
+
+    .featured-main{
+      overflow:hidden;
+      cursor:pointer;
+      transition:0.25s;
+    }
+
+    .featured-main:hover,
+    .featured-side-card:hover,
+    .review-card:hover,
+    .mini-cat-box:hover{
+      transform:translateY(-4px);
+      box-shadow:0 14px 28px rgba(15,23,42,0.09);
+    }
+
+    .featured-main img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      display:block;
+    }
+
+    .featured-main-body{
+      padding:20px;
+    }
+
+    .author-row{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#475569;
+      font-size:13px;
+      margin-bottom:12px;
+    }
+
+    .author-badge{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      background:#eff6ff;
+      color:#2563eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+    }
+
+    .featured-main-title{
+      font-size:22px;
+      font-weight:800;
+      color:#111827;
+      line-height:1.45;
+      margin-bottom:10px;
+    }
+
+    .featured-main-meta{
+      color:#64748b;
+      font-size:13px;
+    }
+
+    .featured-side{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    .featured-side-card{
+      overflow:hidden;
+      cursor:pointer;
+      transition:0.25s;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .side-thumb{
+      height:150px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:40px;
+      color:#fff;
+      font-weight:700;
+      background:linear-gradient(135deg,#7c3aed,#4f46e5);
+    }
+
+    .featured-side-body{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      flex:1;
+    }
+
+    .featured-side-title{
+      font-size:15px;
+      font-weight:700;
+      color:#111827;
+      line-height:1.5;
+    }
+
+    .featured-side-meta{
+      color:#64748b;
+      font-size:12px;
+      margin-top:auto;
+    }
+
+    .deal-layout{
+      display:grid;
+      grid-template-columns:300px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .deal-panel{
+      background:linear-gradient(135deg,#ec4899,#fb7185);
+      color:#fff;
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .deal-panel::after{
+      content:"";
+      position:absolute;
+      right:-40px;
+      top:-40px;
+      width:180px;
+      height:180px;
+      background:rgba(255,255,255,0.10);
+      border-radius:50%;
+    }
+
+    .deal-panel h3{
+      margin:0 0 10px;
+      font-size:24px;
+      position:relative;
+      z-index:1;
+    }
+
+    .deal-panel p{
+      margin:0 0 18px;
+      line-height:1.7;
+      color:rgba(255,255,255,0.92);
+      position:relative;
+      z-index:1;
+    }
+
+    .deal-btn{
+      display:inline-block;
+      text-decoration:none;
+      background:#fff;
+      color:#e11d48;
+      padding:10px 16px;
+      border-radius:10px;
+      font-weight:700;
+      position:relative;
+      z-index:1;
+    }
+
+    .cat-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .mini-cat-box{
+      padding:18px;
+    }
+
+    .mini-cat-title{
+      font-size:17px;
+      font-weight:800;
+      color:#111827;
+      margin-bottom:14px;
+    }
+
+    .mini-items{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+
+    .mini-item{
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      border-radius:12px;
+      padding:14px 10px;
+      text-align:center;
+      transition:0.2s;
+      cursor:pointer;
+    }
+
+    .mini-item:hover{
+      background:#eef2ff;
+      border-color:#c7d2fe;
+    }
+
+    .mini-item .icon{
+      font-size:28px;
+      margin-bottom:8px;
+    }
+
+    .mini-item .label{
+      font-size:13px;
+      font-weight:600;
+      color:#334155;
+      line-height:1.5;
+    }
+
+    .benefit-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:16px;
+    }
+
+    .benefit-item{
+      padding:20px;
+      text-align:center;
+    }
+
+    .benefit-icon{
+      font-size:34px;
+      margin-bottom:10px;
+    }
+
+    .benefit-item h4{
+      margin:0 0 8px;
+      font-size:15px;
+      color:#111827;
+    }
+
+    .benefit-item p{
+      margin:0;
+      font-size:13px;
+      color:#64748b;
+      line-height:1.6;
+    }
+
+    .review-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .review-card{
+      overflow:hidden;
+      cursor:pointer;
+      transition:0.25s;
+    }
+
+    .review-video{
+      width:100%;
+      aspect-ratio:9/16;
+      background:#000;
+      overflow:hidden;
+    }
+
+    .review-video video{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      background:#000;
+    }
+
+    .review-body{
+      padding:14px;
+    }
+
+    .review-product{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .review-product-thumb{
+      width:52px;
+      height:52px;
+      border-radius:10px;
+      background:#f8fafc;
+      border:1px solid #e5e7eb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:22px;
+      flex-shrink:0;
+    }
+
+    .review-product-name{
+      font-size:13px;
+      color:#334155;
+      line-height:1.5;
+      min-height:38px;
+      margin-bottom:8px;
+      font-weight:600;
+    }
+
+    .review-price-top{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:4px;
+    }
+
+    .review-old{
+      color:#94a3b8;
+      text-decoration:line-through;
+      font-size:12px;
+    }
+
+    .review-discount{
+      color:#ef4444;
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .review-sale{
+      color:#d70018;
+      font-size:15px;
+      font-weight:800;
+    }
+
+    @media (max-width: 1100px){
+      .featured-layout,
+      .deal-layout{
+        grid-template-columns:1fr;
+      }
+
+      .review-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .cat-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .benefit-grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px){
+      .featured-side{
+        grid-template-columns:1fr;
+      }
+
+      .cat-grid,
+      .benefit-grid,
+      .review-grid{
+        grid-template-columns:1fr;
+      }
+
+      .news-hero h1{
+        font-size:28px;
+      }
+
+      .section-title{
+        font-size:24px;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="container header-top">
-    <button class="back-btn" onclick="history.back()"> ← </button>
+  <button class="back-btn" onclick="history.back()"> ← </button>
 
-    <h1 class="logo">Laptop Store</h1>
+  <h1 class="logo">Laptop Store</h1>
 
-    <div class="search-box">
-        <input type="text" placeholder="Tìm kiếm laptop...">
-        <button>🔍</button>
+  <div class="search-box">
+    <input type="text" placeholder="Tìm kiếm laptop...">
+    <button>🔍</button>
+  </div>
+
+  <div class="account" onclick="handleAccountClick()">
+    👤 <span id="profile-name">Tài khoản</span>
+
+    <div class="profile-menu" id="profile-menu">
+      <a href="profile.html">Profile</a>
+      <a href="2.order-history.html">Lịch sử đơn hàng</a>
+      <a href="index.html">Trang chủ</a>
+      <a href="#" onclick="logout()">Đăng xuất</a>
     </div>
+  </div>
 
-    <div class="account" onclick="handleAccountClick()">
-        👤 <span id="profile-name">Tài khoản</span>
-
-        <div class="profile-menu" id="profile-menu">
-            <a href="profile.html">Profile</a>
-            <a href="2.order-history.html">Lịch sử đơn hàng</a>
-            <a href="index.html">Trang chủ</a>
-            <a href="#" onclick="logout()">Đăng xuất</a>
+  <div class="cart-icon" onclick="openCart()">
+    🛒 <span id="cart-count">0</span>
+    
+    <div class="cart-menu" id="cart-menu">
+      <div class="cart-items-list" id="cart-items-list">
+        <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
+      </div>
+      <div class="cart-footer" id="cart-footer" style="display:none;">
+        <div class="cart-total">
+          <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
         </div>
+        <a href="cart.html" class="checkout-btn">Xem giỏ hàng</a>
+      </div>
     </div>
-    <div class="cart-icon" onclick="openCart()">
-        🛒 <span id="cart-count">0</span>
-        
-        <div class="cart-menu" id="cart-menu">
-            <div class="cart-items-list" id="cart-items-list">
-                <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
-            </div>
-            <div class="cart-footer" id="cart-footer" style="display:none;">
-                <div class="cart-total">
-                    <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
-                </div>
-                <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 
 <div class="header-bottom">
-    <nav class="nav">
-        <a href="index.html">Trang chủ</a>
-        <a href="2.product.html">Sản phẩm</a>
-        <a href="news.html">Tin tức</a>
-        <a href="1.contact.html">Liên hệ</a>
-        <a href="2.login.html">Đăng nhập</a>
-    </nav>
+  <nav class="nav">
+    <a href="index.html">Trang chủ</a>
+    <a href="2.product.html">Sản phẩm</a>
+    <a href="news.html">Tin tức</a>
+    <a href="1.contact.html">Liên hệ</a>
+    <a href="2.login.html">Đăng nhập</a>
+  </nav>
 </div>
 
-<div class="news-container">
-    <!-- Highlight Section -->
-    <div class="highlight-section">
-        <h2 class="highlight-title">Nôi bật</h2>
+<section style="background:#f5f5f5; padding:22px 15px 12px;">
+  <div class="news-page-wrap">
+    <div class="news-hero">
+      <div>
+        <div style="font-size:13px; opacity:0.85; margin-bottom:8px;">Trang chủ / Tin tức / Góc review</div>
+        <h1>Tin tức công nghệ & góc review dành cho bạn</h1>
+        <p>Cập nhật xu hướng công nghệ mới, bài viết nổi bật, review nhanh sản phẩm hot và gợi ý mua sắm phù hợp với nhu cầu của bạn.</p>
+      </div>
 
-        <div class="highlight-content">
-            <!-- Featured Article (Large) -->
-            <div class="featured-article">
-                <img src="imgae/tren_tay_oppo_find_n6_1_d77e7715c9.png" alt="OPPO Find N6" class="featured-image">
-                <div class="featured-content">
-                    <div class="featured-author">
-                        <div class="author-avatar">👤</div>
-                        <div class="author-name">Thuỷ Diễm</div>
-                    </div>
-                    <h3 class="featured-title">Mở hộp và trên tay OPPO Find N6 tại Việt Nam: Độc phá màn hình gập vô hình, hiếu năng man...</h3>
-                    <div class="featured-meta">1 giờ trước • Thuỷ Diễm</div>
-                </div>
-            </div>
-
-            <!-- Highlight Articles Grid (4 Small) -->
-            <div class="highlight-grid">
-                <div class="highlight-card">
-                    <div class="highlight-card-image" style="background: linear-gradient(135deg, #a855f7 0%, #6d28d9 100%); display: flex; align-items: center; justify-content: center; font-size: 48px; color: white;">💻</div>
-                    <div class="highlight-card-content">
-                        <div class="highlight-card-author">
-                            <div class="highlight-card-author-avatar">👤</div>
-                            <div class="highlight-card-author-name">Bùi Thủy Dương</div>
-                        </div>
-                        <h4 class="highlight-card-title">MacBook Neo màu vàng chanh phủ hợp với ai? Lựa chọn nôi bà...</h4>
-                        <div class="highlight-card-meta">1 ngày trước • Bùi Thủy Dương</div>
-                    </div>
-                </div>
-
-                <div class="highlight-card">
-                    <div class="highlight-card-image" style="background: linear-gradient(135deg, #a855f7 0%, #6d28d9 100%); display: flex; align-items: center; justify-content: center; font-size: 48px; color: white;">📱</div>
-                    <div class="highlight-card-content">
-                        <div class="highlight-card-author">
-                            <div class="highlight-card-author-avatar">👤</div>
-                            <div class="highlight-card-author-name">Trần Ngọc Mai</div>
-                        </div>
-                        <h4 class="highlight-card-title">OPPO Find N6 gây chú ý với nếp gập gần như biến mất, camera...</h4>
-                        <div class="highlight-card-meta">1 ngày trước • Trần Ngọc Mai</div>
-                    </div>
-                </div>
-
-                <div class="highlight-card">
-                    <div class="highlight-card-image" style="background: linear-gradient(135deg, #a855f7 0%, #6d28d9 100%); display: flex; align-items: center; justify-content: center; font-size: 48px; color: white;">🎮</div>
-                    <div class="highlight-card-content">
-                        <div class="highlight-card-author">
-                            <div class="highlight-card-author-avatar">👤</div>
-                            <div class="highlight-card-author-name">Trần Ngọc Mai</div>
-                        </div>
-                        <h4 class="highlight-card-title">Nvidia ra mật DLSS 5: AI tạo sinh nâng tầm độ họa game</h4>
-                        <div class="highlight-card-meta">1 ngày trước • Trần Ngọc Mai</div>
-                    </div>
-                </div>
-
-                <div class="highlight-card">
-                    <div class="highlight-card-image" style="background: linear-gradient(135deg, #a855f7 0%, #6d28d9 100%); display: flex; align-items: center; justify-content: center; font-size: 48px; color: white;">📱</div>
-                    <div class="highlight-card-content">
-                        <div class="highlight-card-author">
-                            <div class="highlight-card-author-avatar">👤</div>
-                            <div class="highlight-card-author-name">Tâm An</div>
-                        </div>
-                        <h4 class="highlight-card-title">POCO X8 Pro Series ra mặt tại Việt Nam: Chip 3 nm, pin 8.500...</h4>
-                        <div class="highlight-card-meta">1 ngày trước • Tâm An</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <div class="hero-tags">
+        <span>Review nhanh</span>
+        <span>Tin công nghệ</span>
+        <span>Deal nổi bật</span>
+      </div>
     </div>
-    <!-- Deals Section -->
-    <div class="deals-section">
-        <div class="deals-header">
-            <h2 class="deals-title">Vạn deal hàng hiệu, triệu lợi cầm on</h2>
-            <a href="#" class="see-more-link">Xem gợi ý khác ↗</a>
+  </div>
+</section>
+
+<section style="background:#f5f5f5; padding:8px 15px 24px;">
+  <div class="news-page-wrap">
+    <h2 class="section-title">Nổi bật hôm nay</h2>
+    <p class="section-sub">Những bài viết, sản phẩm và xu hướng đáng chú ý đang được người dùng quan tâm nhiều nhất.</p>
+
+    <div class="featured-layout">
+      <article class="featured-main" onclick="openReview(1)">
+        <img src="imgae/tren_tay_oppo_find_n6_1_d77e7715c9.png" alt="OPPO Find N6">
+        <div class="featured-main-body">
+          <div class="author-row">
+            <div class="author-badge">T</div>
+            <div>Thuỷ Diễm • 1 giờ trước</div>
+          </div>
+          <div class="featured-main-title">
+            Mở hộp và trên tay OPPO Find N6 tại Việt Nam: màn hình gập ấn tượng, hiệu năng mạnh và ngoại hình cao cấp
+          </div>
+          <div class="featured-main-meta">Bài viết nổi bật • Công nghệ di động</div>
+        </div>
+      </article>
+
+      <div class="featured-side">
+        <article class="featured-side-card">
+          <div class="side-thumb">💻</div>
+          <div class="featured-side-body">
+            <div class="author-row" style="margin-bottom:0;">
+              <div class="author-badge" style="width:26px;height:26px;font-size:12px;">B</div>
+              <div style="font-size:12px;">Bùi Thuỷ Dương</div>
+            </div>
+            <div class="featured-side-title">MacBook Neo màu vàng chanh phù hợp với ai? Góc nhìn thời trang và công nghệ</div>
+            <div class="featured-side-meta">1 ngày trước</div>
+          </div>
+        </article>
+
+        <article class="featured-side-card">
+          <div class="side-thumb">📱</div>
+          <div class="featured-side-body">
+            <div class="author-row" style="margin-bottom:0;">
+              <div class="author-badge" style="width:26px;height:26px;font-size:12px;">M</div>
+              <div style="font-size:12px;">Trần Ngọc Mai</div>
+            </div>
+            <div class="featured-side-title">OPPO Find N6 gây chú ý với nếp gập gần như biến mất, camera và trải nghiệm đều đáng chờ đợi</div>
+            <div class="featured-side-meta">1 ngày trước</div>
+          </div>
+        </article>
+
+        <article class="featured-side-card">
+          <div class="side-thumb">🎮</div>
+          <div class="featured-side-body">
+            <div class="author-row" style="margin-bottom:0;">
+              <div class="author-badge" style="width:26px;height:26px;font-size:12px;">M</div>
+              <div style="font-size:12px;">Trần Ngọc Mai</div>
+            </div>
+            <div class="featured-side-title">NVIDIA ra mắt DLSS 5: AI tạo sinh mở ra bước tiến mới cho trải nghiệm gaming</div>
+            <div class="featured-side-meta">1 ngày trước</div>
+          </div>
+        </article>
+
+        <article class="featured-side-card">
+          <div class="side-thumb">⚡</div>
+          <div class="featured-side-body">
+            <div class="author-row" style="margin-bottom:0;">
+              <div class="author-badge" style="width:26px;height:26px;font-size:12px;">A</div>
+              <div style="font-size:12px;">Tâm An</div>
+            </div>
+            <div class="featured-side-title">POCO X8 Pro Series ra mắt: chip mới, pin lớn và loạt nâng cấp đáng chú ý trong tầm giá</div>
+            <div class="featured-side-meta">1 ngày trước</div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#f5f5f5; padding:0 15px 24px;">
+  <div class="news-page-wrap">
+    <h2 class="section-title">Deal tốt & danh mục đang hot</h2>
+    <p class="section-sub">Khám phá nhanh những khu vực mua sắm được quan tâm nhiều và các nhóm sản phẩm đang nổi bật.</p>
+
+    <div class="deal-layout">
+      <div class="deal-panel">
+        <h3>Deal hàng hiệu chính hãng</h3>
+        <p>Chọn nhanh những mẫu laptop, phụ kiện và thiết bị công nghệ đang có giá tốt, freeship toàn quốc.</p>
+        <a href="2.product.html" class="deal-btn">Mua sắm ngay</a>
+      </div>
+
+      <div class="cat-grid">
+        <div class="mini-cat-box">
+          <div class="mini-cat-title">Công nghệ</div>
+          <div class="mini-items">
+            <div class="mini-item"><div class="icon">📱</div><div class="label">Điện thoại</div></div>
+            <div class="mini-item"><div class="icon">💻</div><div class="label">Laptop</div></div>
+            <div class="mini-item"><div class="icon">🖥️</div><div class="label">Màn hình</div></div>
+            <div class="mini-item"><div class="icon">⌚</div><div class="label">Smartwatch</div></div>
+          </div>
         </div>
 
-        <div class="deals-content">
-            <!-- Promo Banner -->
-            <div class="promo-banner">
-                <div style="position: relative; z-index: 1;">
-                    <div class="promo-title">Hãng hiệu chính hãng</div>
-                    <div class="promo-title" style="color: #fff; margin-bottom: 10px;">Freeship toàn quốc</div>
-                    <div class="promo-subtitle">Hót ngay ▶</div>
-                    <a href="2.product.html" class="promo-btn">Mua sắm ngay</a>
-                </div>
-            </div>
-
-            <!-- Categories -->
-            <div class="categories-grid">
-                <!-- Công nghệ -->
-                <div class="category-section">
-                    <div class="category-title">Công nghệ</div>
-                    <div class="items-grid">
-                        <div class="item-card">
-                            <div class="item-icon">📱</div>
-                            <div class="item-name">Điện thoại</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">💻</div>
-                            <div class="item-name">Máy tính bảng</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">⌚</div>
-                            <div class="item-name">Laptop</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">🎮</div>
-                            <div class="item-name">Màn hình</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phụ kiện -->
-                <div class="category-section">
-                    <div class="category-title">Phụ kiện</div>
-                    <div class="items-grid">
-                        <div class="item-card">
-                            <div class="item-icon">🎧</div>
-                            <div class="item-name">Tai nghe</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">📷</div>
-                            <div class="item-name">Máy chiếu</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">⌚</div>
-                            <div class="item-name">Đồng hồ</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">🔊</div>
-                            <div class="item-name">Loa</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Nghiên nhà -->
-                <div class="category-section">
-                    <div class="category-title">Nghiên nhà</div>
-                    <div class="items-grid">
-                        <div class="item-card">
-                            <div class="item-icon">🧺</div>
-                            <div class="item-name">Máy giặt</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">❄️</div>
-                            <div class="item-name">Máy sấy</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">❄️</div>
-                            <div class="item-name">Máy lạnh</div>
-                        </div>
-                        <div class="item-card">
-                            <div class="item-icon">💨</div>
-                            <div class="item-name">Máy lọc không khí</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="mini-cat-box">
+          <div class="mini-cat-title">Phụ kiện</div>
+          <div class="mini-items">
+            <div class="mini-item"><div class="icon">🎧</div><div class="label">Tai nghe</div></div>
+            <div class="mini-item"><div class="icon">🔊</div><div class="label">Loa</div></div>
+            <div class="mini-item"><div class="icon">⌨️</div><div class="label">Bàn phím</div></div>
+            <div class="mini-item"><div class="icon">🖱️</div><div class="label">Chuột</div></div>
+          </div>
         </div>
 
-        <!-- Benefits Section -->
-        <div class="benefits-section">
-            <div class="benefit-card">
-                <div class="benefit-icon">✓</div>
-                <div class="benefit-title">Thương hiệu đảm bảo</div>
-                <div class="benefit-text">Nhập khẩu, bảo hành chính hãng</div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">↩️</div>
-                <div class="benefit-title">Đổi trả dễ dàng</div>
-                <div class="benefit-text">Theo chính sách đổi trả tại FPT Shop</div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">🚚</div>
-                <div class="benefit-title">Giao hàng tận nơi</div>
-                <div class="benefit-text">Trên toàn quốc</div>
-            </div>
-            <div class="benefit-card">
-                <div class="benefit-icon">⚙️</div>
-                <div class="benefit-title">Sản phẩm chất lượng</div>
-                <div class="benefit-text">Đảm bảo tương thích và độ bền cao</div>
-            </div>
+        <div class="mini-cat-box">
+          <div class="mini-cat-title">Thiết bị gia dụng</div>
+          <div class="mini-items">
+            <div class="mini-item"><div class="icon">🧺</div><div class="label">Máy giặt</div></div>
+            <div class="mini-item"><div class="icon">❄️</div><div class="label">Máy lạnh</div></div>
+            <div class="mini-item"><div class="icon">💨</div><div class="label">Máy lọc khí</div></div>
+            <div class="mini-item"><div class="icon">🍚</div><div class="label">Thiết bị nhà bếp</div></div>
+          </div>
         </div>
+      </div>
     </div>
 
-    <!-- Review Section -->
-    <h2 class="news-title">Góc review dành cho bạn</h2>
-
-    <div class="review-grid" id="reviewGrid">
-        <!-- Cards sẽ được tạo bằng JavaScript -->
+    <div class="benefit-grid">
+      <div class="benefit-item">
+        <div class="benefit-icon">✅</div>
+        <h4>Chính hãng rõ ràng</h4>
+        <p>Sản phẩm chính hãng, nguồn gốc minh bạch, bảo hành đầy đủ.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">↩️</div>
+        <h4>Đổi trả dễ hơn</h4>
+        <p>Hỗ trợ theo chính sách đổi trả và bảo hành của hệ thống.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">🚚</div>
+        <h4>Giao nhanh toàn quốc</h4>
+        <p>Đóng gói cẩn thận và giao hàng tận nơi trên toàn quốc.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon">⚙️</div>
+        <h4>Chọn đúng nhu cầu</h4>
+        <p>Gợi ý sản phẩm phù hợp cho học tập, văn phòng, gaming và creator.</p>
+      </div>
     </div>
-</div>
+  </div>
+</section>
+
+<section style="background:#f5f5f5; padding:0 15px 45px;">
+  <div class="news-page-wrap">
+    <h2 class="section-title">Góc review dành cho bạn</h2>
+    <p class="section-sub">Video ngắn, nội dung dễ xem và gợi ý nhanh những món đáng chú ý trong thời điểm hiện tại.</p>
+
+    <div class="review-grid" id="reviewGrid"></div>
+  </div>
+</section>
 
 <script>
-    const reviewData = [
-        {
-            id: 1,
-            videoClass: 'video-1',
-            videoFile: 'videos/YTDown.com_Shorts_Unboxing-Kinh-am-thanh-thong-minh-Xiaomi_Media_1OOJxF77D30_001_1080p.mp4',
-            name: 'Kính âm thanh thông minh Xiaomi Mijia Smart Audi...',
-            originalPrice: '5.490.000đ',
-            salePrice: '5.990.000đ',
-            discount: '-8%',
-            thumb: '🔋'
-        },
-        {
-            id: 2,
-            videoClass: 'video-2',
-            videoFile: 'videos/YTDown.com_Shorts_SAMSUNG-GALAXY-S26-SERIES-TRO-THU-DAC-LU_Media_xmF2NtOAfKg_001_1080p.mp4',
-            name: 'Samsung Galaxy S26 Ultra 5G 12GB 256GB',
-            originalPrice: '36.990.000đ',
-            salePrice: '33.990.000đ',
-            discount: '-8%',
-            thumb: '📱'
-        },
-        {
-            id: 3,
-            videoClass: 'video-3',
-            videoFile: 'videos/YTDown.com_Shorts_Laptop-Acer-Gaming-Nitro-V-15-ProPanel-A_Media_U3uXNufioA8_001_1080p.mp4',
-            name: 'Laptop Acer Gaming Nitro ProPanel ANV15-41-R9...',
-            originalPrice: '30.990.000đ',
-            salePrice: '23.990.000đ',
-            discount: '-23%',
-            thumb: '💻'
-        },
-        {
-            id: 4,
-            videoClass: 'video-4',
-            videoFile: 'videos/YTDown.com_Shorts_Camera-hanh-dong-Insta360-Ace-Pro-2-Quay_Media_VYkhNGmjUD8_001_1080p.mp4',
-            name: 'Camera hành động Insta360 Ace Pro 2...',
-            originalPrice: '10.590.000đ',
-            salePrice: '9.010.000đ',
-            discount: '-15%',
-            thumb: '📷'
-        }
-    ];
+  const reviewData = [
+    {
+      id: 1,
+      videoFile: 'videos/YTDown.com_Shorts_Unboxing-Kinh-am-thanh-thong-minh-Xiaomi_Media_1OOJxF77D30_001_1080p.mp4',
+      name: 'Kính âm thanh thông minh Xiaomi Mijia Smart Audio',
+      originalPrice: '5.490.000đ',
+      salePrice: '5.990.000đ',
+      discount: '-8%',
+      thumb: '🔋'
+    },
+    {
+      id: 2,
+      videoFile: 'videos/YTDown.com_Shorts_SAMSUNG-GALAXY-S26-SERIES-TRO-THU-DAC-LU_Media_xmF2NtOAfKg_001_1080p.mp4',
+      name: 'Samsung Galaxy S26 Ultra 5G 12GB 256GB',
+      originalPrice: '36.990.000đ',
+      salePrice: '33.990.000đ',
+      discount: '-8%',
+      thumb: '📱'
+    },
+    {
+      id: 3,
+      videoFile: 'videos/YTDown.com_Shorts_Laptop-Acer-Gaming-Nitro-V-15-ProPanel-A_Media_U3uXNufioA8_001_1080p.mp4',
+      name: 'Laptop Acer Gaming Nitro V 15 ProPanel',
+      originalPrice: '30.990.000đ',
+      salePrice: '23.990.000đ',
+      discount: '-23%',
+      thumb: '💻'
+    },
+    {
+      id: 4,
+      videoFile: 'videos/YTDown.com_Shorts_Camera-hanh-dong-Insta360-Ace-Pro-2-Quay_Media_VYkhNGmjUD8_001_1080p.mp4',
+      name: 'Camera hành động Insta360 Ace Pro 2',
+      originalPrice: '10.590.000đ',
+      salePrice: '9.010.000đ',
+      discount: '-15%',
+      thumb: '📷'
+    }
+  ];
 
-    function renderReviews() {
-        const reviewGrid = document.getElementById('reviewGrid');
-        reviewGrid.innerHTML = reviewData.map(item => `
-            <div class="review-card" onclick="openReview(${item.id})">
-                <div class="review-video ${item.videoClass}">
-                    <video width="100%" height="100%" style="object-fit: cover;" controls>
-                        <source src="${item.videoFile}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="review-footer">
-                    <div class="product-info">
-                        <div class="product-thumb">${item.thumb}</div>
-                        <div class="product-details">
-                            <div class="product-name">${item.name}</div>
-                            <div class="product-price">
-                                <span class="original-price">${item.originalPrice}</span>
-                                <span class="discount">${item.discount}</span>
-                            </div>
-                            <div class="sale-price">${item.salePrice}</div>
-                        </div>
-                    </div>
-                </div>
+  function renderReviews() {
+    const reviewGrid = document.getElementById('reviewGrid');
+    reviewGrid.innerHTML = reviewData.map(item => `
+      <div class="review-card" onclick="openReview(${item.id})">
+        <div class="review-video">
+          <video controls preload="metadata">
+            <source src="${item.videoFile}" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="review-body">
+          <div class="review-product">
+            <div class="review-product-thumb">${item.thumb}</div>
+            <div style="flex:1; min-width:0;">
+              <div class="review-product-name">${item.name}</div>
+              <div class="review-price-top">
+                <span class="review-old">${item.originalPrice}</span>
+                <span class="review-discount">${item.discount}</span>
+              </div>
+              <div class="review-sale">${item.salePrice}</div>
             </div>
-        `).join('');
-    }
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
 
-    function openReview(id) {
-        window.location.href = `news-detail.html?id=${id}`;
-    }
+  function openReview(id) {
+    window.location.href = `news-detail.html?id=${id}`;
+  }
 
-    // Load products on page load
-    document.addEventListener('DOMContentLoaded', () => {
-        renderReviews();
-    });
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem("cart")) || []; }
+    catch { return []; }
+  }
+
+  function updateCartCount() {
+    const cart = getCart();
+    const total = cart.reduce((sum, i) => sum + (i.quantity || i.qty || 1), 0);
+    const el = document.getElementById("cart-count");
+    if (el) el.innerText = total;
+  }
+
+  function openCart() {
+    window.location.href = "cart.html";
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderReviews();
+    updateCartCount();
+  });
 </script>
 <script src="script.js"></script>
 </body>
