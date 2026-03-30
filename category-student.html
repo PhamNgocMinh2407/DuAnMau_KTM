@@ -4,17 +4,79 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <title>Laptop Học tập - Laptop Store</title>
+  <title>Laptop Sinh viên - Học tập - Laptop Store</title>
+
+  <style>
+    .page-wrap {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .need-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      justify-content: center;
+      align-items: stretch;
+    }
+
+    .need-card {
+      width: 170px;
+      min-height: 150px;
+      border-radius: 16px;
+      padding: 16px 12px;
+      text-align: center;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: 0.2s;
+    }
+
+    .need-card img {
+      width: 78px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .need-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .need-card {
+        width: calc(50% - 9px);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .need-card {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
 <div class="container header-top">
   <button class="back-btn" onclick="history.back()">←</button>
   <h1 class="logo">Laptop Store</h1>
+
   <div class="search-box">
     <input type="text" placeholder="Tìm kiếm laptop...">
     <button>🔍</button>
   </div>
+
   <div class="account" onclick="handleAccountClick()">
     👤 <span id="profile-name">Tài khoản</span>
     <div class="profile-menu" id="profile-menu">
@@ -24,6 +86,7 @@
       <a href="#" onclick="logout()">Đăng xuất</a>
     </div>
   </div>
+
   <div class="cart-icon" onclick="openCart()">🛒 <span id="cart-count">0</span></div>
 </div>
 
@@ -39,102 +102,222 @@
 </div>
 
 <section style="background:#f5f5f5; padding:22px 15px 12px;">
-  <div style="max-width:1200px; margin:auto;">
-    <div style="background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:24px;">
-      <div style="font-size:13px; color:#666; margin-bottom:10px;">Trang chủ / Sản phẩm / Học tập</div>
-      <h1 style="margin:0; font-size:32px; color:#111;">Laptop Học tập</h1>
-      <p style="margin:8px 0 0; color:#555;">Những mẫu laptop phù hợp sinh viên, học online và sử dụng hằng ngày.</p>
+  <div class="page-wrap">
+    <div style="background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:24px; box-shadow:0 2px 8px rgba(0,0,0,0.04);">
+      <div style="font-size:13px; color:#666; margin-bottom:10px;">Trang chủ / Sản phẩm / Sinh viên</div>
+
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <div>
+          <h1 style="margin:0; font-size:34px; color:#111;">Laptop Sinh viên - Học tập</h1>
+          <p style="margin:8px 0 0; color:#555; line-height:1.7; max-width:760px;">
+            Những mẫu laptop giá dễ tiếp cận, gọn nhẹ và phù hợp học online, làm bài tập, thuyết trình mỗi ngày.
+          </p>
+        </div>
+
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <span style="padding:8px 12px; background:#111; color:#fff; border-radius:999px; font-size:13px;">Học tập linh hoạt</span>
+          <span style="padding:8px 12px; background:#f3f4f6; color:#111; border:1px solid #e5e5e5; border-radius:999px; font-size:13px;">Trả góp 0%</span>
+          <span style="padding:8px 12px; background:#f3f4f6; color:#111; border:1px solid #e5e5e5; border-radius:999px; font-size:13px;">Giao nhanh</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<div style="background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:20px; margin-bottom:18px;">
-  <div style="font-size:16px; font-weight:700; color:#111; margin-bottom:16px;">
-    Nhu cầu sử dụng
+<section style="background:#f5f5f5; padding:6px 15px 22px;">
+  <div class="page-wrap">
+    <div style="position:relative; width:100%; overflow:hidden; border-radius:22px; box-shadow:0 4px 14px rgba(0,0,0,0.08); background:#fff;">
+      <div id="categoryBannerSlider" style="display:flex; width:100%; transition:transform 0.5s ease;">
+        <img src="imgae/baner1.webp" alt="Banner 1" style="width:100%; height:260px; object-fit:cover; flex-shrink:0;">
+        <img src="imgae/baner2.webp" alt="Banner 2" style="width:100%; height:260px; object-fit:cover; flex-shrink:0;">
+        <img src="imgae/baner3.webp" alt="Banner 3" style="width:100%; height:260px; object-fit:cover; flex-shrink:0;">
+      </div>
+
+      <button id="bannerPrev" style="position:absolute; left:14px; top:50%; transform:translateY(-50%); border:none; width:38px; height:38px; border-radius:50%; background:rgba(0,0,0,0.35); color:#fff; cursor:pointer; font-size:18px;">‹</button>
+      <button id="bannerNext" style="position:absolute; right:14px; top:50%; transform:translateY(-50%); border:none; width:38px; height:38px; border-radius:50%; background:rgba(0,0,0,0.35); color:#fff; cursor:pointer; font-size:18px;">›</button>
+    </div>
+
+    <div style="display:flex; justify-content:center; gap:8px; margin-top:12px;">
+      <span class="banner-dot" data-index="0" style="width:22px; height:10px; border-radius:999px; background:#111; display:inline-block; cursor:pointer;"></span>
+      <span class="banner-dot" data-index="1" style="width:10px; height:10px; border-radius:999px; background:#cfcfcf; display:inline-block; cursor:pointer;"></span>
+      <span class="banner-dot" data-index="2" style="width:10px; height:10px; border-radius:999px; background:#cfcfcf; display:inline-block; cursor:pointer;"></span>
+    </div>
   </div>
+</section>
 
-  <div style="
-    display:grid;
-    grid-template-columns:repeat(4, minmax(160px, 1fr));
-    gap:16px;
-  ">
-    <a href="category-gaming.html" style="text-decoration:none; color:#111;">
-      <div style="
-        background:#f8e9c9;
-        border-radius:16px;
-        padding:16px;
-        text-align:center;
-        transition:0.2s;
-      ">
-        <img src="imgae/tuf 15 gaming.jpg" alt="Gaming" style="width:100%; max-width:95px; height:75px; object-fit:cover; border-radius:10px; display:block; margin:0 auto 10px;">
-        <div style="font-weight:600; font-size:15px;">Gaming - Đồ hoạ</div>
+<main style="background:#f5f5f5; padding:0 15px 45px;">
+  <div class="page-wrap">
+    <div style="background:#fff; border:1px solid #e5e5e5; border-radius:12px; padding:20px; margin-bottom:18px;">
+      <div style="font-size:16px; font-weight:700; color:#111; margin-bottom:16px; text-align:center;">
+        Nhu cầu sử dụng
       </div>
-    </a>
 
-    <a href="category-office.html" style="text-decoration:none; color:#111;">
-      <div style="
-        background:#dff4fb;
-        border-radius:16px;
-        padding:16px;
-        text-align:center;
-        transition:0.2s;
-      ">
-        <img src="imgae/thinkpad e14.jpg" alt="Văn phòng" style="width:100%; max-width:95px; height:75px; object-fit:cover; border-radius:10px; display:block; margin:0 auto 10px;">
-        <div style="font-weight:600; font-size:15px;">Doanh nhân</div>
+      <div class="need-grid">
+          <a href="category-gaming.html" style="text-decoration:none; color:#111; display:block;">
+          <div class="need-card" style="background:#f8e9c9;">
+            <img src="imgae/tuf 15 gaming.jpg" alt="Gaming">
+            <div style="font-weight:600; font-size:14px; line-height:1.4;">Gaming - Đồ hoạ</div>
+        </div>
+      </a>  
+
+        <a href="category-office.html" style="text-decoration:none; color:#111; display:block;">
+          <div class="need-card" style="background:#dff4fb;">
+            <img src="imgae/thinkpad e14.jpg" alt="Doanh nhân">
+            <div style="font-weight:600; font-size:14px; line-height:1.4;">Doanh nhân</div>
+          </div>
+        </a>
+
+        <a href="category-student.html" style="text-decoration:none; color:#111; display:block;">
+          <div class="need-card" style="background:#efe9ff;">
+            <img src="imgae/asus vivo 14.jpg" alt="Sinh viên - Văn phòng">
+            <div style="font-weight:600; font-size:14px; line-height:1.4;">Sinh viên - Văn phòng</div>
+          </div>
+        </a>
+
+        <a href="category-creator.html" style="text-decoration:none; color:#111; display:block;">
+          <div class="need-card" style="background:#dff7e8;">
+            <img src="imgae/air m1.jpg" alt="Mỏng nhẹ / Creator">
+            <div style="font-weight:600; font-size:14px; line-height:1.4;">Mỏng nhẹ / Creator</div>
+          </div>
+        </a>
       </div>
-    </a>
+    </div>
 
-    <a href="category-student.html" style="text-decoration:none; color:#111;">
-      <div style="
-        background:#efe9ff;
-        border-radius:16px;
-        padding:16px;
-        text-align:center;
-      ">
-        <img src="imgae/asus vivo 14.jpg" alt="Học tập" style="width:100%; max-width:95px; height:75px; object-fit:cover; border-radius:10px; display:block; margin:0 auto 10px;">
-        <div style="font-weight:600; font-size:15px;">Sinh viên - Văn phòng</div>
-      </div>
-    </a>
+    <div id="productGrid" class="product-grid"></div>
 
-    <a href="category-creator.html" style="text-decoration:none; color:#111;">
-      <div style="
-        background:#dff7e8;
-        border-radius:16px;
-        padding:16px;
-        text-align:center;
-      ">
-        <img src="imgae/air m1.jpg" alt="Creator" style="width:100%; max-width:95px; height:75px; object-fit:cover; border-radius:10px; display:block; margin:0 auto 10px;">
-        <div style="font-weight:600; font-size:15px;">Mỏng nhẹ / Creator</div>
-      </div>
-    </a>
-  </div>
-</div>
-
-    <div id="productGrid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:18px;"></div>
+    <div style="margin-top:18px; color:#666; font-size:13px;">
+      *Giá tham khảo theo cấu hình phổ biến. Có thể thay đổi theo từng thời điểm và chương trình khuyến mãi.
+    </div>
   </div>
 </main>
 
-<footer class="footer">
-  <div class="container footer-grid">
-    <div class="footer-col"><h3>TẢI ỨNG DỤNG</h3></div>
-    <div class="footer-col"><h3>VỀ CHÚNG TÔI</h3></div>
-    <div class="footer-col"><h3>CHÍNH SÁCH</h3></div>
-    <div class="footer-col"><h3>HỖ TRỢ THANH TOÁN</h3></div>
+<footer style="background:#020b2d; color:#fff; margin-top:40px;">
+  <div style="max-width:1200px; margin:auto; padding:34px 15px 28px; display:grid; grid-template-columns:1.15fr 1fr 1fr 1.1fr; gap:34px;">
+    <div>
+      <h3 style="margin:0 0 18px; font-size:20px; color:#fff;">TẢI ỨNG DỤNG</h3>
+
+      <div style="background:#000; border-radius:14px; padding:16px; display:flex; gap:12px; align-items:center; width:max-content;">
+        <img src="imgae/qr-download-app-fptshop.png" alt="QR App" style="width:110px; height:110px; object-fit:cover; background:#fff; padding:6px; border-radius:8px;">
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <img src="imgae/appstore.png" alt="App Store" style="width:150px;">
+          <img src="imgae/button-chplay.png" alt="Google Play" style="width:150px;">
+        </div>
+      </div>
+
+      <h3 style="margin:24px 0 14px; font-size:20px; color:#fff;">KẾT NỐI</h3>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:22px;">
+        <a href="https://www.facebook.com/FPTShopOnline" target="_blank">
+          <img src="imgae/facebook_icon_8543190720.svg" alt="Facebook" style="width:44px; height:44px;">
+        </a>
+        <a href="https://www.youtube.com/@FPTShop_" target="_blank">
+          <img src="imgae/youtube_icon_b492d61ba5.svg" alt="YouTube" style="width:44px; height:44px;">
+        </a>
+        <a href="https://zalo.me/2659487666103055748" target="_blank">
+          <img src="imgae/zalo_icon_8cbef61812.svg" alt="Zalo" style="width:44px; height:44px;">
+        </a>
+        <a href="https://www.tiktok.com/@fptshop.official" target="_blank">
+          <img src="imgae/tiktok_icon_faabbeeb61.svg" alt="TikTok" style="width:44px; height:44px;">
+        </a>
+      </div>
+
+      <h3 style="margin:0 0 14px; font-size:20px; color:#fff;">TỔNG ĐÀI MIỄN PHÍ</h3>
+      <div style="display:flex; flex-direction:column; gap:8px; color:#fff; font-size:16px; line-height:1.45;">
+        <span>1800.6601 (Mua hàng)</span>
+        <span>1800.6601 (Hỗ trợ kỹ thuật)</span>
+        <span>1800.6616 (Góp ý)</span>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="margin:0 0 18px; font-size:20px; color:#fff;">VỀ CHÚNG TÔI</h3>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:16px; line-height:1.45;">
+        <span>Giới thiệu công ty</span>
+        <span>Quy chế hoạt động</span>
+        <span>Tin tức khuyến mãi</span>
+        <span>Giới thiệu máy đổi trả</span>
+        <span>Tra cứu bảo hành</span>
+        <span>Câu hỏi thường gặp</span>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="margin:0 0 18px; font-size:20px; color:#fff;">CHÍNH SÁCH</h3>
+      <div style="display:flex; flex-direction:column; gap:10px; font-size:16px; line-height:1.45;">
+        <span>Chính sách bảo hành</span>
+        <span>Chính sách đổi trả</span>
+        <span>Chính sách bảo mật</span>
+        <span>Chính sách trả góp</span>
+        <span>Chính sách giao hàng</span>
+        <span>Chính sách khách hàng</span>
+        <a href="2.terms.html" style="color:#fff; text-decoration:none;">Điều khoản sử dụng</a>
+      </div>
+    </div>
+
+    <div>
+      <h3 style="margin:0 0 18px; font-size:20px; color:#fff;">HỖ TRỢ THANH TOÁN</h3>
+
+      <div style="display:grid; grid-template-columns:repeat(3, 74px); gap:14px; margin-bottom:24px;">
+        <div style="background:#fff; border-radius:8px; padding:6px; display:flex; align-items:center; justify-content:center;">
+          <img src="imgae/visa.png" alt="Visa" style="width:52px;">
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:6px; display:flex; align-items:center; justify-content:center;">
+          <img src="imgae/VNpay.jpg" alt="VNPay" style="width:52px;">
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:6px; display:flex; align-items:center; justify-content:center;">
+          <img src="imgae/zalo.png" alt="ZaloPay" style="width:52px;">
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:6px; display:flex; align-items:center; justify-content:center;">
+          <img src="imgae/momo.png" alt="MoMo" style="width:52px;">
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:6px; display:flex; align-items:center; justify-content:center;">
+          <img src="imgae/SSPay.jpg" alt="Samsung Pay" style="width:52px;">
+        </div>
+        <div style="background:#fff; border-radius:8px; padding:6px; display:flex; align-items:center; justify-content:center;">
+          <img src="imgae/JCB.jpg" alt="JCB" style="width:52px;">
+        </div>
+      </div>
+
+      <h3 style="margin:0 0 18px; font-size:20px; color:#fff;">CHỨNG NHẬN</h3>
+
+      <div style="display:flex; flex-wrap:wrap; gap:14px; align-items:center;">
+        <div style="background:#fff; border-radius:10px; padding:8px 10px;">
+          <img src="imgae/dmca_icon_8fc6622bd5.svg" alt="DMCA" style="width:110px;">
+        </div>
+
+        <div style="background:#fff; border-radius:10px; padding:8px 10px;">
+          <img src="imgae/thuong_hieu_manh_2013_icon_b56f772475.svg" alt="Thương hiệu mạnh" style="width:110px;">
+        </div>
+
+        <div style="background:#fff; border-radius:10px; padding:8px 10px;">
+          <img src="imgae/da_thong_bao_bo_cong_thuong_icon_64785fb3f7.svg" alt="Bộ Công Thương" style="width:130px;">
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="footer-bottom"><p>© 2024 Laptop Store</p></div>
+
+  <div style="border-top:1px solid rgba(255,255,255,0.12); text-align:center; padding:18px 15px 26px;">
+    <div style="font-size:16px; margin-bottom:10px;">Website cùng hệ thống</div>
+    <div style="display:flex; justify-content:center; gap:50px; flex-wrap:wrap; font-size:22px; font-weight:700;">
+      <span>F.Studio</span>
+      <span>F.Care</span>
+      <span>Long Châu</span>
+    </div>
+  </div>
 </footer>
 
 <script>
-  const products = [
+    const products = [
     {
       id: "vivobook14",
-      category: "Học tập",
+      category: "Sinh viên",
       name: "ASUS VivoBook 14",
       price: 14490000,
-      oldPrice: 15990000,
+      oldPrice: 16490000,
       image: "imgae/asus vivo 14.jpg",
-      specs: "Ryzen 5 • 8GB • 512GB SSD • 14 inch FHD",
-      badge: "Giá tốt"
+      specs: "Ryzen 5 • 8GB • 512GB SSD • 14 inch FHD • Nhẹ • Dễ mang đi học",
+      badge: "Hot"
     },
     {
       id: "msi-modern15",
@@ -143,8 +326,48 @@
       price: 16990000,
       oldPrice: 18990000,
       image: "imgae/modern 15.jpg",
-      specs: "Intel Core i5 • 8GB • 512GB SSD • 15.6 inch",
+      specs: "Core i5 • 8GB • 512GB SSD • 15.6 inch FHD • Dễ nâng cấp",
       badge: "Sinh viên"
+    },
+    {
+      id: "student-acer-aspire",
+      category: "Học tập",
+      name: "Acer Aspire 5",
+      price: 13990000,
+      oldPrice: 15990000,
+      image: "imgae/acer_aspire_7.jpg",
+      specs: "Core i5 • 8GB • 512GB SSD • 15.6 inch • Giá dễ mua",
+      badge: "Giá tốt"
+    },
+    {
+      id: "student-lenovo-ideapad",
+      category: "Sinh viên",
+      name: "Lenovo IdeaPad Slim 3",
+      price: 14990000,
+      oldPrice: 16990000,
+      image: "imgae/IdeaPad Slim.jpg",
+      specs: "Ryzen 5 • 8GB • 512GB SSD • 14 inch • Học online ổn định",
+      badge: "Dễ dùng"
+    },
+    {
+      id: "student-dell-vostro",
+      category: "Học tập",
+      name: "Dell Vostro 14",
+      price: 15490000,
+      oldPrice: 17490000,
+      image: "imgae/dell-vostro-3420.jpg",
+      specs: "Core i5 • 8GB • 512GB SSD • 14 inch FHD • Office tốt",
+      badge: "Văn phòng"
+    },
+    {
+      id: "student-hp-14s",
+      category: "Sinh viên",
+      name: "HP 14s",
+      price: 13490000,
+      oldPrice: 15490000,
+      image: "imgae/hp-probook-14.jpg",
+      specs: "Core i3 • 8GB • 512GB SSD • 14 inch • Học tập cơ bản",
+      badge: "Tiết kiệm"
     }
   ];
 
@@ -162,7 +385,7 @@
   products.forEach(p=>{
     const sale = Math.round(((p.oldPrice-p.price)/p.oldPrice)*100);
     const card = document.createElement("div");
-    card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column;";
+    card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column; height:100%;";
     card.innerHTML = `
       <div style="position:relative; padding:14px 14px 0;">
         <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">${p.badge}</div>
@@ -203,7 +426,70 @@
     }
   });
 
+  const bannerSlider = document.getElementById("categoryBannerSlider");
+  const bannerDots = document.querySelectorAll(".banner-dot");
+  const bannerImages = bannerSlider ? bannerSlider.querySelectorAll("img") : [];
+  let bannerIndex = 0;
+  let bannerInterval;
+
+  function updateBanner() {
+    if (!bannerSlider || bannerImages.length === 0) return;
+
+    bannerSlider.style.transform = `translateX(-${bannerIndex * 100}%)`;
+
+    bannerDots.forEach((dot, index) => {
+      dot.style.background = index === bannerIndex ? "#111" : "#cfcfcf";
+      dot.style.width = index === bannerIndex ? "22px" : "10px";
+    });
+  }
+
+  function nextBanner() {
+    bannerIndex = (bannerIndex + 1) % bannerImages.length;
+    updateBanner();
+  }
+
+  function prevBanner() {
+    bannerIndex = (bannerIndex - 1 + bannerImages.length) % bannerImages.length;
+    updateBanner();
+  }
+
+  function startBannerAuto() {
+    bannerInterval = setInterval(nextBanner, 3500);
+  }
+
+  function resetBannerAuto() {
+    clearInterval(bannerInterval);
+    startBannerAuto();
+  }
+
+  const prevBtn = document.getElementById("bannerPrev");
+  const nextBtn = document.getElementById("bannerNext");
+
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      prevBanner();
+      resetBannerAuto();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      nextBanner();
+      resetBannerAuto();
+    });
+  }
+
+  bannerDots.forEach(dot => {
+    dot.addEventListener("click", () => {
+      bannerIndex = Number(dot.dataset.index);
+      updateBanner();
+      resetBannerAuto();
+    });
+  });
+
   updateCartCount();
+  updateBanner();
+  startBannerAuto();
 </script>
 
 <script src="script.js"></script>
