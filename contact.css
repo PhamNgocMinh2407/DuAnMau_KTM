@@ -592,3 +592,163 @@ font-weight:bold;
         grid-template-columns: 1fr;
     }
 }
+/* ===== FIX HEADER / NAV CHO CONTACT PAGE ===== */
+.container.header-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: grid;
+  grid-template-columns: 44px 220px minmax(320px, 1fr) 140px 70px;
+  align-items: center;
+  gap: 18px;
+  background: #f3f4f6;
+}
+
+.back-btn {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  cursor: pointer;
+  color: #111827;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 720;
+  color: #0f172a;
+  line-height: 1;
+  white-space: nowrap;
+  letter-spacing: -0.3px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  margin: 0;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 11px 14px;
+  font-size: 14px;
+  background: transparent;
+  border-radius: 0;
+}
+
+.search-box button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: #38bdf8;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 0;
+}
+
+.account,
+.cart-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #111827;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+#cart-count {
+  background: red;
+  color: #fff;
+  font-size: 11px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 2px;
+}
+
+.header-bottom {
+  background: #020617;
+  width: 100%;
+  margin-top: 0;
+  padding: 0 24px;
+}
+
+.header-bottom .nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  min-height: 44px;
+  padding: 0;
+}
+
+.header-bottom .nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0;
+}
+
+.header-bottom .nav a:hover {
+  color: #38bdf8;
+}
+
+/* tránh container chung làm phần main bị dính padding header */
+main.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 40px;
+}
+
+@media (max-width: 992px) {
+  .container.header-top {
+    grid-template-columns: 44px 1fr 44px;
+    gap: 12px;
+  }
+
+  .search-box,
+  .account {
+    display: none;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .header-bottom {
+    overflow-x: auto;
+  }
+
+  .header-bottom .nav {
+    justify-content: flex-start;
+    min-width: max-content;
+    gap: 22px;
+    padding: 0 8px;
+  }
+}
