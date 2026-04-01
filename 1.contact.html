@@ -5,42 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giao diện FPT Shop</title>
     <link rel="stylesheet" href="contact.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
  <!-- ===== HEADER ===== -->
-<div class="container header-top">
+<header class="header">
+    <div class="container header-top">
+        <button class="back-btn" onclick="history.back()"> ← </button>
+        <h1 class="logo">Laptop Store</h1>
 
-  <button class="back-btn" onclick="history.back()"> ← </button>
+        <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm laptop...">
+            <button>🔍</button>
+        </div>
 
-  <h1 class="logo">Laptop Store</h1>
+        <div class="profile-icon" onclick="handleAccountClick()">
+            👤 <span id="profile-name">Tài khoản</span>
+            <div class="profile-menu" id="profile-menu">
+                <a href="profile.html">Profile</a>
+                <a href="2.order-history.html">Lịch sử đơn hàng</a>
+                <a href="index.html">Trang chủ</a>
+                <a href="#" onclick="logout()">Đăng xuất</a>
+            </div>
+        </div>
 
-  <div class="search-box">
-    <input type="text" placeholder="Tìm kiếm laptop...">
-    <button>🔍</button>
-  </div>
+        <div class="cart-icon" onclick="openCart()">
+            🛒 <span id="cart-count">0</span>
+            <div class="cart-menu" id="cart-menu">
+                <div class="cart-items-list" id="cart-items-list">
+                    <p style="text-align:center; padding:20px; color:#333;">Giỏ hàng trống</p>
+                </div>
+                <div class="cart-footer" id="cart-footer" style="display:none;">
+                    <div class="cart-total">
+                        <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+                    </div>
+                    <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div class="account" onclick="handleAccountClick()">
-    👤 <span id="profile-name">Tài khoản</span>
-
-
-  </div>
-
-  <div class="cart-icon" onclick="openCart()">
-    🛒 <span id="cart-count">0</span>
-  </div>
-
-</div>
-
-<div class="header-bottom">
-  <nav class="nav">
-    <a href="index.html">Trang chủ</a>
-    <a href="2.product.html">Sản phẩm</a>
-    <a href="news.html">Tin tức</a>
-    <a href="1.contact.html">Liên hệ</a>
-    <a href="2.terms.html">Điều khoản</a>
-    <a href="2.login.html">Đăng nhập</a>
-  </nav>
-</div>
+    <div class="header-bottom">
+        <nav class="nav">
+            <a href="index.html">Trang chủ</a>
+            <a href="2.product.html">Sản phẩm</a>
+            <a href="news.html">Tin tức</a>
+            <a href="1.contact.html">Liên hệ</a>
+            <a href="2.terms.html">Điều khoản</a>
+            <a href="2.login.html">Đăng nhập</a>
+        </nav>
+    </div>
+</header>
 
 
 
@@ -330,13 +345,13 @@
     <div class="footer-col">
       <h3>VỀ CHÚNG TÔI</h3>
       <ul>
-        <li>Giới thiệu công ty</li>
-        <li>Quy chế hoạt động</li>
-        <li>Tin tức khuyến mãi</li>
-        <li>Giới thiệu máy đổi trả</li>
-        <li>Tra cứu bảo hành</li>
-        <li>Câu hỏi thường gặp</li>
-      </ul>
+<li><a href="about.html">Giới thiệu công ty</a></li>
+<li><a href="terms.html">Quy chế hoạt động</a></li>
+<li><a href="promotions.html">Tin tức khuyến mãi></li>
+<li><a href="404.html">Giới thiệu máy đổi trả</a></li>
+<li><a href="404.html.html">Tra cứu bảo hành</a></li>
+<li><a href="404.html.html">Câu hỏi thường gặp</a></li>
+</ul>
     </div>
 
     <!-- COL 3 -->
@@ -397,6 +412,6 @@
   </div>
 
 </footer>
-
+<script src="script.js"></script>
 </body>
 </html>

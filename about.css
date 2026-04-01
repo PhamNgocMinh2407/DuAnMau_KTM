@@ -399,7 +399,15 @@ margin-bottom:15px;
 font-size:14px;
 margin:5px 0;
 }
+.footer a{
+color:white;
+text-decoration:none;
+font-size:14px;
+}
+.footer a:hover{
 
+color:#38bdf8;
+}
 .footer ul{
 list-style:none;
 }
