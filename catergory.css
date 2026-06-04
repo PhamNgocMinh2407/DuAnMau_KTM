@@ -10,7 +10,7 @@ body {
   color: #111;
 }
 
-/* CONTAINER */
+               
 .container {
   width: 90%;
   max-width: 1200px;
@@ -18,7 +18,7 @@ body {
 }
 
 
-/* FILTERS */
+             
 .filters {
   display: flex;
   justify-content: space-between;
@@ -65,13 +65,13 @@ body {
   color: #fff;
 }
 
-/* GRID */
+          
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
 }
-/* CARD */
+          
 .card {
   background: #fff;
   border-radius: 14px;
@@ -127,7 +127,7 @@ body {
   color: #777;
 }
 
-/* SPECS */
+           
 .specs {
   font-size: 13px;
   display: grid;
@@ -143,7 +143,7 @@ body {
   justify-content: space-between;
 }
 
-/* FOOT */
+          
 .card-foot {
   margin-top: auto;
   display: flex;
@@ -188,7 +188,7 @@ body {
 
 
 
-/* SIDEBAR FILTER */
+                    
 .layout {
   display: flex;
   gap: 30px;
@@ -254,7 +254,7 @@ flex:1;
   border-radius: 14px;
 }
 
-/* giữ tỉ lệ ảnh */
+                   
 .slides {
   display: flex;
   transition: transform 0.5s ease;
@@ -262,12 +262,12 @@ flex:1;
 
 .slides img {
   width: 100%;
-  height: auto;   /* QUAN TRỌNG */
+  height: auto;                   
   flex-shrink: 0;
   object-fit: cover;
 }
 
-/* nút */
+         
 .slide-btn {
   position: absolute;
   top: 50%;
@@ -355,7 +355,7 @@ font-size:26px;
 font-weight:bold;
 }
 
-/* SEARCH */
+            
 .search-box{
 display:flex;
 flex:1;
@@ -379,7 +379,7 @@ cursor:pointer;
 border-radius:0 6px 6px 0;
 }
 
-/* ICONS */
+           
 .profile-icon,
 .cart-icon{
 cursor:pointer;
@@ -395,7 +395,7 @@ border-radius:50%;
 margin-left:4px;
 }
 
-/* MENU */
+          
 .header-bottom{
 background:#020617;
 }
@@ -456,7 +456,7 @@ cursor:pointer;
 color:#38bdf8;
 }
 
-/* APP */
+         
 .app-box{
 display:flex;
 gap:10px;
@@ -480,7 +480,7 @@ padding:8px;
 border-radius:8px;
 }
 
-/* SOCIAL */
+            
 .social{
 display:flex;
 gap:10px;
@@ -499,7 +499,7 @@ border-radius:50%;
 cursor:pointer;
 }
 
-/* PAYMENT */
+             
 .payment{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -514,14 +514,14 @@ padding:5px;
 border-radius:6px;
 }
 
-/* CERT */
+          
 .cert img{
 width:100px;
 margin-right:10px;
 margin-top:10px;
 }
 
-/* BOTTOM */
+            
 .footer-bottom{
 border-top:1px solid #1e293b;
 margin-top:30px;

@@ -308,7 +308,7 @@
 </footer>
 
 <script>
-    const products = [
+  let products = [
     {
       id: "vivobook14",
       category: "Sinh viên",
@@ -318,56 +318,6 @@
       image: "imgae/asus vivo 14.jpg",
       specs: "Ryzen 5 • 8GB • 512GB SSD • 14 inch FHD • Nhẹ • Dễ mang đi học",
       badge: "Hot"
-    },
-    {
-      id: "msi-modern15",
-      category: "Học tập",
-      name: "MSI Modern 15",
-      price: 16990000,
-      oldPrice: 18990000,
-      image: "imgae/modern 15.jpg",
-      specs: "Core i5 • 8GB • 512GB SSD • 15.6 inch FHD • Dễ nâng cấp",
-      badge: "Sinh viên"
-    },
-    {
-      id: "student-acer-aspire",
-      category: "Học tập",
-      name: "Acer Aspire 5",
-      price: 13990000,
-      oldPrice: 15990000,
-      image: "imgae/acer_aspire_7.jpg",
-      specs: "Core i5 • 8GB • 512GB SSD • 15.6 inch • Giá dễ mua",
-      badge: "Giá tốt"
-    },
-    {
-      id: "student-lenovo-ideapad",
-      category: "Sinh viên",
-      name: "Lenovo IdeaPad Slim 3",
-      price: 14990000,
-      oldPrice: 16990000,
-      image: "imgae/IdeaPad Slim.jpg",
-      specs: "Ryzen 5 • 8GB • 512GB SSD • 14 inch • Học online ổn định",
-      badge: "Dễ dùng"
-    },
-    {
-      id: "student-dell-vostro",
-      category: "Học tập",
-      name: "Dell Vostro 14",
-      price: 15490000,
-      oldPrice: 17490000,
-      image: "imgae/dell-vostro-3420.jpg",
-      specs: "Core i5 • 8GB • 512GB SSD • 14 inch FHD • Office tốt",
-      badge: "Văn phòng"
-    },
-    {
-      id: "student-hp-14s",
-      category: "Sinh viên",
-      name: "HP 14s",
-      price: 13490000,
-      oldPrice: 15490000,
-      image: "imgae/hp-probook-14.jpg",
-      specs: "Core i3 • 8GB • 512GB SSD • 14 inch • Học tập cơ bản",
-      badge: "Tiết kiệm"
     }
   ];
 
@@ -382,13 +332,16 @@
   function openCart(){ window.location.href = "1.cart.html"; }
 
   const grid = document.getElementById("productGrid");
-  products.forEach(p=>{
-    const sale = Math.round(((p.oldPrice-p.price)/p.oldPrice)*100);
-    const card = document.createElement("div");
-    card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column; height:100%;";
-    card.innerHTML = `
+
+  function renderProducts(){
+    grid.innerHTML = "";
+    products.forEach(p=>{
+      const sale = Math.round(((p.oldPrice-p.price)/p.oldPrice)*100);
+      const card = document.createElement("div");
+      card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column; height:100%;";
+      card.innerHTML = `
       <div style="position:relative; padding:14px 14px 0;">
-        <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">${p.badge}</div>
+        <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">${p.badge || ''}</div>
         <div style="position:absolute; top:12px; right:12px; background:#d70018; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">-${sale}%</div>
         <div style="background:#fff; border-radius:10px; padding:14px; border:1px solid #f0f0f0;">
           <img src="${p.image}" alt="${p.name}" style="width:100%; height:190px; object-fit:cover; border-radius:8px;">
@@ -406,8 +359,32 @@
         </div>
       </div>
     `;
-    grid.appendChild(card);
-  });
+      grid.appendChild(card);
+    });
+  }
+
+  renderProducts();
+
+  (function(){
+    const ACCEPT = ["Học tập","Sinh viên"];
+    fetch('api/products.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => {
+        const list = Object.entries(data).map(([id,p])=>({
+          id,
+          category: p.category || '',
+          name: p.name || '',
+          price: p.price || 0,
+          oldPrice: p.oldPrice || 0,
+          image: p.image || (p.images && p.images[0]) || '',
+          specs: Array.isArray(p.specs) ? p.specs.join(' • ') : (p.specs || ''),
+          badge: p.badge || ''
+        })).filter(p => ACCEPT.some(a => (p.category || '').includes(a)));
+
+        if(list.length){ products = list; renderProducts(); }
+      })
+      .catch(()=>{});
+  })();
 
   document.addEventListener("click", function(e){
     if(e.target.classList.contains("add-to-cart")){

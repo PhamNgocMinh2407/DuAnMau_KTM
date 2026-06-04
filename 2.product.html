@@ -213,7 +213,7 @@
         <div class="cart-total">
           <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
         </div>
-        <a href="cart.html" class="checkout-btn">Xem giỏ hàng</a>
+        <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
       </div>
     </div>
   </div>
@@ -610,7 +610,7 @@
 </footer>
 
 <script>
-  const productData = {
+  let productData = {
     "ins15": {
       category: "Văn phòng",
       brand: "Dell",
@@ -843,6 +843,18 @@
     }
   };
 
+  (function(){
+    fetch('api/products.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => {
+        productData = data;
+        try { filterProducts(); } catch(e) {}
+      })
+      .catch(() => {
+        // keep embedded data if fetch fails
+      });
+  })();
+
   function formatPrice(n) {
     return n.toLocaleString("vi-VN") + "đ";
   }
@@ -873,7 +885,7 @@
   }
 
   function openCart() {
-    window.location.href = "cart.html";
+    window.location.href = "1.cart.html";
   }
 
   function createCard(id, p) {

@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+                       
 *{
     margin:0;
     padding:0;
@@ -14,14 +14,14 @@ body{
     overflow-x:hidden;
 }
 
-/* ===== CONTAINER CHUNG ===== */
+                                 
 .container{
     max-width:1200px;
     margin:auto;
     padding:40px 20px;
 }
 
-/* ================= HEADER ================= */
+                                                
 
 .header{
     background:#e5e5e5;
@@ -30,12 +30,12 @@ body{
     z-index:1000;
 }
 
-/* 🔥 FIX: container riêng cho header */
+                                        
 .header .container{
     padding:0 20px;
 }
 
-/* ===== TOP HEADER ===== */
+                            
 .container.header-top{
     display:flex;
     align-items:center;
@@ -43,7 +43,7 @@ body{
     height:70px;
 }
 
-/* LEFT */
+          
 .back-btn{
     border:none;
     background:white;
@@ -59,7 +59,7 @@ body{
     white-space:nowrap;
 }
 
-/* SEARCH (center chuẩn) */
+                           
 .search-box{
     flex:1;
     max-width:600px;
@@ -86,7 +86,7 @@ body{
     cursor:pointer;
 }
 
-/* RIGHT */
+           
 .profile-icon{
     margin-left:auto;
     display:flex;
@@ -96,7 +96,7 @@ body{
     position:relative;
 }
 
-/* DROPDOWN PROFILE */
+                      
 .profile-menu{
     display:none;
     position:absolute;
@@ -123,7 +123,7 @@ body{
     display:block;
 }
 
-/* CART */
+          
 .cart-icon{
     margin-left:15px;
     position:relative;
@@ -141,7 +141,7 @@ body{
     border-radius:50%;
 }
 
-/* CART MENU */
+               
 .cart-menu{
     display:none;
     position:absolute;
@@ -157,7 +157,7 @@ body{
     display:block;
 }
 
-/* ===== NAVBAR ===== */
+                        
 .header-bottom{
     background:#001a4d;
 }
@@ -182,7 +182,7 @@ body{
     color:#66b3ff;
 }
 
-/* ================= SIDEBAR ================= */
+                                                 
 
 .sidebar-nav{
     position:fixed;
@@ -215,7 +215,7 @@ body{
     cursor:pointer;
 }
 
-/* ================= SECTION ================= */
+                                                 
 
 .section-header{
     text-align:center;
@@ -233,7 +233,7 @@ body{
     margin:auto;
 }
 
-/* ================= CONTACT ================= */
+                                                 
 
 .contact-grid{
     display:grid;
@@ -271,7 +271,7 @@ input, textarea{
     border-radius:8px;
 }
 
-/* BUTTON */
+            
 .btn-submit{
     width:100%;
     padding:15px;
@@ -286,7 +286,7 @@ input, textarea{
     background:#333;
 }
 
-/* ================= STORE ================= */
+                                               
 
 .store-list-box{
     background:#fff;
@@ -317,7 +317,7 @@ input, textarea{
     border-radius:20px;
 }
 
-/* ================= GALLERY ================= */
+                                                 
 
 .store-gallery{
     display:flex;
@@ -347,7 +347,7 @@ input, textarea{
     transform:scale(1.1);
 }
 
-/* ================= INFO ================= */
+                                              
 
 .contact-info-section{
     display:grid;
@@ -386,7 +386,7 @@ input, textarea{
     font-weight:600;
 }
 
-/* ================= FEATURE ================= */
+                                                 
 
 .features-grid{
   display:grid;
@@ -400,7 +400,7 @@ input, textarea{
   border-radius:12px;
 }
 
-/* ================= RESPONSIVE ================= */
+                                                    
 
 @media(max-width:768px){
 
@@ -420,7 +420,7 @@ input, textarea{
         display:none;
     }
 }
-/* ===== FOOTER ===== */
+                        
 
 .footer{
     background:#020617;
@@ -435,7 +435,7 @@ input, textarea{
     gap:40px;
 }
 
-/* CỘT */
+         
 .footer-col h3{
     font-size:16px;
     margin-bottom:15px;
@@ -459,8 +459,15 @@ input, textarea{
 .footer-col ul li:hover{
     color:#38bdf8;
 }
-
-/* APP */
+footer a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+footer a:hover{
+    color:#38bdf8;
+}
+         
 .app-box{
     display:flex;
     gap:10px;
@@ -484,7 +491,7 @@ input, textarea{
     border-radius:6px;
 }
 
-/* SOCIAL */
+            
 .social{
     display:flex;
     gap:10px;
@@ -505,7 +512,7 @@ input, textarea{
     width:18px;
 }
 
-/* PAYMENT */
+             
 .payment{
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -520,14 +527,14 @@ input, textarea{
     border-radius:6px;
 }
 
-/* CERT */
+          
 .cert img{
     width:100px;
     margin-right:10px;
     margin-top:10px;
 }
 
-/* BOTTOM */
+            
 .footer-bottom{
     border-top:1px solid #1e293b;
     margin-top:30px;

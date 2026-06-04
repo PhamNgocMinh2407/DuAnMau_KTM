@@ -334,7 +334,7 @@
 </div>
 
 <div class="profile-container">
-    <!-- Sidebar -->
+    
     <div class="profile-sidebar">
         <div class="profile-card">
             <div class="profile-header">
@@ -367,7 +367,7 @@
         </ul>
     </div>
 
-    <!-- Main Content -->
+    
     <div class="profile-main">
         <div class="profile-form" id="profileForm">
             <div class="profile-title">
@@ -455,17 +455,17 @@
     if(!user) {
         window.location.href = "2.login.html";
     } else {
-        // Load user data
+                          
         document.getElementById("fullName").value = user.name || "";
         document.getElementById("email").value = user.email || "";
         document.getElementById("phone").value = user.phone || "03750905596";
         
-        // Load gender
+                       
         if(user.gender) {
             document.querySelector(`input[name="gender"][value="${user.gender}"]`).checked = true;
         }
         
-        // Load date of birth
+                              
         if(user.dob) {
             const parts = user.dob.split('/');
             if(parts.length === 3) {
@@ -475,7 +475,7 @@
             }
         }
         
-        // Update sidebar
+                          
         document.getElementById("sidebar-name").innerText = user.name || "Quy Khách";
         document.getElementById("sidebar-phone").innerText = user.phone || "03750905596";
     }

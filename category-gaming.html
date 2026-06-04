@@ -308,7 +308,7 @@
 </footer>
 
 <script>
-  const products = [
+  let products = [
     {
       id: "rog-zephyrus-ga403wm",
       category: "Gaming",
@@ -318,56 +318,6 @@
       image: "imgae/rog-zephyrus.jpg",
       specs: "Ryzen AI 9 HX 370 • 32GB • 1TB SSD • RTX 5060 • 14 inch 3K",
       badge: "Cao cấp"
-    },
-    {
-      id: "tuf-gaming-f16-fx607vu",
-      category: "Gaming",
-      name: "TUF Gaming F16 FX607VU",
-      price: 32900000,
-      oldPrice: 35900000,
-      image: "imgae/tuf-f16.jpg",
-      specs: "Core 5-210H • 16GB • 512GB SSD • RTX 4050 • 16 inch FHD+",
-      badge: "TUF"
-    },
-    {
-      id: "asus-gaming-v16-v3607vh",
-      category: "Gaming",
-      name: "ASUS Gaming V16 V3607VH",
-      price: 28900000,
-      oldPrice: 31900000,
-      image: "imgae/v16.jpg",
-      specs: "Core 7 240H • 16GB • 512GB SSD • RTX 5050 • 16 inch WUXGA",
-      badge: "Mới"
-    },
-    {
-      id: "lenovo-loq-e-15iax9e",
-      category: "Gaming",
-      name: "Laptop Lenovo Gaming LOQ E 15IAX9E",
-      price: 21990000,
-      oldPrice: 24990000,
-      image: "imgae/lenovo-loq.jpg",
-      specs: "Core i5-12450HX • 16GB • 512GB SSD • RTX 3050 • 15.6 inch FHD",
-      badge: "LOQ"
-    },
-    {
-      id: "nitro5",
-      category: "Gaming",
-      name: "Acer Nitro 5 (RTX)",
-      price: 24990000,
-      oldPrice: 27990000,
-      image: "imgae/nitro 5.jpg",
-      specs: "Intel Core i5 • 16GB • 512GB SSD • RTX • 144Hz",
-      badge: "Gaming"
-    },
-    {
-      id: "asus-tuf-f15",
-      category: "Gaming",
-      name: "ASUS TUF Gaming F15",
-      price: 26490000,
-      oldPrice: 29490000,
-      image: "imgae/tuf 15 gaming.jpg",
-      specs: "Intel Core i7 • 16GB • 512GB SSD • RTX",
-      badge: "Hiệu năng cao"
     }
   ];
 
@@ -382,13 +332,16 @@
   function openCart(){ window.location.href = "1.cart.html"; }
 
   const grid = document.getElementById("productGrid");
-  products.forEach(p=>{
-    const sale = Math.round(((p.oldPrice-p.price)/p.oldPrice)*100);
-    const card = document.createElement("div");
-    card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column; height:100%;";
-    card.innerHTML = `
+
+  function renderProducts(){
+    grid.innerHTML = "";
+    products.forEach(p=>{
+      const sale = Math.round(((p.oldPrice-p.price)/p.oldPrice)*100);
+      const card = document.createElement("div");
+      card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column; height:100%;";
+      card.innerHTML = `
       <div style="position:relative; padding:14px 14px 0;">
-        <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">${p.badge}</div>
+        <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">${p.badge || ''}</div>
         <div style="position:absolute; top:12px; right:12px; background:#d70018; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">-${sale}%</div>
         <div style="background:#fff; border-radius:10px; padding:14px; border:1px solid #f0f0f0;">
           <img src="${p.image}" alt="${p.name}" style="width:100%; height:190px; object-fit:cover; border-radius:8px;">
@@ -406,7 +359,48 @@
         </div>
       </div>
     `;
-    grid.appendChild(card);
+      grid.appendChild(card);
+    });
+  }
+
+  renderProducts();
+
+  (function(){
+    const ACCEPT = ["Gaming"];
+    fetch('api/products.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => {
+        const list = Object.entries(data).map(([id,p])=>({
+          id,
+          category: p.category || '',
+          name: p.name || '',
+          price: p.price || 0,
+          oldPrice: p.oldPrice || 0,
+          image: p.image || (p.images && p.images[0]) || '',
+          specs: Array.isArray(p.specs) ? p.specs.join(' • ') : (p.specs || ''),
+          badge: p.badge || ''
+        })).filter(p => ACCEPT.some(a => (p.category || '').includes(a)));
+
+        if(list.length){ products = list; renderProducts(); }
+      })
+      .catch(()=>{});
+  })();
+
+  document.addEventListener("click", function(e){
+    if(e.target.classList.contains("add-to-cart")){
+      const id = e.target.dataset.id;
+      const name = e.target.dataset.name;
+      const price = Number(e.target.dataset.price);
+      const image = e.target.dataset.image;
+      const cart = getCart();
+      const existing = cart.find(i=>i.id===id);
+      if(existing) existing.qty += 1;
+      else cart.push({id,name,price,image,qty:1});
+      setCart(cart);
+      updateCartCount();
+      e.target.innerText = "Đã thêm ✓";
+      setTimeout(()=>e.target.innerText="Thêm giỏ",900);
+    }
   });
 
   document.addEventListener("click", function(e){

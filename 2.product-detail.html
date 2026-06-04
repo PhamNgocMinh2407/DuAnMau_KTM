@@ -239,7 +239,7 @@
 </main>
 
 <script>
-  const products = {
+  let products = {
     "ins15": {
       category: "Văn phòng",
       name: "Dell Inspiron 15 (i5)",
@@ -789,10 +789,6 @@
     window.location.href = "1.cart.html";
   }
 
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
-  const p = products[id];
-
   function renderThumbs(images) {
     const thumbs = document.getElementById("thumbs");
     thumbs.innerHTML = "";
@@ -830,99 +826,119 @@
     });
   }
 
-  if (p) {
-    const sale = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
+  function renderProductPage() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const p = products[id];
 
-    document.title = p.name + " | Laptop Store";
-    document.getElementById("banner-title").innerText = p.name;
-    document.getElementById("banner-subtitle").innerText = p.category + " • Giá " + formatPrice(p.price);
-    document.getElementById("breadcrumbText").innerText = "Trang chủ / Sản phẩm / " + p.name;
+    if (p) {
+      const sale = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
 
-    document.getElementById("pCategory").innerText = p.category;
-    document.getElementById("pName").innerText = p.name;
-    document.getElementById("pPrice").innerText = formatPrice(p.price);
-    document.getElementById("pOldPrice").innerText = formatPrice(p.oldPrice);
-    document.getElementById("pSale").innerText = "-" + sale + "%";
-    document.getElementById("pDesc").innerText = p.desc;
-    document.getElementById("pLongDesc").innerHTML = p.longDesc;
-    document.getElementById("pImage").src = p.images[0];
-    document.getElementById("pImage").alt = p.name;
+      document.title = p.name + " | Laptop Store";
+      document.getElementById("banner-title").innerText = p.name;
+      document.getElementById("banner-subtitle").innerText = p.category + " • Giá " + formatPrice(p.price);
+      document.getElementById("breadcrumbText").innerText = "Trang chủ / Sản phẩm / " + p.name;
 
-    const ul = document.getElementById("pSpecs");
-    ul.innerHTML = "";
-    p.specs.forEach(s => {
-      const li = document.createElement("li");
-      li.innerText = s;
-      ul.appendChild(li);
-    });
+      document.getElementById("pCategory").innerText = p.category;
+      document.getElementById("pName").innerText = p.name;
+      document.getElementById("pPrice").innerText = formatPrice(p.price);
+      document.getElementById("pOldPrice").innerText = formatPrice(p.oldPrice);
+      document.getElementById("pSale").innerText = "-" + sale + "%";
+      document.getElementById("pDesc").innerText = p.desc;
+      document.getElementById("pLongDesc").innerHTML = p.longDesc || "";
+      document.getElementById("pImage").src = (p.images && p.images[0]) || "";
+      document.getElementById("pImage").alt = p.name;
 
-    renderThumbs(p.images);
-    renderSpecTable(p.specs);
-
-    document.getElementById("btnAdd").addEventListener("click", () => {
-      const cart = getCart();
-      const existing = cart.find(x => x.id === id);
-
-      if (existing) existing.qty += 1;
-      else cart.push({
-        id,
-        name: p.name,
-        price: p.price,
-        image: p.images[0],
-        qty: 1
+      const ul = document.getElementById("pSpecs");
+      ul.innerHTML = "";
+      (p.specs || []).forEach(s => {
+        const li = document.createElement("li");
+        li.innerText = s;
+        ul.appendChild(li);
       });
 
-      setCart(cart);
-      updateCartCount();
+      renderThumbs(p.images || []);
+      renderSpecTable(p.specs || []);
 
-      const btn = document.getElementById("btnAdd");
-      btn.innerText = "Đã thêm ✓";
-      setTimeout(() => btn.innerText = "Thêm vào giỏ", 900);
-    });
+      document.getElementById("btnAdd").addEventListener("click", () => {
+        const cart = getCart();
+        const existing = cart.find(x => x.id === id);
 
-    const related = document.getElementById("related");
-    const others = Object.keys(products).filter(k => k !== id).slice(0, 4);
+        if (existing) existing.qty += 1;
+        else cart.push({
+          id,
+          name: p.name,
+          price: p.price,
+          image: p.images ? p.images[0] : "",
+          qty: 1
+        });
 
-    others.forEach(k => {
-      const r = products[k];
-      const card = document.createElement("div");
-      card.style = `
-        background:#fff;
-        border:1px solid #e5e5e5;
-        border-radius:12px;
-        overflow:hidden;
-        box-shadow:0 2px 8px rgba(0,0,0,0.04);
-      `;
+        setCart(cart);
+        updateCartCount();
 
-      card.innerHTML = `
-        <img src="${r.images[0]}" alt="${r.name}" style="width:100%; height:170px; object-fit:cover;">
-        <div style="padding:14px;">
-          <div style="font-size:12px; color:#666; margin-bottom:6px;">${r.category}</div>
-          <div style="font-weight:700; color:#111; line-height:1.5; min-height:46px;">${r.name}</div>
-          <div style="font-size:20px; font-weight:800; color:#d70018; margin:8px 0 10px;">${formatPrice(r.price)}</div>
-          <a href="2.product-detail.html?id=${k}" style="text-decoration:none; color:#111; font-weight:600;">Xem chi tiết →</a>
-        </div>
-      `;
+        const btn = document.getElementById("btnAdd");
+        btn.innerText = "Đã thêm ✓";
+        setTimeout(() => btn.innerText = "Thêm vào giỏ", 900);
+      });
 
-      related.appendChild(card);
-    });
+      const related = document.getElementById("related");
+      related.innerHTML = "";
+      const others = Object.keys(products).filter(k => k !== id).slice(0, 4);
 
-  } else {
-    document.getElementById("banner-title").innerText = "Không tìm thấy sản phẩm";
-    document.getElementById("banner-subtitle").innerText = "Vui lòng quay lại trang sản phẩm";
-    document.getElementById("pName").innerText = "Sản phẩm không tồn tại";
-    document.getElementById("pDesc").innerText = "Link không đúng hoặc sản phẩm đã bị xoá.";
-    document.getElementById("pPrice").innerText = "";
-    document.getElementById("pOldPrice").innerText = "";
-    document.getElementById("pSale").style.display = "none";
-    document.getElementById("btnAdd").style.display = "none";
-    document.getElementById("thumbs").innerHTML = "";
-    document.getElementById("pLongDesc").innerHTML = "";
-    document.getElementById("specTable").innerHTML = "";
-    document.getElementById("related").innerHTML = "";
+      others.forEach(k => {
+        const r = products[k];
+        const card = document.createElement("div");
+        card.style = `
+          background:#fff;
+          border:1px solid #e5e5e5;
+          border-radius:12px;
+          overflow:hidden;
+          box-shadow:0 2px 8px rgba(0,0,0,0.04);
+        `;
+
+        card.innerHTML = `
+          <img src="${(r.images && r.images[0]) || ''}" alt="${r.name}" style="width:100%; height:170px; object-fit:cover;">
+          <div style="padding:14px;">
+            <div style="font-size:12px; color:#666; margin-bottom:6px;">${r.category}</div>
+            <div style="font-weight:700; color:#111; line-height:1.5; min-height:46px;">${r.name}</div>
+            <div style="font-size:20px; font-weight:800; color:#d70018; margin:8px 0 10px;">${formatPrice(r.price)}</div>
+            <a href="2.product-detail.html?id=${k}" style="text-decoration:none; color:#111; font-weight:600;">Xem chi tiết →</a>
+          </div>
+        `;
+
+        related.appendChild(card);
+      });
+
+    } else {
+      document.getElementById("banner-title").innerText = "Không tìm thấy sản phẩm";
+      document.getElementById("banner-subtitle").innerText = "Vui lòng quay lại trang sản phẩm";
+      document.getElementById("pName").innerText = "Sản phẩm không tồn tại";
+      document.getElementById("pDesc").innerText = "Link không đúng hoặc sản phẩm đã bị xoá.";
+      document.getElementById("pPrice").innerText = "";
+      document.getElementById("pOldPrice").innerText = "";
+      document.getElementById("pSale").style.display = "none";
+      document.getElementById("btnAdd").style.display = "none";
+      document.getElementById("thumbs").innerHTML = "";
+      document.getElementById("pLongDesc").innerHTML = "";
+      document.getElementById("specTable").innerHTML = "";
+      document.getElementById("related").innerHTML = "";
+    }
   }
 
-  updateCartCount();
+                                        
+  renderProductPage();
+
+                                                              
+  (function(){
+    fetch('api/products.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => {
+        products = data;
+        renderProductPage();
+        updateCartCount();
+      })
+      .catch(() => {});
+  })();
 </script>
 
 <script src="script.js"></script>

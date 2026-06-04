@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-  /* ============================= */
-  /* ===== CLOSE DROPDOWNS ======= */
-  /* ============================= */
+                                     
+                                     
+                                     
   document.addEventListener("click", function (e) {
     const cartMenu = document.getElementById("cart-menu");
     const cartIcon = document.querySelector(".cart-icon");
@@ -17,9 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* ============================= */
-  /* ===== MAIN BANNER SLIDER ==== */
-  /* ============================= */
+                                     
+                                     
+                                     
   let mainIndex = 0;
   const mainSlider = document.querySelector(".main-slider");
   const mainSlides = document.querySelectorAll(".main-slide");
@@ -55,9 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 4000);
   }
 
-  /* ============================= */
-  /* ===== SMALL BANNER SLIDER === */
-  /* ============================= */
+                                     
+                                     
+                                     
   const smallBanners = document.querySelectorAll(".small-banner");
 
   smallBanners.forEach(function (banner) {
@@ -89,9 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  /* ============================= */
-  /* ===== HIỂN THỊ USER ========= */
-  /* ============================= */
+                                     
+                                     
+                                     
   let userData = localStorage.getItem("currentUser");
 
   if (userData) {
@@ -107,20 +107,20 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  /* ============================= */
-  /* ===== GLOBAL SEARCH ========= */
-  /* ============================= */
+                                     
+                                     
+                                     
   setupGlobalSearch();
 
-  /* ============================= */
-  /* ===== CART COUNT ============ */
-  /* ============================= */
+                                     
+                                     
+                                     
   updateCartCount();
 });
 
-/* ============================= */
-/* ===== HELPERS =============== */
-/* ============================= */
+                                   
+                                   
+                                   
 function normalizeText(text) {
   return (text || "")
     .toLowerCase()
@@ -133,9 +133,9 @@ function getItemQty(item) {
   return item.quantity || item.qty || 1;
 }
 
-/* ============================= */
-/* ===== GLOBAL SEARCH ========= */
-/* ============================= */
+                                   
+                                   
+                                   
 function setupGlobalSearch() {
   const searchBoxes = document.querySelectorAll(".search-box");
 
@@ -265,13 +265,13 @@ function setupGlobalSearch() {
   });
 }
 
-/* ============================= */
-/* ===== SUGGESTED PRODUCTS ==== */
-/* ============================= */
+                                   
+                                   
+                                   
 const suggestedGrid = document.querySelector(".suggested-grid");
 const suggestedNext = document.querySelector(".suggested-next");
 const suggestedPrev = document.querySelector(".suggested-prev");
-const globalSearchProducts = [
+let globalSearchProducts = [
   { id: "ins15", name: "Dell Inspiron 15 (i5)", brand: "Dell", category: "Văn phòng" },
   { id: "vivobook14", name: "ASUS VivoBook 14", brand: "ASUS", category: "Học tập" },
   { id: "pav14", name: "HP Pavilion 14 (16GB)", brand: "HP", category: "Creator" },
@@ -296,6 +296,22 @@ const globalSearchProducts = [
   { id: "creator-msi-prestige", name: "MSI Prestige 14", brand: "MSI", category: "Creator" },
   { id: "creator-acer-swiftx", name: "Acer Swift X", brand: "Acer", category: "Creator" }
 ];
+
+                                                                                  
+fetch('api/products.json')
+  .then(r => r.ok ? r.json() : Promise.reject())
+  .then(data => {
+    globalSearchProducts = Object.entries(data).map(([id, p]) => ({
+      id,
+      name: p.name,
+      brand: p.brand || '',
+      category: p.category || '',
+      image: p.image || (p.images && p.images[0]) || ''
+    }));
+  })
+  .catch(() => {
+                                                   
+  });
 if (suggestedGrid && suggestedNext && suggestedPrev) {
   const itemWidth = 200;
   let scrollPosition = 0;
@@ -312,9 +328,9 @@ if (suggestedGrid && suggestedNext && suggestedPrev) {
   });
 }
 
-/* ============================= */
-/* ===== CART FUNCTIONS ======== */
-/* ============================= */
+                                   
+                                   
+                                   
 function getCart() {
   try {
     return JSON.parse(localStorage.getItem("cart")) || [];
@@ -352,13 +368,13 @@ function openCart() {
       renderCartPreview();
     }
   } else {
-    window.location.href = "cart.html";
+    window.location.href = "1.cart.html";
   }
 }
 
-/* ============================= */
-/* ===== ACCOUNT CLICK ========= */
-/* ============================= */
+                                   
+                                   
+                                   
 function handleAccountClick() {
   const user = localStorage.getItem("currentUser");
 
@@ -369,9 +385,9 @@ function handleAccountClick() {
   }
 }
 
-/* ============================= */
-/* ===== PROFILE PAGE ========== */
-/* ============================= */
+                                   
+                                   
+                                   
 function openProfile() {
   const user = localStorage.getItem("currentUser");
 
@@ -382,9 +398,9 @@ function openProfile() {
   }
 }
 
-/* ============================= */
-/* ===== CART PREVIEW ========== */
-/* ============================= */
+                                   
+                                   
+                                   
 function renderCartPreview() {
   const cart = getCart();
   const itemsList = document.getElementById("cart-items-list");
@@ -427,9 +443,9 @@ function renderCartPreview() {
   }
 }
 
-/* ============================= */
-/* ===== PROFILE MENU ========== */
-/* ============================= */
+                                   
+                                   
+                                   
 function toggleMenu() {
   const menu = document.getElementById("profile-menu");
 
@@ -442,9 +458,9 @@ function toggleMenu() {
   }
 }
 
-/* ============================= */
-/* ===== LOGOUT ================ */
-/* ============================= */
+                                   
+                                   
+                                   
 function logout() {
   localStorage.removeItem("currentUser");
   alert("Bạn đã đăng xuất");

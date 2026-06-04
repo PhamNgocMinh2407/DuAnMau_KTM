@@ -308,7 +308,8 @@
 </footer>
 
 <script>
-  const products = [
+                                             
+  let products = [
   {
     id: "zenbook14-oled",
     category: "Creator",
@@ -316,7 +317,7 @@
     price: 27990000,
     oldPrice: 30990000,
     image: "imgae/ASUS ZenBook 14 OLED.webp",
-    specs: "Core i7 • 16GB • 512GB SSD • 14 inch OLED • Màu đẹp",
+    specs: "Core i7 • 16GB • 512GB SSD • 14 inch OLED •  Màu đẹp",
     badge: "OLED"
   },
   {
@@ -338,38 +339,9 @@
     image: "imgae/air m1.jpg",
     specs: "Apple M1 • 8GB • 256GB SSD • Retina • Dựng content nhẹ",
     badge: "Apple"
-  },
-  {
-    id: "creator-lenovo-yoga",
-    category: "Creator",
-    name: "Lenovo Yoga Slim 7 Pro",
-    price: 24990000,
-    oldPrice: 27990000,
-    image: "imgae/Yoga Slim 7 Pro.jpg",
-    specs: "Core Ultra 7 • 16GB • 1TB SSD • 14 inch 2.8K • Màn đẹp",
-    badge: "Premium"
-  },
-  {
-    id: "creator-msi-prestige",
-    category: "Đồ hoạ",
-    name: "MSI Prestige 14",
-    price: 23990000,
-    oldPrice: 26990000,
-    image: "imgae/MSI Prestige 14.jpg",
-    specs: "Core i7 • 16GB • 1TB SSD • 14 inch QHD+ • Creator linh hoạt",
-    badge: "Hiệu suất"
-  },
-  {
-    id: "creator-acer-swiftx",
-    category: "Creator",
-    name: "Acer Swift X",
-    price: 22990000,
-    oldPrice: 25990000,
-    image: "imgae/Acer Swift X.jpg",
-    specs: "Ryzen 7 • 16GB • 512GB SSD • RTX • Chỉnh sửa video nhẹ",
-    badge: "RTX"
   }
 ];
+
   function formatPrice(n){ return n.toLocaleString("vi-VN")+"đ"; }
   function getCart(){ try{return JSON.parse(localStorage.getItem("cart"))||[]}catch{return[]} }
   function setCart(cart){ localStorage.setItem("cart", JSON.stringify(cart)); }
@@ -381,13 +353,16 @@
   function openCart(){ window.location.href = "1.cart.html"; }
 
   const grid = document.getElementById("productGrid");
-  products.forEach(p=>{
-    const sale = Math.round(((p.oldPrice-p.price)/p.oldPrice)*100);
-    const card = document.createElement("div");
-    card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column; height:100%;";
-    card.innerHTML = `
+
+  function renderProducts() {
+    grid.innerHTML = "";
+    products.forEach(p=>{
+      const sale = Math.round(((p.oldPrice-p.price)/p.oldPrice)*100);
+      const card = document.createElement("div");
+      card.style = "background:#fff; border:1px solid #e5e5e5; border-radius:12px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,0.04); display:flex; flex-direction:column; height:100%;";
+      card.innerHTML = `
       <div style="position:relative; padding:14px 14px 0;">
-        <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">${p.badge}</div>
+        <div style="position:absolute; top:12px; left:12px; background:#111; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">${p.badge || ''}</div>
         <div style="position:absolute; top:12px; right:12px; background:#d70018; color:#fff; font-size:12px; padding:6px 10px; border-radius:999px;">-${sale}%</div>
         <div style="background:#fff; border-radius:10px; padding:14px; border:1px solid #f0f0f0;">
           <img src="${p.image}" alt="${p.name}" style="width:100%; height:190px; object-fit:cover; border-radius:8px;">
@@ -405,8 +380,34 @@
         </div>
       </div>
     `;
-    grid.appendChild(card);
-  });
+      grid.appendChild(card);
+    });
+  }
+
+                                  
+  renderProducts();
+
+                                                                    
+  (function(){
+    const ACCEPT = ["Creator","Mỏng nhẹ"];
+    fetch('api/products.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => {
+        const list = Object.entries(data).map(([id,p])=>({
+          id,
+          category: p.category || '',
+          name: p.name || '',
+          price: p.price || 0,
+          oldPrice: p.oldPrice || 0,
+          image: p.image || (p.images && p.images[0]) || '',
+          specs: Array.isArray(p.specs) ? p.specs.join(' • ') : (p.specs || ''),
+          badge: p.badge || ''
+        })).filter(p => ACCEPT.some(a => (p.category || '').includes(a)));
+
+        if(list.length){ products = list; renderProducts(); }
+      })
+      .catch(()=>{});
+  })();
 
   document.addEventListener("click", function(e){
     if(e.target.classList.contains("add-to-cart")){

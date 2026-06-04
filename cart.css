@@ -68,7 +68,7 @@
 
 
     
-/* HEADER */
+            
 .site-header {
   background: linear-gradient(90deg, #ff3b3b, #b30000);
   border-bottom: 1px solid #e5e7eb;
@@ -122,14 +122,14 @@
 
 
 
-/* container */
+               
 .container{
   width:90%;
   max-width:1200px;
   margin:auto;
 }
 
-/* HEADER */
+            
 .site-header{
   background:linear-gradient(90deg,#ff3b3b,#b30000);
   position:sticky;
@@ -154,7 +154,7 @@
   font-size:14px;
 }
 
-/* cart button */
+                 
 .cart-btn{
   display:flex;
   align-items:center;
@@ -179,7 +179,7 @@
   height:18px;
 }
 
-/* FOOTER */
+            
 .footer{
   background:black;
   color:white;
@@ -226,7 +226,7 @@ border-radius:16px;
 box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* checkout button */
+                     
 #checkout-btn{
 padding:12px 26px;
 background:linear-gradient(90deg,#28a745,#1e7e34);
@@ -244,7 +244,7 @@ transform:translateY(-2px);
 box-shadow:0 6px 14px rgba(0,0,0,0.15);
 }
 
-/* quantity buttons */
+                      
 .qty-controls button{
 width:32px;
 height:32px;
@@ -270,7 +270,7 @@ font-weight:600;
 
 .shop-layout{
 display:grid;
-grid-template-columns: 4fr 1fr; /* trước là 3fr 1fr */
+grid-template-columns: 4fr 1fr;                       
 gap:40px;
 max-width:6000px;
 margin:auto;
@@ -296,7 +296,7 @@ margin-bottom:15px;
 font-size:18px;
 }
 
-/* sidebar product */
+                     
 .side-product{
 display:flex;
 gap:10px;
@@ -365,7 +365,7 @@ font-size:26px;
 font-weight:bold;
 }
 
-/* SEARCH */
+            
 .search-box{
 display:flex;
 flex:1;
@@ -389,7 +389,7 @@ cursor:pointer;
 border-radius:0 6px 6px 0;
 }
 
-/* ICONS */
+           
 .profile-icon,
 .cart-icon{
 cursor:pointer;
@@ -405,7 +405,7 @@ border-radius:50%;
 margin-left:4px;
 }
 
-/* MENU */
+          
 .header-bottom{
 background:#020617;
 }
@@ -466,7 +466,7 @@ cursor:pointer;
 color:#38bdf8;
 }
 
-/* APP */
+         
 .app-box{
 display:flex;
 gap:10px;
@@ -490,7 +490,7 @@ padding:8px;
 border-radius:8px;
 }
 
-/* SOCIAL */
+            
 .social{
 display:flex;
 gap:10px;
@@ -509,7 +509,7 @@ border-radius:50%;
 cursor:pointer;
 }
 
-/* PAYMENT */
+             
 .payment{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -524,14 +524,14 @@ padding:5px;
 border-radius:6px;
 }
 
-/* CERT */
+          
 .cert img{
 width:100px;
 margin-right:10px;
 margin-top:10px;
 }
 
-/* BOTTOM */
+            
 .footer-bottom{
 border-top:1px solid #1e293b;
 margin-top:30px;
@@ -548,38 +548,38 @@ font-weight:bold;
 }
 
 
-/* 1. Reset chung để mọi thứ chuẩn xác */
+                                         
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Giúp padding không làm nở thêm kích thước */
+    box-sizing: border-box;                                                
 }
 
-/* 2. Sửa lỗi hở dòng trắng giữa 2 header */
+                                            
 .header-top {
-    background-color: #f8f9fa; /* Màu nền của bạn */
+    background-color: #f8f9fa;                      
     display: flex;
     align-items: center;
     padding: 10px 20px;
-    border-bottom: none; /* Xóa border nếu có */
+    border-bottom: none;                        
 }
 
 .header-bottom {
-    background-color: #000; /* Màu đen menu */
+    background-color: #000;                   
     width: 100%;
-    margin-top: 0; /* Đảm bảo không có khoảng cách với top */
+    margin-top: 0;                                           
 }
 
-/* 3. Căn chỉnh lại Menu cho đều */
+                                   
 .nav {
     display: flex;
-    justify-content: center; /* Căn giữa các mục menu */
+    justify-content: center;                            
     padding: 15px 0;
 }
 
 .nav a {
     color: white;
     text-decoration: none;
-    padding: 0 20px; /* Khoảng cách giữa các chữ */
+    padding: 0 20px;                               
     font-size: 14px;
 }
