@@ -1,946 +1,1151 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-  <title>Chi tiết sản phẩm - Laptop Store</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <title>Chi tiết sản phẩm - Laptop Store</title>
+  </head>
 
-<body>
+  <body>
+    <div class="container header-top">
+      <button class="back-btn" onclick="history.back()">←</button>
 
-<div class="container header-top">
-  <button class="back-btn" onclick="history.back()"> ← </button>
+      <h1 class="logo">Laptop Store</h1>
 
-  <h1 class="logo">Laptop Store</h1>
-
-  <div class="search-box">
-    <input type="text" placeholder="Tìm kiếm laptop...">
-    <button>🔍</button>
-  </div>
-
-  <div class="account" onclick="handleAccountClick()">
-    👤 <span id="profile-name">Đăng nhập</span>
-    <div class="profile-menu" id="profile-menu">
-      <a href="profile.html">Profile</a>
-      <a href="2.order-history.html">Lịch sử đơn hàng</a>
-      <a href="index.html">Trang chủ</a>
-      <a href="#" onclick="logout()">Đăng xuất</a>
-    </div>
-  </div>
-
-  <div class="cart-icon" onclick="openCart()">
-    🛒 <span id="cart-count">0</span>
-    <div class="cart-menu" id="cart-menu">
-      <div class="cart-items-list" id="cart-items-list">
-        <p style="text-align:center; padding:20px;">Giỏ hàng trống</p>
-      </div>
-      <div class="cart-footer" id="cart-footer" style="display:none;">
-        <div class="cart-total">
-          <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
-        </div>
-        <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="header-bottom">
-  <nav class="nav">
-    <a href="index.html">Trang chủ</a>
-    <a href="2.product.html">Sản phẩm</a>
-    <a href="news.html">Tin tức</a>
-    <a href="1.contact.html">Liên hệ</a>
-    <a href="2.terms.html">Điều khoản</a>
-    <a href="2.login.html">Hồ sơ</a>
-  </nav>
-</div>
-
-<section style="background:#f5f5f5; padding:22px 15px 12px;">
-  <div style="max-width:1200px; margin:auto;">
-    <div style="
-      background:#fff;
-      border:1px solid #e5e5e5;
-      border-radius:12px;
-      padding:24px;
-      box-shadow:0 2px 8px rgba(0,0,0,0.04);
-    ">
-      <div id="breadcrumbText" style="font-size:13px; color:#666; margin-bottom:10px;">
-        Trang chủ / Sản phẩm / Chi tiết sản phẩm
+      <div class="search-box">
+        <input type="text" placeholder="Tìm kiếm laptop..." />
+        <button>🔍</button>
       </div>
 
-      <div style="
-        display:flex;
-        justify-content:space-between;
-        align-items:flex-start;
-        gap:16px;
-        flex-wrap:wrap;
-      ">
-        <div>
-          <h1 id="banner-title" style="margin:0; font-size:34px; color:#111;">Chi tiết sản phẩm</h1>
-          <p id="banner-subtitle" style="margin:8px 0 0; color:#555; line-height:1.7; max-width:760px;">
-            Thông tin cấu hình, giá bán và ưu đãi nổi bật
-          </p>
-        </div>
-
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <span style="padding:8px 12px; background:#111; color:#fff; border-radius:999px; font-size:13px;">Sẵn hàng</span>
-          <span style="padding:8px 12px; background:#f3f4f6; color:#111; border:1px solid #e5e5e5; border-radius:999px; font-size:13px;">Bảo hành chính hãng</span>
-          <span style="padding:8px 12px; background:#f3f4f6; color:#111; border:1px solid #e5e5e5; border-radius:999px; font-size:13px;">Hỗ trợ trả góp</span>
+      <div class="account" onclick="handleAccountClick()">
+        👤 <span id="profile-name">Đăng Nhập</span>
+        <div class="profile-menu" id="profile-menu">
+          <a href="profile.html">Profile</a>
+          <a href="2.order-history.html">Lịch sử đơn hàng</a>
+          <a href="index.html">Trang chủ</a>
+          <a href="#" onclick="logout()">Đăng xuất</a>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<main style="background:#f5f5f5; padding:16px 15px 45px;">
-  <div style="max-width:1200px; margin:auto;">
-
-    <div style="
-      display:grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap:20px;
-      align-items:start;
-    ">
-
-      <div style="
-        background:#fff;
-        border:1px solid #e5e5e5;
-        border-radius:12px;
-        padding:20px;
-      ">
-        <div style="
-          background:#fff;
-          border:1px solid #f0f0f0;
-          border-radius:10px;
-          padding:20px;
-          margin-bottom:14px;
-        ">
-          <img id="pImage" src="" alt="Laptop" style="width:100%; height:360px; object-fit:contain; display:block;">
-        </div>
-
-        <div id="thumbs" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:10px;"></div>
-      </div>
-
-      <div style="
-        background:#fff;
-        border:1px solid #e5e5e5;
-        border-radius:12px;
-        padding:20px;
-      ">
-        <div id="pCategory" style="font-size:13px; color:#666; margin-bottom:6px;">Danh mục</div>
-        <h2 id="pName" style="margin:0 0 10px; font-size:30px; color:#111;">Tên sản phẩm</h2>
-
-        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
-          <span id="pPrice" style="font-size:28px; font-weight:800; color:#d70018;">0đ</span>
-          <span id="pOldPrice" style="font-size:16px; color:#888; text-decoration:line-through;"></span>
-          <span id="pSale" style="background:#ef4444; color:#fff; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700;">-0%</span>
-        </div>
-
-        <div style="
-          background:#fff7ed;
-          border:1px solid #fed7aa;
-          color:#9a3412;
-          padding:12px 14px;
-          border-radius:8px;
-          line-height:1.6;
-          font-size:14px;
-          margin-bottom:14px;
-        ">
-          ✅ Miễn phí giao hàng nội thành<br>
-          ✅ Trả góp 0% lãi suất<br>
-          ✅ Bảo hành chính hãng
-        </div>
-
-        <p id="pDesc" style="margin:0 0 14px; color:#555; line-height:1.7;">
-          Mô tả sản phẩm.
-        </p>
-
-        <div style="
-          background:#f8fafc;
-          border:1px solid #e5e7eb;
-          border-radius:10px;
-          padding:14px;
-          margin-bottom:16px;
-        ">
-          <div style="font-weight:700; margin-bottom:10px; color:#111;">Thông số nổi bật</div>
-          <ul id="pSpecs" style="margin:0; padding-left:18px; color:#333; line-height:1.8;"></ul>
-        </div>
-
-        <div style="display:flex; gap:10px; flex-wrap:wrap;">
-          <button id="btnAdd" style="
-            border:none;
-            cursor:pointer;
-            display:inline-block;
-            padding:13px 18px;
-            background:#111;
-            color:#fff;
-            border-radius:8px;
-            font-weight:700;
-            min-width:160px;
-          ">
-            Thêm vào giỏ
-          </button>
-
-          <a href="2.product.html" style="
-            display:inline-block;
-            padding:13px 18px;
-            background:#f3f4f6;
-            color:#111;
-            border-radius:8px;
-            text-decoration:none;
-            font-weight:600;
-          ">
-            ← Quay lại sản phẩm
-          </a>
+      <div class="cart-icon" onclick="openCart()">
+        🛒 <span id="cart-count">0</span>
+        <div class="cart-menu" id="cart-menu">
+          <div class="cart-items-list" id="cart-items-list">
+            <p style="text-align: center; padding: 20px">Giỏ hàng trống</p>
+          </div>
+          <div class="cart-footer" id="cart-footer" style="display: none">
+            <div class="cart-total">
+              <strong>Tổng cộng: <span id="cart-total">0</span>đ</strong>
+            </div>
+            <a href="1.cart.html" class="checkout-btn">Xem giỏ hàng</a>
+          </div>
         </div>
       </div>
     </div>
 
-    <div style="
-      margin-top:20px;
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:20px;
-      align-items:start;
-    ">
-      <div style="
-        background:#fff;
-        border:1px solid #e5e5e5;
-        border-radius:12px;
-        padding:20px;
-      ">
-        <h3 style="margin:0 0 14px; color:#111;">Mô tả chi tiết</h3>
-        <div id="pLongDesc" style="color:#555; line-height:1.8;"></div>
-      </div>
-
-      <div style="
-        background:#fff;
-        border:1px solid #e5e5e5;
-        border-radius:12px;
-        padding:20px;
-      ">
-        <h3 style="margin:0 0 14px; color:#111;">Thông số kỹ thuật</h3>
-        <div id="specTable"></div>
-      </div>
+    <div class="header-bottom">
+      <nav class="nav">
+        <a href="index.html">Trang chủ</a>
+        <a href="2.product.html">Sản phẩm</a>
+        <a href="news.html">Tin tức</a>
+        <a href="1.contact.html">Liên hệ</a>
+        <a href="2.terms.html">Điều khoản</a>
+        <a href="2.login.html">Hồ sơ</a>
+      </nav>
     </div>
 
-    <div style="margin-top:20px;">
-      <h3 style="margin:0 0 14px; color:#111;">Sản phẩm liên quan</h3>
-      <div id="related" style="
-        display:grid;
-        grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-        gap:16px;
-      "></div>
-    </div>
+    <section class="detail-top-section">
+      <div class="container">
+        <div class="detail-hero">
+          <div>
+            <div
+              id="breadcrumbText"
+              style="font-size: 13px; color: #666; margin-bottom: 10px"
+            >
+              Trang chủ / Sản phẩm / Chi tiết sản phẩm
+            </div>
+            <h1 id="banner-title">Chi tiết sản phẩm</h1>
+            <p id="banner-subtitle">
+              Thông tin cấu hình, giá bán và ưu đãi nổi bật
+            </p>
+          </div>
 
-  </div>
-</main>
+          <div class="detail-tags">
+            <span>Sẵn hàng</span>
+            <a href="2.terms.html#section5">Bảo hành chính hãng</a>
+            <a href="2.terms.html#section4">Hỗ trợ trả góp</a>
+          </div>
+        </div>
 
-<script>
-  let products = {
-    "ins15": {
-      category: "Văn phòng",
-      name: "Dell Inspiron 15 (i5)",
-      price: 15990000,
-      oldPrice: 17990000,
-      images: [
-        "imgae/dell inspiron 15.jpg",
-        "imgae/dell-inspiron-15-5559.jpg",
-        "imgae/dell_7.jpg",
-        "imgae/dell inspiron 15.jpg"
-      ],
-      desc: "Laptop văn phòng ổn định, phù hợp học tập và làm việc hàng ngày.",
-      longDesc: `
+        <div class="detail-promo-banner">
+          <img src="imgae/baner1.webp" alt="Khuyến mãi laptop" />
+          <div class="detail-banner-content">
+            <span>Ưu đãi nổi bật</span>
+            <h2>Giảm thêm đến 1.5 triệu khi mua online</h2>
+            <p>
+              Giao hàng nhanh trong ngày, trả góp 0%, bảo hành đổi mới 1 đổi 1
+              trong 30 ngày.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main style="background: #f5f5f5; padding: 16px 15px 45px">
+      <div class="container">
+        <div class="product-detail-grid">
+          <div class="product-detail-panel product-image-panel">
+            <div class="image-box">
+              <img id="pImage" src="" alt="Laptop" />
+            </div>
+
+            <div id="thumbs" class="thumbs-grid"></div>
+          </div>
+
+          <div class="product-detail-panel product-info-panel">
+            <div id="pCategory" class="product-category">Danh mục</div>
+            <h2 id="pName">Tên sản phẩm</h2>
+
+            <div class="price-group">
+              <span id="pPrice">0đ</span>
+              <span id="pOldPrice"></span>
+              <span id="pSale">-0%</span>
+            </div>
+
+            <div class="info-box">
+              ✅ Miễn phí giao hàng nội thành<br />
+              ✅ Trả góp 0% lãi suất<br />
+              ✅ Bảo hành chính hãng
+            </div>
+
+            <p id="pDesc">Mô tả sản phẩm.</p>
+
+            <div class="spec-box">
+              <div style="font-weight: 700; margin-bottom: 10px; color: #111">
+                Thông số nổi bật
+              </div>
+              <ul id="pSpecs"></ul>
+            </div>
+
+            <div class="action-group">
+              <button
+                id="btnAdd"
+                style="
+                  border: none;
+                  cursor: pointer;
+                  padding: 13px 18px;
+                  background: #111;
+                  color: #fff;
+                  border-radius: 8px;
+                  font-weight: 700;
+                "
+              >
+                Thêm vào giỏ
+              </button>
+
+              <a
+                href="2.product.html"
+                style="
+                  display: inline-block;
+                  padding: 13px 18px;
+                  background: #f3f4f6;
+                  color: #111;
+                  border-radius: 8px;
+                  text-decoration: none;
+                  font-weight: 600;
+                "
+              >
+                ← Quay lại sản phẩm
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="product-detail-grid"
+          style="margin-top: 20px; grid-template-columns: 1fr 360px"
+        >
+          <div class="product-detail-panel">
+            <h3 style="margin: 0 0 14px; color: #111">Mô tả chi tiết</h3>
+            <div id="pLongDesc" style="color: #555; line-height: 1.8"></div>
+          </div>
+
+          <div class="product-detail-panel">
+            <h3 style="margin: 0 0 14px; color: #111">Thông số kỹ thuật</h3>
+            <div id="specTable"></div>
+          </div>
+        </div>
+
+        <div class="related-section">
+          <h3>Các danh mục khác</h3>
+          <div class="category-grid">
+            <div class="category-item">
+              <img src="imgae/Dien_thoai_cbbb797a59.webp" alt="Điện thoại" />
+              <p>Điện thoại</p>
+            </div>
+            <div class="category-item">
+              <img
+                src="imgae/May_tinh_bang_fcb55be1d9.webp"
+                alt="Máy tính bảng"
+              />
+              <p>Máy tính bảng</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/Laptop_d170e53d32.webp" alt="Laptop" />
+              <p>Laptop</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/Man_hinh_9f70880c9f.webp" alt="Màn hình" />
+              <p>Màn hình</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/PC_1d4c1d5078.webp" alt="PC - Máy tính để bàn" />
+              <p>PC - Máy tính để bàn</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/Phu_kien_41434d66e5.webp" alt="Phụ kiện" />
+              <p>Phụ kiện</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/sim_fpt_a90dc2e8f4.png" alt="Sim FPT" />
+              <p>Sim FPT</p>
+            </div>
+            <div class="category-item">
+              <img
+                src="imgae/Dong_ho_b01a4f575e.webp"
+                alt="Đồng hồ thông minh"
+              />
+              <p>Đồng hồ thông minh</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/Tivi_14d807e9bd.webp" alt="Tivi" />
+              <p>Tivi</p>
+            </div>
+            <div class="category-item">
+              <img
+                src="imgae/May_lanh_Dieu_hoa_a00dcf820a.webp"
+                alt="Máy lạnh - Điều hòa"
+              />
+              <p>Máy lạnh - Điều hòa</p>
+            </div>
+            <div class="category-item">
+              <img
+                src="imgae/Robot_hut_bui_32e02fba47.webp"
+                alt="Robot hút bụi"
+              />
+              <p>Robot hút bụi</p>
+            </div>
+            <div class="category-item">
+              <img
+                src="imgae/May_loc_nuoc_986e89bc5b.webp"
+                alt="Máy lọc nước"
+              />
+              <p>Máy lọc nước</p>
+            </div>
+            <div class="category-item">
+              <img
+                src="imgae/Quat_dieu_hoa_ef8f677067.webp"
+                alt="Quạt điều hòa"
+              />
+              <p>Quạt điều hòa</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/May_giat_acef9d0fc5.webp" alt="Máy giặt" />
+              <p>Máy giặt</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/Tu_lanh_c6e3c9e224.webp" alt="Tủ lạnh" />
+              <p>Tủ lạnh</p>
+            </div>
+            <div class="category-item">
+              <img src="imgae/May_cu_5ae3b8df1d.webp" alt="Máy cũ giá rẻ" />
+              <p>Máy cũ giá rẻ</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div class="footer-col">
+          <h3>TẢI ỨNG DỤNG</h3>
+
+          <div class="app-box">
+            <img src="imgae/qr-download-app-fptshop.png" class="qr" />
+
+            <div class="store">
+              <a
+                href="https://apps.apple.com/vn/app/fpt-shop/id6475874688"
+                target="_blank"
+              >
+                <img src="imgae/appstore.png" />
+              </a>
+              <a
+                href="https://play.google.com/store/apps/details?id=vn.frt.fptshop.app"
+                target="_blank"
+              >
+                <img src="imgae/button-chplay.png" />
+              </a>
+            </div>
+          </div>
+
+          <h3>KẾT NỐI</h3>
+
+          <div class="social">
+            <span>
+              <a href="https://www.facebook.com/FPTShopOnline" target="_blank">
+                <img src="imgae/facebook_icon_8543190720.svg" alt="facebook" />
+              </a>
+            </span>
+            <span>
+              <a href="https://www.youtube.com/@FPTShop_" target="_blank">
+                <img src="imgae/youtube_icon_b492d61ba5.svg" alt="youtube" />
+              </a>
+            </span>
+            <span>
+              <a href="https://zalo.me/2659487666103055748" target="_blank">
+                <img src="imgae/zalo_icon_8cbef61812.svg" alt="zalo" />
+              </a>
+            </span>
+            <span>
+              <a
+                href="https://www.tiktok.com/@fptshop.official"
+                target="_blank"
+              >
+                <img src="imgae/tiktok_icon_faabbeeb61.svg" alt="tiktok" />
+              </a>
+            </span>
+          </div>
+
+          <h3>TỔNG ĐÀI MIỄN PHÍ</h3>
+
+          <p>1800.6601 (Mua hàng)</p>
+          <p>1800.6601 (Hỗ trợ kỹ thuật)</p>
+          <p>1800.6616 (Góp ý)</p>
+        </div>
+
+        <div class="footer-col">
+          <h3>VỀ CHÚNG TÔI</h3>
+
+          <ul>
+            <li><a href="about.html">Giới thiệu công ty</a></li>
+            <li><a href="2.terms.html">Quy chế hoạt động</a></li>
+            <li><a href="news.html">Tin tức khuyến mãi</a></li>
+            <li><a href="404.html">Giới thiệu máy đổi trả</a></li>
+            <li><a href="404.html">Tra cứu bảo hành</a></li>
+            <li><a href="404.html">Câu hỏi thường gặp</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>CHÍNH SÁCH</h3>
+
+          <ul>
+            <li>Chính sách bảo hành</li>
+            <li>Chính sách đổi trả</li>
+            <li>Chính sách bảo mật</li>
+            <li>Chính sách trả góp</li>
+            <li>Chính sách giao hàng</li>
+            <li>Chính sách khách hàng</li>
+            <li>
+              <a
+                href="2.terms.html"
+                style="color: inherit; text-decoration: none"
+                >Điều khoản sử dụng</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>HỖ TRỢ THANH TOÁN</h3>
+
+          <div class="payment">
+            <img src="imgae/visa.png" />
+            <img src="imgae/VNpay.jpg" />
+            <img src="imgae/zalo.png" />
+            <img src="imgae/momo.png" />
+            <img src="imgae/SSPay.jpg" />
+            <img src="imgae/JCB.jpg" />
+          </div>
+
+          <h3>CHỨNG NHẬN</h3>
+
+          <div class="cert">
+            <a
+              href="https://www.dmca.com/Protection/Status.aspx?ID=98d66f66-5a62-47e9-b45c-edaebfb0c9b3&refurl=https://fptshop.com.vn/"
+              target="_blank"
+            >
+              <img src="imgae/dmca_icon_8fc6622bd5.svg" />
+            </a>
+
+            <img src="imgae/thuong_hieu_manh_2013_icon_b56f772475.svg" />
+
+            <a
+              href="http://online.gov.vn/Home/WebDetails/21883"
+              target="_blank"
+            >
+              <img
+                src="imgae/da_thong_bao_bo_cong_thuong_icon_64785fb3f7.svg"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>Website cùng hệ thống</p>
+
+        <div class="footer-logos">
+          <span>F.Studio</span>
+          <span>F.Care</span>
+          <span>Long Châu</span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      let products = {
+        ins15: {
+          category: "Văn phòng",
+          name: "Dell Inspiron 15 (i5)",
+          price: 15990000,
+          oldPrice: 17990000,
+          images: [
+            "imgae/dell inspiron 15.jpg",
+            "imgae/dell-inspiron-15-5559.jpg",
+            "imgae/dell_7.jpg",
+            "imgae/dell inspiron 15.jpg",
+          ],
+          desc: "Laptop văn phòng ổn định, phù hợp học tập và làm việc hàng ngày.",
+          longDesc: `
         <p>Dell Inspiron 15 là lựa chọn cân bằng giữa hiệu năng, độ bền và giá thành. Máy phù hợp cho học sinh, sinh viên và nhân viên văn phòng.</p>
         <p>Thiết kế đơn giản, màn hình lớn, xử lý tốt các tác vụ Word, Excel, PowerPoint, học online và giải trí nhẹ.</p>
       `,
-      specs: ["CPU: Intel Core i5", "RAM: 8GB", "SSD: 512GB", "Màn hình: 15.6 inch FHD", "Phù hợp: Office, học tập", "Pin: tốt"]
-    },
+          specs: [
+            "CPU: Intel Core i5",
+            "RAM: 8GB",
+            "SSD: 512GB",
+            "Màn hình: 15.6 inch FHD",
+            "Phù hợp: Office, học tập",
+            "Pin: tốt",
+          ],
+        },
 
-    "vivobook14": {
-      category: "Học tập",
-      name: "ASUS VivoBook 14",
-      price: 14490000,
-      oldPrice: 15990000,
-      images: [
-        "imgae/asus vivo 14.jpg",
-        "imgae/asus vivo 14 black.jpg",
-        "imgae/asus vivo 14 more.jpg",
-        "imgae/asus vivo 14.jpg"
-      ],
-      desc: "Thiết kế gọn nhẹ, phù hợp sinh viên và người dùng cần máy dễ mang theo.",
-      longDesc: `
+        vivobook14: {
+          category: "Học tập",
+          name: "ASUS VivoBook 14",
+          price: 14490000,
+          oldPrice: 15990000,
+          images: [
+            "imgae/asus vivo 14.jpg",
+            "imgae/asus vivo 14 black.jpg",
+            "imgae/asus vivo 14 more.jpg",
+            "imgae/asus vivo 14.jpg",
+          ],
+          desc: "Thiết kế gọn nhẹ, phù hợp sinh viên và người dùng cần máy dễ mang theo.",
+          longDesc: `
         <p>ASUS VivoBook 14 phù hợp với nhu cầu học tập, làm bài tập, học online và sử dụng hằng ngày.</p>
         <p>Máy gọn nhẹ, dễ mang theo và đủ mạnh cho các tác vụ cơ bản.</p>
       `,
-      specs: ["CPU: Ryzen 5", "RAM: 8GB", "SSD: 512GB", "Màn hình: 14 inch FHD", "Thiết kế: nhẹ", "Phù hợp: sinh viên"]
-    },
+          specs: [
+            "CPU: Ryzen 5",
+            "RAM: 8GB",
+            "SSD: 512GB",
+            "Màn hình: 14 inch FHD",
+            "Thiết kế: nhẹ",
+            "Phù hợp: sinh viên",
+          ],
+        },
 
-    "pav14": {
-      category: "Creator",
-      name: "HP Pavilion 14 (16GB)",
-      price: 18990000,
-      oldPrice: 20990000,
-      images: [
-        "imgae/pavillion 14.jpg",
-        "imgae/hp-pavilion-laptop-14-2022_n2js.1920.webp",
-        "imgae/HP Pavilion.jpg",
-        "imgae/pavillion 14.jpg"
-      ],
-      desc: "Cấu hình mạnh cho đa nhiệm và làm thiết kế nhẹ.",
-      longDesc: `
+        pav14: {
+          category: "Creator",
+          name: "HP Pavilion 14 (16GB)",
+          price: 18990000,
+          oldPrice: 20990000,
+          images: [
+            "imgae/pavillion 14.jpg",
+            "imgae/hp-pavilion-laptop-14-2022_n2js.1920.webp",
+            "imgae/HP Pavilion.jpg",
+            "imgae/pavillion 14.jpg",
+          ],
+          desc: "Cấu hình mạnh cho đa nhiệm và làm thiết kế nhẹ.",
+          longDesc: `
         <p>HP Pavilion 14 phù hợp cho người dùng cần laptop đẹp, gọn và đủ mạnh cho học tập, làm việc và sáng tạo nội dung cơ bản.</p>
         <p>RAM 16GB giúp chạy đa nhiệm tốt hơn trong quá trình sử dụng.</p>
       `,
-      specs: ["CPU: Intel Core i5", "RAM: 16GB", "SSD: 512GB", "Màn hình: 14 inch", "Màn đẹp", "Phù hợp: creator cơ bản"]
-    },
+          specs: [
+            "CPU: Intel Core i5",
+            "RAM: 16GB",
+            "SSD: 512GB",
+            "Màn hình: 14 inch",
+            "Màn đẹp",
+            "Phù hợp: creator cơ bản",
+          ],
+        },
 
-    "nitro5": {
-      category: "Gaming",
-      name: "Acer Nitro 5 (RTX)",
-      price: 24990000,
-      oldPrice: 27990000,
-      images: [
-        "imgae/nitro 5.jpg",
-        "imgae/nitro 5s.jpg",
-        "imgae/nitro 5 cam.jpg",
-        "imgae/acer nitro 5.jpg"
-      ],
-      desc: "Gaming tầm trung, tối ưu cho game/esport và học tập giải trí.",
-      longDesc: `
+        nitro5: {
+          category: "Gaming",
+          name: "Acer Nitro 5 (RTX)",
+          price: 24990000,
+          oldPrice: 27990000,
+          images: [
+            "imgae/nitro 5.jpg",
+            "imgae/nitro 5s.jpg",
+            "imgae/nitro 5 cam.jpg",
+            "imgae/acer nitro 5.jpg",
+          ],
+          desc: "Gaming tầm trung, tối ưu cho game/esport và học tập giải trí.",
+          longDesc: `
         <p>Acer Nitro 5 là dòng laptop gaming phổ biến nhờ hiệu năng ổn, màn hình tần số quét cao và thiết kế đậm chất gaming.</p>
         <p>Máy phù hợp cho game thủ và người dùng cần laptop mạnh để xử lý tác vụ nặng hơn bình thường.</p>
       `,
-      specs: ["CPU: Intel Core i5", "RAM: 16GB", "SSD: 512GB", "GPU: RTX", "Màn hình: 15.6 inch 144Hz", "Tản nhiệt: ổn"]
-    },
+          specs: [
+            "CPU: Intel Core i5",
+            "RAM: 16GB",
+            "SSD: 512GB",
+            "GPU: RTX",
+            "Màn hình: 15.6 inch 144Hz",
+            "Tản nhiệt: ổn",
+          ],
+        },
 
-    "thinkpad-e14": {
-      category: "Văn phòng",
-      name: "Lenovo ThinkPad E14",
-      price: 19490000,
-      oldPrice: 21490000,
-      images: [
-        "imgae/thinkpad e14.jpg",
-        "imgae/thinkpad e14s.jpg",
-        "imgae/thinkpad e14.jpg",
-        "imgae/thinkpad e14s.jpg"
-      ],
-      desc: "Dòng ThinkPad nổi bật về độ bền, bàn phím và độ ổn định.",
-      longDesc: `
+        "thinkpad-e14": {
+          category: "Văn phòng",
+          name: "Lenovo ThinkPad E14",
+          price: 19490000,
+          oldPrice: 21490000,
+          images: [
+            "imgae/thinkpad e14.jpg",
+            "imgae/thinkpad e14s.jpg",
+            "imgae/thinkpad e14.jpg",
+            "imgae/thinkpad e14s.jpg",
+          ],
+          desc: "Dòng ThinkPad nổi bật về độ bền, bàn phím và độ ổn định.",
+          longDesc: `
         <p>ThinkPad E14 phù hợp cho nhân viên văn phòng, doanh nghiệp hoặc người dùng cần một chiếc máy bền và ổn định.</p>
         <p>Bàn phím là điểm mạnh lớn, rất hợp cho người thường xuyên gõ văn bản.</p>
       `,
-      specs: ["CPU: Intel Core i5", "RAM: 16GB", "SSD: 512GB", "Độ bền: cao", "Bàn phím: tốt", "Phù hợp: công việc văn phòng"]
-    },
+          specs: [
+            "CPU: Intel Core i5",
+            "RAM: 16GB",
+            "SSD: 512GB",
+            "Độ bền: cao",
+            "Bàn phím: tốt",
+            "Phù hợp: công việc văn phòng",
+          ],
+        },
 
-    "mac-air-m1": {
-      category: "Creator",
-      name: "MacBook Air M1",
-      price: 19990000,
-      oldPrice: 22990000,
-      images: [
-        "imgae/air m1.jpg",
-        "imgae/air m1s.jpeg",
-        "imgae/air m1.jpg",
-        "imgae/air m1s.jpeg"
-      ],
-      desc: "Mỏng nhẹ, pin trâu, vận hành mượt mà cho học tập và làm việc.",
-      longDesc: `
+        "mac-air-m1": {
+          category: "Creator",
+          name: "MacBook Air M1",
+          price: 19990000,
+          oldPrice: 22990000,
+          images: [
+            "imgae/air m1.jpg",
+            "imgae/air m1s.jpeg",
+            "imgae/air m1.jpg",
+            "imgae/air m1s.jpeg",
+          ],
+          desc: "Mỏng nhẹ, pin trâu, vận hành mượt mà cho học tập và làm việc.",
+          longDesc: `
         <p>MacBook Air M1 là mẫu laptop được yêu thích nhờ hiệu năng tốt, pin lâu và thiết kế mỏng nhẹ.</p>
         <p>Máy phù hợp cho học tập, làm việc văn phòng và sáng tạo nội dung cơ bản.</p>
       `,
-      specs: ["Chip: Apple M1", "RAM: 8GB", "SSD: 256GB", "Màn hình: 13.3 inch Retina", "Pin: lâu", "Thiết kế: mỏng nhẹ"]
-    },
+          specs: [
+            "Chip: Apple M1",
+            "RAM: 8GB",
+            "SSD: 256GB",
+            "Màn hình: 13.3 inch Retina",
+            "Pin: lâu",
+            "Thiết kế: mỏng nhẹ",
+          ],
+        },
 
-    "msi-modern15": {
-      category: "Học tập",
-      name: "MSI Modern 15",
-      price: 16990000,
-      oldPrice: 18990000,
-      images: [
-        "imgae/modern 15.jpg",
-        "imgae/modern 15s.jpg",
-        "imgae/modern 15.jpg",
-        "imgae/modern 15s.jpg"
-      ],
-      desc: "Thiết kế đơn giản, dễ nâng cấp, phù hợp học tập và văn phòng.",
-      longDesc: `
+        "msi-modern15": {
+          category: "Học tập",
+          name: "MSI Modern 15",
+          price: 16990000,
+          oldPrice: 18990000,
+          images: [
+            "imgae/modern 15.jpg",
+            "imgae/modern 15s.jpg",
+            "imgae/modern 15.jpg",
+            "imgae/modern 15s.jpg",
+          ],
+          desc: "Thiết kế đơn giản, dễ nâng cấp, phù hợp học tập và văn phòng.",
+          longDesc: `
         <p>MSI Modern 15 là laptop thực dụng với màn hình lớn, thiết kế gọn và hiệu năng đủ dùng cho phần lớn nhu cầu học tập, làm việc.</p>
         <p>Máy cũng phù hợp với người dùng muốn tối ưu chi phí nhưng vẫn có cấu hình ổn.</p>
       `,
-      specs: ["CPU: Intel Core i5", "RAM: 8GB", "SSD: 512GB", "Màn hình: 15.6 inch FHD", "Ưu điểm: dễ nâng cấp", "Phù hợp: học tập, văn phòng"]
-    },
+          specs: [
+            "CPU: Intel Core i5",
+            "RAM: 8GB",
+            "SSD: 512GB",
+            "Màn hình: 15.6 inch FHD",
+            "Ưu điểm: dễ nâng cấp",
+            "Phù hợp: học tập, văn phòng",
+          ],
+        },
 
-    "asus-tuf-f15": {
-      category: "Gaming",
-      name: "ASUS TUF Gaming F15",
-      price: 26490000,
-      oldPrice: 29490000,
-      images: [
-        "imgae/tuf 15 gaming.jpg",
-        "imgae/tuf 15 gamings.jpg",
-        "imgae/tuf 15 gaming.jpg",
-        "imgae/tuf 15 gamings.jpg"
-      ],
-      desc: "Dòng gaming bền bỉ, hiệu năng cao, phù hợp chơi game và tác vụ nặng.",
-      longDesc: `
+        "asus-tuf-f15": {
+          category: "Gaming",
+          name: "ASUS TUF Gaming F15",
+          price: 26490000,
+          oldPrice: 29490000,
+          images: [
+            "imgae/tuf 15 gaming.jpg",
+            "imgae/tuf 15 gamings.jpg",
+            "imgae/tuf 15 gaming.jpg",
+            "imgae/tuf 15 gamings.jpg",
+          ],
+          desc: "Dòng gaming bền bỉ, hiệu năng cao, phù hợp chơi game và tác vụ nặng.",
+          longDesc: `
         <p>ASUS TUF Gaming F15 phù hợp với người dùng muốn một chiếc máy mạnh, ngoại hình gaming và có thể dùng cho cả game lẫn công việc nặng.</p>
         <p>Máy có hiệu năng tốt, phù hợp cho gaming, render cơ bản và xử lý đa nhiệm.</p>
       `,
-      specs: ["CPU: Intel Core i7", "RAM: 16GB", "SSD: 512GB", "GPU: RTX", "Tản nhiệt: tốt", "Phù hợp: gaming, tác vụ nặng"]
-    },
-    "rog-zephyrus-ga403wm": {
-      category: "Gaming",
-      name: "ROG Zephyrus GA403WM",
-      price: 65900000,
-      oldPrice: 73900000,
-      images: [
-        "imgae/rog-zephyrus.jpg",
-        "imgae/rog-zephyrus.jpg",
-        "imgae/rog-zephyrus.jpg",
-        "imgae/rog-zephyrus.jpg"
-      ],
-      desc: "Laptop gaming cao cấp, mỏng nhẹ nhưng hiệu năng rất mạnh.",
-      longDesc: `
+          specs: [
+            "CPU: Intel Core i7",
+            "RAM: 16GB",
+            "SSD: 512GB",
+            "GPU: RTX",
+            "Tản nhiệt: tốt",
+            "Phù hợp: gaming, tác vụ nặng",
+          ],
+        },
+        "rog-zephyrus-ga403wm": {
+          category: "Gaming",
+          name: "ROG Zephyrus GA403WM",
+          price: 65900000,
+          oldPrice: 73900000,
+          images: [
+            "imgae/rog-zephyrus.jpg",
+            "imgae/rog-zephyrus.jpg",
+            "imgae/rog-zephyrus.jpg",
+            "imgae/rog-zephyrus.jpg",
+          ],
+          desc: "Laptop gaming cao cấp, mỏng nhẹ nhưng hiệu năng rất mạnh.",
+          longDesc: `
         <p>ROG Zephyrus GA403WM là mẫu gaming cao cấp hướng đến người dùng cần hiệu năng mạnh nhưng vẫn muốn thiết kế sang và gọn.</p>
         <p>Máy phù hợp cho gaming, sáng tạo nội dung, dựng video và xử lý đa nhiệm nặng.</p>
       `,
-      specs: [
-        "CPU: Ryzen AI 9 HX 370",
-        "GPU: RTX 5060",
-        "RAM: 32GB",
-        "Storage: 1TB SSD",
-        "Display: 14 inch 3K",
-        "Phù hợp: Gaming cao cấp / Creator"
-      ]
-    },
-    "tuf-gaming-f16-fx607vu": {
-      category: "Gaming",
-      name: "TUF Gaming F16 FX607VU",
-      price: 32900000,
-      oldPrice: 35900000,
-      images: [
-        "imgae/tuf-f16.jpg",
-        "imgae/tuf-f16.jpg",
-        "imgae/tuf-f16.jpg",
-        "imgae/tuf-f16.jpg"
-      ],
-      desc: "Laptop gaming màn lớn, hiệu năng tốt, phù hợp chơi game và học tập.",
-      longDesc: `
+          specs: [
+            "CPU: Ryzen AI 9 HX 370",
+            "GPU: RTX 5060",
+            "RAM: 32GB",
+            "Storage: 1TB SSD",
+            "Display: 14 inch 3K",
+            "Phù hợp: Gaming cao cấp / Creator",
+          ],
+        },
+        "tuf-gaming-f16-fx607vu": {
+          category: "Gaming",
+          name: "TUF Gaming F16 FX607VU",
+          price: 32900000,
+          oldPrice: 35900000,
+          images: [
+            "imgae/tuf-f16.jpg",
+            "imgae/tuf-f16.jpg",
+            "imgae/tuf-f16.jpg",
+            "imgae/tuf-f16.jpg",
+          ],
+          desc: "Laptop gaming màn lớn, hiệu năng tốt, phù hợp chơi game và học tập.",
+          longDesc: `
         <p>TUF Gaming F16 FX607VU mang lại hiệu năng tốt trong tầm giá với màn hình 16 inch rộng rãi.</p>
         <p>Máy phù hợp cho game thủ, sinh viên kỹ thuật và người dùng cần laptop mạnh để làm việc lẫn giải trí.</p>
       `,
-      specs: [
-        "CPU: Core 5-210H",
-        "GPU: RTX 4050 6GB",
-        "RAM: 16GB",
-        "Storage: 512GB SSD",
-        "Display: 16 inch FHD+",
-        "Phù hợp: Gaming / đa nhiệm"
-      ]
-    },
-    "asus-gaming-v16-v3607vh": {
-      category: "Gaming",
-      name: "ASUS Gaming V16 V3607VH",
-      price: 28900000,
-      oldPrice: 31900000,
-      images: [
-        "imgae/v16.jpg",
-        "imgae/v16.jpg",
-        "imgae/v16.jpg",
-        "imgae/v16.jpg"
-      ],
-      desc: "Laptop gaming thế hệ mới, màn 16 inch rộng, cấu hình cân bằng.",
-      longDesc: `
+          specs: [
+            "CPU: Core 5-210H",
+            "GPU: RTX 4050 6GB",
+            "RAM: 16GB",
+            "Storage: 512GB SSD",
+            "Display: 16 inch FHD+",
+            "Phù hợp: Gaming / đa nhiệm",
+          ],
+        },
+        "asus-gaming-v16-v3607vh": {
+          category: "Gaming",
+          name: "ASUS Gaming V16 V3607VH",
+          price: 28900000,
+          oldPrice: 31900000,
+          images: [
+            "imgae/v16.jpg",
+            "imgae/v16.jpg",
+            "imgae/v16.jpg",
+            "imgae/v16.jpg",
+          ],
+          desc: "Laptop gaming thế hệ mới, màn 16 inch rộng, cấu hình cân bằng.",
+          longDesc: `
         <p>ASUS Gaming V16 V3607VH phù hợp cho người cần máy chơi game tốt nhưng vẫn giữ thiết kế hiện đại và dễ dùng hằng ngày.</p>
         <p>Máy phù hợp cho gaming, học tập, render nhẹ và làm việc đa nhiệm.</p>
       `,
-      specs: [
-        "CPU: Core 7 240H",
-        "GPU: RTX 5050 8GB",
-        "RAM: 16GB",
-        "Storage: 512GB SSD",
-        "Display: 16 inch WUXGA",
-        "Phù hợp: Gaming / creator nhẹ"
-      ]
-    },
-    "lenovo-loq-e-15iax9e": {
-      category: "Gaming",
-      name: "Laptop Lenovo Gaming LOQ E 15IAX9E",
-      price: 21990000,
-      oldPrice: 24990000,
-      images: [
-        "imgae/lenovo-loq.jpg",
-        "imgae/lenovo-loq.jpg",
-        "imgae/lenovo-loq.jpg",
-        "imgae/lenovo-loq.jpg"
-      ],
-      desc: "Laptop gaming giá dễ tiếp cận, cấu hình ổn cho game và học tập.",
-      longDesc: `
+          specs: [
+            "CPU: Core 7 240H",
+            "GPU: RTX 5050 8GB",
+            "RAM: 16GB",
+            "Storage: 512GB SSD",
+            "Display: 16 inch WUXGA",
+            "Phù hợp: Gaming / creator nhẹ",
+          ],
+        },
+        "lenovo-loq-e-15iax9e": {
+          category: "Gaming",
+          name: "Laptop Lenovo Gaming LOQ E 15IAX9E",
+          price: 21990000,
+          oldPrice: 24990000,
+          images: [
+            "imgae/lenovo-loq.jpg",
+            "imgae/lenovo-loq.jpg",
+            "imgae/lenovo-loq.jpg",
+            "imgae/lenovo-loq.jpg",
+          ],
+          desc: "Laptop gaming giá dễ tiếp cận, cấu hình ổn cho game và học tập.",
+          longDesc: `
         <p>Lenovo LOQ E 15IAX9E là lựa chọn hợp lý trong phân khúc gaming tầm trung với card RTX 3050.</p>
         <p>Máy phù hợp cho game phổ thông, học tập ngành kỹ thuật và làm việc cần GPU rời.</p>
       `,
-      specs: [
-        "CPU: Core i5-12450HX",
-        "GPU: RTX 3050 6GB",
-        "RAM: 16GB",
-        "Storage: 512GB SSD",
-        "Display: 15.6 inch FHD",
-        "Phù hợp: Gaming / học kỹ thuật"
-      ]
-    },
-    "dell-latitude-3450": {
-      category: "Văn phòng",
-      name: "Dell Latitude 3450",
-      price: 18990000,
-      oldPrice: 20990000,
-      images: [
-        "imgae/dell-latitude-3450.jpg",
-        "imgae/dell-latitude-3450.jpg",
-        "imgae/dell-latitude-3450.jpg",
-        "imgae/dell-latitude-3450.jpg"
-      ],
-      desc: "Laptop doanh nghiệp ổn định, bền bỉ, phù hợp công việc văn phòng.",
-      longDesc: `
+          specs: [
+            "CPU: Core i5-12450HX",
+            "GPU: RTX 3050 6GB",
+            "RAM: 16GB",
+            "Storage: 512GB SSD",
+            "Display: 15.6 inch FHD",
+            "Phù hợp: Gaming / học kỹ thuật",
+          ],
+        },
+        "dell-latitude-3450": {
+          category: "Văn phòng",
+          name: "Dell Latitude 3450",
+          price: 18990000,
+          oldPrice: 20990000,
+          images: [
+            "imgae/dell-latitude-3450.jpg",
+            "imgae/dell-latitude-3450.jpg",
+            "imgae/dell-latitude-3450.jpg",
+            "imgae/dell-latitude-3450.jpg",
+          ],
+          desc: "Laptop doanh nghiệp ổn định, bền bỉ, phù hợp công việc văn phòng.",
+          longDesc: `
         <p>Dell Latitude 3450 phù hợp cho nhân viên văn phòng, doanh nghiệp và người dùng cần một chiếc máy bền, gọn, ổn định.</p>
         <p>Máy thích hợp cho Word, Excel, họp online và công việc văn phòng chuyên nghiệp.</p>
       `,
-      specs: [
-        "CPU: Core i5-1335U",
-        "GPU: Integrated",
-        "RAM: 16GB",
-        "Storage: 512GB SSD",
-        "Display: 14 inch FHD",
-        "Phù hợp: Văn phòng / doanh nghiệp"
-      ]
-    },
-    "dell-vostro-3420": {
-      category: "Văn phòng",
-      name: "Dell Vostro 14 3420",
-      price: 17990000,
-      oldPrice: 19990000,
-      images: [
-        "imgae/dell-vostro-3420.jpg",
-        "imgae/dell-vostro-3420.jpg",
-        "imgae/dell-vostro-3420.jpg",
-        "imgae/dell-vostro-3420.jpg"
-      ],
-      desc: "Laptop văn phòng giá tốt, phù hợp học tập và làm việc hằng ngày.",
-      longDesc: `
+          specs: [
+            "CPU: Core i5-1335U",
+            "GPU: Integrated",
+            "RAM: 16GB",
+            "Storage: 512GB SSD",
+            "Display: 14 inch FHD",
+            "Phù hợp: Văn phòng / doanh nghiệp",
+          ],
+        },
+        "dell-vostro-3420": {
+          category: "Văn phòng",
+          name: "Dell Vostro 14 3420",
+          price: 17990000,
+          oldPrice: 19990000,
+          images: [
+            "imgae/dell-vostro-3420.jpg",
+            "imgae/dell-vostro-3420.jpg",
+            "imgae/dell-vostro-3420.jpg",
+            "imgae/dell-vostro-3420.jpg",
+          ],
+          desc: "Laptop văn phòng giá tốt, phù hợp học tập và làm việc hằng ngày.",
+          longDesc: `
         <p>Dell Vostro 14 3420 là mẫu máy văn phòng phổ thông với hiệu năng ổn định và thiết kế gọn.</p>
         <p>Máy phù hợp cho học tập, làm việc cơ bản và người dùng cần laptop dễ dùng mỗi ngày.</p>
       `,
-      specs: [
-        "CPU: Core i5-1235U",
-        "GPU: Integrated",
-        "RAM: 16GB",
-        "Storage: 512GB SSD",
-        "Display: 14 inch FHD",
-        "Phù hợp: Văn phòng / học tập"
-      ]
-    },
-    "hp-probook-14-r5-220": {
-      category: "Văn phòng",
-      name: "HP ProBook 14 R5-220",
-      price: 16990000,
-      oldPrice: 18990000,
-      images: [
-        "imgae/hp-probook-14.jpg",
-        "imgae/hp-probook-14.jpg",
-        "imgae/hp-probook-14.jpg",
-        "imgae/hp-probook-14.jpg"
-      ],
-      desc: "Laptop doanh nghiệp gọn gàng, bền và phù hợp làm việc lâu dài.",
-      longDesc: `
+          specs: [
+            "CPU: Core i5-1235U",
+            "GPU: Integrated",
+            "RAM: 16GB",
+            "Storage: 512GB SSD",
+            "Display: 14 inch FHD",
+            "Phù hợp: Văn phòng / học tập",
+          ],
+        },
+        "hp-probook-14-r5-220": {
+          category: "Văn phòng",
+          name: "HP ProBook 14 R5-220",
+          price: 16990000,
+          oldPrice: 18990000,
+          images: [
+            "imgae/hp-probook-14.jpg",
+            "imgae/hp-probook-14.jpg",
+            "imgae/hp-probook-14.jpg",
+            "imgae/hp-probook-14.jpg",
+          ],
+          desc: "Laptop doanh nghiệp gọn gàng, bền và phù hợp làm việc lâu dài.",
+          longDesc: `
         <p>HP ProBook 14 R5-220 hướng đến người dùng văn phòng cần một chiếc máy bền, hiệu năng ổn và dễ sử dụng.</p>
         <p>Máy phù hợp cho công việc văn phòng, học tập và tác vụ hàng ngày.</p>
       `,
-      specs: [
-        "CPU: Ryzen 5",
-        "GPU: Integrated",
-        "RAM: 16GB",
-        "Storage: 512GB SSD",
-        "Display: 14 inch HD/FHD",
-        "Phù hợp: Văn phòng / doanh nhân"
-      ]       
-    }, 
-      "student-acer-aspire": {
-    category: "Học tập",
-    name: "Acer Aspire 5",
-    price: 13990000,
-    oldPrice: 15990000,
-    images: [
-      "imgae/acer_aspire_7.jpg",
-      "imgae/acer_aspire_7.jpg",
-      "imgae/acer_aspire_7.jpg",
-      "imgae/acer_aspire_7.jpg"
-    ],
-    desc: "Laptop học tập dễ tiếp cận, cấu hình đủ dùng cho học online, làm bài tập và tác vụ cơ bản.",
-    longDesc: `
+          specs: [
+            "CPU: Ryzen 5",
+            "GPU: Integrated",
+            "RAM: 16GB",
+            "Storage: 512GB SSD",
+            "Display: 14 inch HD/FHD",
+            "Phù hợp: Văn phòng / doanh nhân",
+          ],
+        },
+        "student-acer-aspire": {
+          category: "Học tập",
+          name: "Acer Aspire 5",
+          price: 13990000,
+          oldPrice: 15990000,
+          images: [
+            "imgae/acer_aspire_7.jpg",
+            "imgae/acer_aspire_7.jpg",
+            "imgae/acer_aspire_7.jpg",
+            "imgae/acer_aspire_7.jpg",
+          ],
+          desc: "Laptop học tập dễ tiếp cận, cấu hình đủ dùng cho học online, làm bài tập và tác vụ cơ bản.",
+          longDesc: `
       <p>Acer Aspire 5 phù hợp với sinh viên cần một chiếc laptop dễ dùng, màn hình lớn và hiệu năng ổn trong tầm giá.</p>
       <p>Máy đáp ứng tốt các nhu cầu Word, Excel, PowerPoint, học online, làm bài tập và giải trí nhẹ.</p>
     `,
-    specs: [
-      "CPU: Intel Core i5",
-      "RAM: 8GB",
-      "SSD: 512GB",
-      "Màn hình: 15.6 inch",
-      "Phù hợp: Học tập / văn phòng cơ bản",
-      "Ưu điểm: Giá dễ mua"
-    ]
-  },
+          specs: [
+            "CPU: Intel Core i5",
+            "RAM: 8GB",
+            "SSD: 512GB",
+            "Màn hình: 15.6 inch",
+            "Phù hợp: Học tập / văn phòng cơ bản",
+            "Ưu điểm: Giá dễ mua",
+          ],
+        },
 
-  "student-lenovo-ideapad": {
-    category: "Sinh viên",
-    name: "Lenovo IdeaPad Slim 3",
-    price: 14990000,
-    oldPrice: 16990000,
-    images: [
-      "imgae/IdeaPad Slim.jpg",
-      "imgae/IdeaPad Slim.jpg",
-      "imgae/IdeaPad Slim.jpg",
-      "imgae/IdeaPad Slim.jpg"
-    ],
-    desc: "Laptop gọn nhẹ cho sinh viên, phù hợp học online, làm bài tập và di chuyển mỗi ngày.",
-    longDesc: `
+        "student-lenovo-ideapad": {
+          category: "Sinh viên",
+          name: "Lenovo IdeaPad Slim 3",
+          price: 14990000,
+          oldPrice: 16990000,
+          images: [
+            "imgae/IdeaPad Slim.jpg",
+            "imgae/IdeaPad Slim.jpg",
+            "imgae/IdeaPad Slim.jpg",
+            "imgae/IdeaPad Slim.jpg",
+          ],
+          desc: "Laptop gọn nhẹ cho sinh viên, phù hợp học online, làm bài tập và di chuyển mỗi ngày.",
+          longDesc: `
       <p>Lenovo IdeaPad Slim 3 là mẫu laptop hướng đến người dùng cần một chiếc máy nhẹ, dễ mang theo và đủ dùng cho học tập hằng ngày.</p>
       <p>Máy phù hợp cho học online, làm việc cơ bản, xem tài liệu và sử dụng lâu dài trong môi trường học tập.</p>
     `,
-    specs: [
-      "CPU: Ryzen 5",
-      "RAM: 8GB",
-      "SSD: 512GB",
-      "Màn hình: 14 inch",
-      "Phù hợp: Sinh viên / học online",
-      "Ưu điểm: Gọn nhẹ"
-    ]
-  },
+          specs: [
+            "CPU: Ryzen 5",
+            "RAM: 8GB",
+            "SSD: 512GB",
+            "Màn hình: 14 inch",
+            "Phù hợp: Sinh viên / học online",
+            "Ưu điểm: Gọn nhẹ",
+          ],
+        },
 
-  "student-dell-vostro": {
-    category: "Học tập",
-    name: "Dell Vostro 14",
-    price: 15490000,
-    oldPrice: 17490000,
-    images: [
-      "imgae/dell-vostro-3420.jpg",
-      "imgae/dell-vostro-3420.jpg",
-      "imgae/dell-vostro-3420.jpg",
-      "imgae/dell-vostro-3420.jpg"
-    ],
-    desc: "Laptop học tập và văn phòng ổn định, phù hợp cho sinh viên cần máy bền và dễ dùng.",
-    longDesc: `
+        "student-dell-vostro": {
+          category: "Học tập",
+          name: "Dell Vostro 14",
+          price: 15490000,
+          oldPrice: 17490000,
+          images: [
+            "imgae/dell-vostro-3420.jpg",
+            "imgae/dell-vostro-3420.jpg",
+            "imgae/dell-vostro-3420.jpg",
+            "imgae/dell-vostro-3420.jpg",
+          ],
+          desc: "Laptop học tập và văn phòng ổn định, phù hợp cho sinh viên cần máy bền và dễ dùng.",
+          longDesc: `
       <p>Dell Vostro 14 là lựa chọn cân bằng cho người dùng cần laptop học tập nhưng vẫn đủ tốt để làm việc văn phòng sau này.</p>
       <p>Máy có thiết kế gọn, hiệu năng ổn định và phù hợp cho các tác vụ hằng ngày.</p>
     `,
-    specs: [
-      "CPU: Intel Core i5",
-      "RAM: 8GB",
-      "SSD: 512GB",
-      "Màn hình: 14 inch FHD",
-      "Phù hợp: Học tập / Office",
-      "Ưu điểm: Ổn định, dễ dùng"
-    ]
-  },
+          specs: [
+            "CPU: Intel Core i5",
+            "RAM: 8GB",
+            "SSD: 512GB",
+            "Màn hình: 14 inch FHD",
+            "Phù hợp: Học tập / Office",
+            "Ưu điểm: Ổn định, dễ dùng",
+          ],
+        },
 
-  "student-hp-14s": {
-    category: "Sinh viên",
-    name: "HP 14s",
-    price: 13490000,
-    oldPrice: 15490000,
-    images: [
-      "imgae/hp-probook-14.jpg",
-      "imgae/hp-probook-14.jpg",
-      "imgae/hp-probook-14.jpg",
-      "imgae/hp-probook-14.jpg"
-    ],
-    desc: "Laptop giá mềm cho nhu cầu học tập cơ bản, phù hợp sinh viên cần tối ưu chi phí.",
-    longDesc: `
+        "student-hp-14s": {
+          category: "Sinh viên",
+          name: "HP 14s",
+          price: 13490000,
+          oldPrice: 15490000,
+          images: [
+            "imgae/hp-probook-14.jpg",
+            "imgae/hp-probook-14.jpg",
+            "imgae/hp-probook-14.jpg",
+            "imgae/hp-probook-14.jpg",
+          ],
+          desc: "Laptop giá mềm cho nhu cầu học tập cơ bản, phù hợp sinh viên cần tối ưu chi phí.",
+          longDesc: `
       <p>HP 14s phù hợp với nhu cầu học tập cơ bản như học online, soạn thảo văn bản, làm slide và tra cứu tài liệu.</p>
       <p>Đây là lựa chọn hợp lý nếu bạn cần một chiếc máy gọn, dễ dùng và tiết kiệm ngân sách.</p>
     `,
-    specs: [
-      "CPU: Intel Core i3",
-      "RAM: 8GB",
-      "SSD: 512GB",
-      "Màn hình: 14 inch",
-      "Phù hợp: Học tập cơ bản",
-      "Ưu điểm: Tiết kiệm chi phí"
-    ]
-  },
-  "zenbook14-oled": {
-  category: "Creator",
-  name: "ASUS ZenBook 14 OLED",
-  price: 27990000,
-  oldPrice: 30990000,
-  images: [
-    "imgae/ASUS ZenBook 14 OLED.webp",
-    "imgae/ASUS ZenBook 14 OLED.webp"
-  ],
-  desc: "Laptop mỏng nhẹ cao cấp với màn hình OLED sắc nét, phù hợp chỉnh ảnh, làm content và công việc sáng tạo.",
-  longDesc: `
+          specs: [
+            "CPU: Intel Core i3",
+            "RAM: 8GB",
+            "SSD: 512GB",
+            "Màn hình: 14 inch",
+            "Phù hợp: Học tập cơ bản",
+            "Ưu điểm: Tiết kiệm chi phí",
+          ],
+        },
+        "zenbook14-oled": {
+          category: "Creator",
+          name: "ASUS ZenBook 14 OLED",
+          price: 27990000,
+          oldPrice: 30990000,
+          images: [
+            "imgae/ASUS ZenBook 14 OLED.webp",
+            "imgae/ASUS ZenBook 14 OLED.webp",
+          ],
+          desc: "Laptop mỏng nhẹ cao cấp với màn hình OLED sắc nét, phù hợp chỉnh ảnh, làm content và công việc sáng tạo.",
+          longDesc: `
     <p>ASUS ZenBook 14 OLED là mẫu laptop cao cấp dành cho người dùng cần màn hình đẹp, thiết kế mỏng nhẹ và hiệu năng ổn định.</p>
     <p>Máy phù hợp cho designer, content creator, sinh viên ngành sáng tạo hoặc người làm việc thường xuyên di chuyển.</p>
   `,
-  specs: [
-    "CPU: Intel Core i7",
-    "RAM: 16GB",
-    "SSD: 512GB",
-    "Màn hình: 14 inch OLED",
-    "Phù hợp: Creator / chỉnh ảnh / content",
-    "Ưu điểm: Màu đẹp, mỏng nhẹ"
-  ]
-},
+          specs: [
+            "CPU: Intel Core i7",
+            "RAM: 16GB",
+            "SSD: 512GB",
+            "Màn hình: 14 inch OLED",
+            "Phù hợp: Creator / chỉnh ảnh / content",
+            "Ưu điểm: Màu đẹp, mỏng nhẹ",
+          ],
+        },
 
-"creator-lenovo-yoga": {
-  category: "Creator",
-  name: "Lenovo Yoga Slim 7 Pro",
-  price: 24990000,
-  oldPrice: 27990000,
-  images: [
-    "imgae/Yoga Slim 7 Pro.jpg",
-    "imgae/Yoga Slim 7 Pros.jpg"
-  ],
-  desc: "Laptop creator mỏng nhẹ, màn hình đẹp và phù hợp xử lý nội dung sáng tạo mỗi ngày.",
-  longDesc: `
+        "creator-lenovo-yoga": {
+          category: "Creator",
+          name: "Lenovo Yoga Slim 7 Pro",
+          price: 24990000,
+          oldPrice: 27990000,
+          images: ["imgae/Yoga Slim 7 Pro.jpg", "imgae/Yoga Slim 7 Pros.jpg"],
+          desc: "Laptop creator mỏng nhẹ, màn hình đẹp và phù hợp xử lý nội dung sáng tạo mỗi ngày.",
+          longDesc: `
     <p>Lenovo Yoga Slim 7 Pro phù hợp cho người dùng cần một chiếc laptop đẹp, hiện đại và có chất lượng hiển thị tốt.</p>
     <p>Máy đáp ứng tốt các nhu cầu chỉnh ảnh, làm content, học tập chuyên ngành sáng tạo và làm việc văn phòng cao cấp.</p>
   `,
-  specs: [
-    "CPU: Core Ultra 7",
-    "RAM: 16GB",
-    "SSD: 1TB SSD",
-    "Màn hình: 14 inch 2.8K",
-    "Phù hợp: Creator / văn phòng cao cấp",
-    "Ưu điểm: Màn đẹp, thiết kế gọn"
-  ]
-},
+          specs: [
+            "CPU: Core Ultra 7",
+            "RAM: 16GB",
+            "SSD: 1TB SSD",
+            "Màn hình: 14 inch 2.8K",
+            "Phù hợp: Creator / văn phòng cao cấp",
+            "Ưu điểm: Màn đẹp, thiết kế gọn",
+          ],
+        },
 
-"creator-msi-prestige": {
-  category: "Đồ hoạ",
-  name: "MSI Prestige 14",
-  price: 23990000,
-  oldPrice: 26990000,
-  images: [
-    "imgae/MSI Prestige 14.jpg",
-    "imgae/MSI Prestige 14s.jpg"
-  ],
-  desc: "Laptop dành cho người làm đồ hoạ và sáng tạo nội dung, cân bằng giữa hiệu năng và tính di động.",
-  longDesc: `
+        "creator-msi-prestige": {
+          category: "Đồ hoạ",
+          name: "MSI Prestige 14",
+          price: 23990000,
+          oldPrice: 26990000,
+          images: ["imgae/MSI Prestige 14.jpg", "imgae/MSI Prestige 14s.jpg"],
+          desc: "Laptop dành cho người làm đồ hoạ và sáng tạo nội dung, cân bằng giữa hiệu năng và tính di động.",
+          longDesc: `
     <p>MSI Prestige 14 hướng đến người dùng cần một chiếc laptop gọn nhẹ nhưng vẫn đủ mạnh cho chỉnh ảnh, thiết kế và làm việc sáng tạo.</p>
     <p>Máy phù hợp cho designer, creator, dân văn phòng cao cấp hoặc sinh viên ngành media.</p>
   `,
-  specs: [
-    "CPU: Intel Core i7",
-    "RAM: 16GB",
-    "SSD: 1TB SSD",
-    "Màn hình: 14 inch QHD+",
-    "Phù hợp: Đồ hoạ / creator",
-    "Ưu điểm: Gọn nhẹ, hiệu suất tốt"
-  ]
-},
+          specs: [
+            "CPU: Intel Core i7",
+            "RAM: 16GB",
+            "SSD: 1TB SSD",
+            "Màn hình: 14 inch QHD+",
+            "Phù hợp: Đồ hoạ / creator",
+            "Ưu điểm: Gọn nhẹ, hiệu suất tốt",
+          ],
+        },
 
-"creator-acer-swiftx": {
-  category: "Creator",
-  name: "Acer Swift X",
-  price: 22990000,
-  oldPrice: 25990000,
-  images: [
-    "imgae/Acer Swift X.jpg",
-    "imgae/Acer Swift Xs.jpg"
-  ],
-  desc: "Laptop mỏng nhẹ có GPU rời, phù hợp chỉnh video, thiết kế cơ bản và làm việc đa nhiệm.",
-  longDesc: `
+        "creator-acer-swiftx": {
+          category: "Creator",
+          name: "Acer Swift X",
+          price: 22990000,
+          oldPrice: 25990000,
+          images: ["imgae/Acer Swift X.jpg", "imgae/Acer Swift Xs.jpg"],
+          desc: "Laptop mỏng nhẹ có GPU rời, phù hợp chỉnh video, thiết kế cơ bản và làm việc đa nhiệm.",
+          longDesc: `
     <p>Acer Swift X là lựa chọn phù hợp cho người dùng cần một chiếc laptop gọn nhưng vẫn có sức mạnh đồ hoạ tốt hơn laptop văn phòng thông thường.</p>
     <p>Máy phù hợp cho chỉnh sửa video nhẹ, làm content, thiết kế cơ bản và học tập chuyên ngành sáng tạo.</p>
   `,
-  specs: [
-    "CPU: Ryzen 7",
-    "RAM: 16GB",
-    "SSD: 512GB SSD",
-    "GPU: RTX",
-    "Phù hợp: Creator / video nhẹ",
-    "Ưu điểm: Có card rời, máy gọn"
-  ]
-},
-  };
+          specs: [
+            "CPU: Ryzen 7",
+            "RAM: 16GB",
+            "SSD: 512GB SSD",
+            "GPU: RTX",
+            "Phù hợp: Creator / video nhẹ",
+            "Ưu điểm: Có card rời, máy gọn",
+          ],
+        },
+      };
 
-  function formatPrice(n) {
-    return n.toLocaleString("vi-VN") + "đ";
-  }
+      function formatPrice(n) {
+        return n.toLocaleString("vi-VN") + "đ";
+      }
 
-  function getCart() {
-    try { return JSON.parse(localStorage.getItem("cart")) || []; }
-    catch { return []; }
-  }
+      function getCart() {
+        try {
+          return JSON.parse(localStorage.getItem("cart")) || [];
+        } catch {
+          return [];
+        }
+      }
 
-  function setCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+      function setCart(cart) {
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
 
-  function updateCartCount() {
-    const cart = getCart();
-    document.getElementById("cart-count").innerText =
-      cart.reduce((sum, i) => sum + (i.qty || 1), 0);
-  }
+      function updateCartCount() {
+        const cart = getCart();
+        document.getElementById("cart-count").innerText = cart.reduce(
+          (sum, i) => sum + (i.qty || 1),
+          0,
+        );
+      }
 
-  function openCart() {
-    window.location.href = "1.cart.html";
-  }
+      function openCart() {
+        window.location.href = "1.cart.html";
+      }
 
-  function renderThumbs(images) {
-    const thumbs = document.getElementById("thumbs");
-    thumbs.innerHTML = "";
+      function renderThumbs(images) {
+        const thumbs = document.getElementById("thumbs");
+        thumbs.innerHTML = "";
 
-    images.forEach((src, index) => {
-      const item = document.createElement("img");
-      item.src = src;
-      item.alt = "thumbnail";
-      item.style = `
+        images.forEach((src, index) => {
+          const item = document.createElement("img");
+          item.src = src;
+          item.alt = "thumbnail";
+          item.style = `
         width:100%;
         height:88px;
         object-fit:cover;
         border-radius:8px;
         cursor:pointer;
-        border:${index === 0 ? '2px solid #111' : '1px solid #e5e5e5'};
+        border:${index === 0 ? "2px solid #111" : "1px solid #e5e5e5"};
       `;
-      item.addEventListener("click", () => {
-        document.getElementById("pImage").src = src;
-        document.querySelectorAll("#thumbs img").forEach(img => img.style.border = "1px solid #e5e5e5");
-        item.style.border = "2px solid #111";
-      });
-      thumbs.appendChild(item);
-    });
-  }
-
-  function renderSpecTable(specs) {
-    const box = document.getElementById("specTable");
-    box.innerHTML = "";
-
-    specs.forEach(spec => {
-      const row = document.createElement("div");
-      row.style = "padding:10px 0; border-bottom:1px solid #eee; color:#555; line-height:1.6;";
-      row.innerText = spec;
-      box.appendChild(row);
-    });
-  }
-
-  function renderProductPage() {
-    const params = new URLSearchParams(window.location.search);
-    const id = params.get("id");
-    const p = products[id];
-
-    if (p) {
-      const sale = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
-
-      document.title = p.name + " | Laptop Store";
-      document.getElementById("banner-title").innerText = p.name;
-      document.getElementById("banner-subtitle").innerText = p.category + " • Giá " + formatPrice(p.price);
-      document.getElementById("breadcrumbText").innerText = "Trang chủ / Sản phẩm / " + p.name;
-
-      document.getElementById("pCategory").innerText = p.category;
-      document.getElementById("pName").innerText = p.name;
-      document.getElementById("pPrice").innerText = formatPrice(p.price);
-      document.getElementById("pOldPrice").innerText = formatPrice(p.oldPrice);
-      document.getElementById("pSale").innerText = "-" + sale + "%";
-      document.getElementById("pDesc").innerText = p.desc;
-      document.getElementById("pLongDesc").innerHTML = p.longDesc || "";
-      document.getElementById("pImage").src = (p.images && p.images[0]) || "";
-      document.getElementById("pImage").alt = p.name;
-
-      const ul = document.getElementById("pSpecs");
-      ul.innerHTML = "";
-      (p.specs || []).forEach(s => {
-        const li = document.createElement("li");
-        li.innerText = s;
-        ul.appendChild(li);
-      });
-
-      renderThumbs(p.images || []);
-      renderSpecTable(p.specs || []);
-
-      document.getElementById("btnAdd").addEventListener("click", () => {
-        const cart = getCart();
-        const existing = cart.find(x => x.id === id);
-
-        if (existing) existing.qty += 1;
-        else cart.push({
-          id,
-          name: p.name,
-          price: p.price,
-          image: p.images ? p.images[0] : "",
-          qty: 1
+          item.addEventListener("click", () => {
+            document.getElementById("pImage").src = src;
+            document
+              .querySelectorAll("#thumbs img")
+              .forEach((img) => (img.style.border = "1px solid #e5e5e5"));
+            item.style.border = "2px solid #111";
+          });
+          thumbs.appendChild(item);
         });
+      }
 
-        setCart(cart);
-        updateCartCount();
+      function renderSpecTable(specs) {
+        const box = document.getElementById("specTable");
+        box.innerHTML = "";
 
-        const btn = document.getElementById("btnAdd");
-        btn.innerText = "Đã thêm ✓";
-        setTimeout(() => btn.innerText = "Thêm vào giỏ", 900);
-      });
+        specs.forEach((spec) => {
+          const row = document.createElement("div");
+          row.style =
+            "padding:10px 0; border-bottom:1px solid #eee; color:#555; line-height:1.6;";
+          row.innerText = spec;
+          box.appendChild(row);
+        });
+      }
 
-      const related = document.getElementById("related");
-      related.innerHTML = "";
-      const others = Object.keys(products).filter(k => k !== id).slice(0, 4);
+      function renderProductPage() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
+        const p = products[id];
 
-      others.forEach(k => {
-        const r = products[k];
-        const card = document.createElement("div");
-        card.style = `
-          background:#fff;
-          border:1px solid #e5e5e5;
-          border-radius:12px;
-          overflow:hidden;
-          box-shadow:0 2px 8px rgba(0,0,0,0.04);
-        `;
+        if (p) {
+          const sale = Math.round(((p.oldPrice - p.price) / p.oldPrice) * 100);
 
-        card.innerHTML = `
-          <img src="${(r.images && r.images[0]) || ''}" alt="${r.name}" style="width:100%; height:170px; object-fit:cover;">
-          <div style="padding:14px;">
-            <div style="font-size:12px; color:#666; margin-bottom:6px;">${r.category}</div>
-            <div style="font-weight:700; color:#111; line-height:1.5; min-height:46px;">${r.name}</div>
-            <div style="font-size:20px; font-weight:800; color:#d70018; margin:8px 0 10px;">${formatPrice(r.price)}</div>
-            <a href="2.product-detail.html?id=${k}" style="text-decoration:none; color:#111; font-weight:600;">Xem chi tiết →</a>
-          </div>
-        `;
+          document.title = p.name + " | Laptop Store";
+          document.getElementById("banner-title").innerText = p.name;
+          document.getElementById("banner-subtitle").innerText =
+            p.category + " • Giá " + formatPrice(p.price);
+          document.getElementById("breadcrumbText").innerText =
+            "Trang chủ / Sản phẩm / " + p.name;
 
-        related.appendChild(card);
-      });
+          document.getElementById("pCategory").innerText = p.category;
+          document.getElementById("pName").innerText = p.name;
+          document.getElementById("pPrice").innerText = formatPrice(p.price);
+          document.getElementById("pOldPrice").innerText = formatPrice(
+            p.oldPrice,
+          );
+          document.getElementById("pSale").innerText = "-" + sale + "%";
+          document.getElementById("pDesc").innerText = p.desc;
+          document.getElementById("pLongDesc").innerHTML = p.longDesc || "";
+          document.getElementById("pImage").src =
+            (p.images && p.images[0]) || "";
+          document.getElementById("pImage").alt = p.name;
 
-    } else {
-      document.getElementById("banner-title").innerText = "Không tìm thấy sản phẩm";
-      document.getElementById("banner-subtitle").innerText = "Vui lòng quay lại trang sản phẩm";
-      document.getElementById("pName").innerText = "Sản phẩm không tồn tại";
-      document.getElementById("pDesc").innerText = "Link không đúng hoặc sản phẩm đã bị xoá.";
-      document.getElementById("pPrice").innerText = "";
-      document.getElementById("pOldPrice").innerText = "";
-      document.getElementById("pSale").style.display = "none";
-      document.getElementById("btnAdd").style.display = "none";
-      document.getElementById("thumbs").innerHTML = "";
-      document.getElementById("pLongDesc").innerHTML = "";
-      document.getElementById("specTable").innerHTML = "";
-      document.getElementById("related").innerHTML = "";
-    }
-  }
+          const ul = document.getElementById("pSpecs");
+          ul.innerHTML = "";
+          (p.specs || []).forEach((s) => {
+            const li = document.createElement("li");
+            li.innerText = s;
+            ul.appendChild(li);
+          });
 
-                                        
-  renderProductPage();
+          renderThumbs(p.images || []);
+          renderSpecTable(p.specs || []);
 
-                                                              
-  (function(){
-    fetch('api/products.json')
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => {
-        products = data;
-        renderProductPage();
-        updateCartCount();
-      })
-      .catch(() => {});
-  })();
-</script>
+          document.getElementById("btnAdd").addEventListener("click", () => {
+            const cart = getCart();
+            const existing = cart.find((x) => x.id === id);
 
-<script src="script.js"></script>
-</body>
+            if (existing) existing.qty += 1;
+            else
+              cart.push({
+                id,
+                name: p.name,
+                price: p.price,
+                image: p.images ? p.images[0] : "",
+                qty: 1,
+              });
+
+            setCart(cart);
+            updateCartCount();
+
+            const btn = document.getElementById("btnAdd");
+            btn.innerText = "Đã thêm ✓";
+            setTimeout(() => (btn.innerText = "Thêm vào giỏ"), 900);
+          });
+        } else {
+          document.getElementById("banner-title").innerText =
+            "Không tìm thấy sản phẩm";
+          document.getElementById("banner-subtitle").innerText =
+            "Vui lòng quay lại trang sản phẩm";
+          document.getElementById("pName").innerText = "Sản phẩm không tồn tại";
+          document.getElementById("pDesc").innerText =
+            "Link không đúng hoặc sản phẩm đã bị xoá.";
+          document.getElementById("pPrice").innerText = "";
+          document.getElementById("pOldPrice").innerText = "";
+          document.getElementById("pSale").style.display = "none";
+          document.getElementById("btnAdd").style.display = "none";
+          document.getElementById("thumbs").innerHTML = "";
+          document.getElementById("pLongDesc").innerHTML = "";
+          document.getElementById("specTable").innerHTML = "";
+          document.getElementById("related").innerHTML = "";
+        }
+      }
+
+      renderProductPage();
+
+      (function () {
+        fetch("api/products.json")
+          .then((r) => (r.ok ? r.json() : Promise.reject()))
+          .then((data) => {
+            products = data;
+            renderProductPage();
+            updateCartCount();
+          })
+          .catch(() => {});
+      })();
+    </script>
+
+    <script src="script.js"></script>
+  </body>
 </html>
