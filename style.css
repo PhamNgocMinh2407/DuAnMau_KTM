@@ -113,6 +113,7 @@ display:flex;
 justify-content:center;
 gap:30px;
 padding:10px 0;
+background-color:#0021a5;
 }
 
 .nav a{
@@ -1035,7 +1036,7 @@ justify-content:flex-start;
                         
 
 .footer{
-background:#020617;
+background-color:#0021a5;;
 color:white;
 margin-top:40px;
 padding-top:40px;
