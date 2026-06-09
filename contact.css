@@ -1,34 +1,25 @@
                        
 *{
     margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body{
-    background:#f8f9fa;
-    color:#333;
-    line-height:1.6;
-    scroll-behavior:smooth;
-    overflow-x:hidden;
+    background:#f5f5f5;
 }
 
                                  
 .container{
-    max-width:1200px;
-    margin:auto;
-    padding:40px 20px;
+ width:100%;
+max-width:1200px;
+margin:auto;
+padding:0 15px;
 }
 
                                                 
 
-.header{
-    background:#e5e5e5;
-    position:sticky;
-    top:0;
-    z-index:1000;
-}
 
                                         
 .header .container{
@@ -38,52 +29,90 @@ body{
                             
 .container.header-top{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    height:70px;
+align-items:center;
+justify-content:space-between;
+padding:15px 0;
+position:relative;
+overflow:visible !important;
+z-index:999;
 }
 
           
-.back-btn{
-    border:none;
-    background:white;
-    padding:6px 10px;
-    border-radius:4px;
-    cursor:pointer;
+.back-btnbutton {
+    appearance: auto;
+    font-style: ;
+    font-variant-ligatures: ;
+    font-variant-caps: ;
+    font-variant-numeric: ;
+    font-variant-east-asian: ;
+    font-variant-alternates: ;
+    font-variant-position: ;
+    font-variant-emoji: ;
+    font-weight: ;
+    font-stretch: ;
+    font-size: ;
+    font-family: ;
+    font-optical-sizing: ;
+    font-size-adjust: ;
+    font-kerning: ;
+    font-feature-settings: ;
+    font-variation-settings: ;
+    font-language-override: ;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em 0em 0em 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
 }
 
 .logo{
-    font-size:24px;
-    font-weight:bold;
-    margin-left:10px;
-    white-space:nowrap;
+font-size:26px;
+font-weight:bold;
 }
 
                            
 .search-box{
-    flex:1;
-    max-width:600px;
-    display:flex;
-    background:white;
-    border-radius:6px;
-    overflow:hidden;
-    margin:0 40px;
-    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+display:flex;
+flex:1;
+max-width:600px;
+margin:0 40px;   
 }
 
 .search-box input{
-    flex:1;
-    padding:10px;
-    border:none;
-    outline:none;
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+border-radius:6px 0 0 6px;
+}
+:root {
+    --swiper-navigation-size: 44px;
+}
+:root {
+    --swiper-theme-color: #007aff;
 }
 
 .search-box button{
-    background:#3ba0e9;
-    color:white;
-    border:none;
-    padding:0 18px;
-    cursor:pointer;
+ padding:10px 14px;
+border:none;
+background:#38bdf8;
+cursor:pointer;
+border-radius:0 6px 6px 0;
 }
 
            
@@ -99,20 +128,23 @@ body{
                       
 .profile-menu{
     display:none;
-    position:absolute;
-    top:40px;
-    right:0;
-    background:white;
-    min-width:180px;
-    border-radius:6px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+position:absolute;
+top:35px;
+right:0;
+background:white;
+border-radius:8px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+overflow:hidden;
+min-width:170px;
+z-index:999;
 }
 
 .profile-menu a{
-    display:block;
-    padding:10px;
-    color:#333;
-    text-decoration:none;
+  display:block;
+padding:10px 15px;
+text-decoration:none;
+color:black;
+font-size:14px;
 }
 
 .profile-menu a:hover{
@@ -124,33 +156,36 @@ body{
 }
 
           
-.cart-icon{
-    margin-left:15px;
-    position:relative;
-    cursor:pointer;
+.cart-icon {
+    position: relative;
+    cursor: pointer;
 }
-
+.profile-icon, .cart-icon {
+    cursor: pointer;
+    white-space: nowrap;
+}
 #cart-count{
-    position:absolute;
-    top:-8px;
-    right:-10px;
-    background:red;
-    color:white;
-    font-size:12px;
-    padding:2px 6px;
-    border-radius:50%;
+background:red;
+color:white;
+font-size:12px;
+padding:2px 6px;
+border-radius:50%;
+margin-left:4px;
 }
 
                
 .cart-menu{
-    display:none;
-    position:absolute;
-    top:40px;
-    right:0;
-    width:300px;
-    background:white;
-    border-radius:6px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  display:none;
+position:fixed;
+top:auto;
+right:10px;
+background:white;
+border-radius:8px;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+overflow:auto;
+min-width:350px;
+z-index:10000;
+pointer-events:auto;
 }
 
 .cart-icon:hover .cart-menu{
@@ -159,19 +194,19 @@ body{
 
                         
 .header-bottom{
-    background:#001a4d;
+    background:#020617;
 }
 
 .header-bottom .nav{
-    max-width:1200px;
-    margin:auto;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:60px;
-    height:50px;
+        background: #020617;
 }
 
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px 0;
+}
 .nav a{
     color:white;
     text-decoration:none;
@@ -214,12 +249,14 @@ body{
     height:35px;
     cursor:pointer;
 }
-
+.section{
+    margin:40px 0;
+}
                                                  
 
 .section-header{
-    text-align:center;
-    margin-bottom:40px;
+     text-align:center;
+    margin:30px 0 50px;
 }
 
 .section-header h2{
@@ -237,8 +274,9 @@ body{
 
 .contact-grid{
     display:grid;
-    grid-template-columns:1.5fr 1fr;
-    gap:40px;
+    grid-template-columns:1.7fr 1fr;
+    gap:24px;
+    align-items:start;
 }
 
 .contact-form-box{
@@ -470,12 +508,12 @@ footer a:hover{
          
 .app-box{
     display:flex;
-    gap:10px;
-    margin-bottom:20px;
-    background:black;
-    border-radius:10px;
-    padding:15px;
-    align-items:center;
+gap:10px;
+margin-bottom:20px;
+background :black;
+border-radius:10px;
+padding:20px;
+align-items:center;
 }
 
 .qr{
