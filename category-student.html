@@ -365,26 +365,36 @@
 
   renderProducts();
 
-  (function(){
-    const ACCEPT = ["Học tập","Sinh viên"];
-    fetch('api/products.json')
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => {
-        const list = Object.entries(data).map(([id,p])=>({
-          id,
-          category: p.category || '',
-          name: p.name || '',
-          price: p.price || 0,
-          oldPrice: p.oldPrice || 0,
-          image: p.image || (p.images && p.images[0]) || '',
-          specs: Array.isArray(p.specs) ? p.specs.join(' • ') : (p.specs || ''),
-          badge: p.badge || ''
-        })).filter(p => ACCEPT.some(a => (p.category || '').includes(a)));
+(function () {
 
-        if(list.length){ products = list; renderProducts(); }
-      })
-      .catch(()=>{});
-  })();
+  fetch("api_products.json")
+    .then(r => r.json())
+    .then(data => {
+
+      const list = Object.entries(data)
+        .map(([id, p]) => ({
+          id: id,
+          category: p.category,
+          brand: p.brand,
+          name: p.name,
+          price: p.price,
+          oldPrice: p.oldPrice,
+          image: p.images?.[0] || "",
+          specs: Array.isArray(p.specs)
+            ? p.specs.join(" • ")
+            : "",
+          badge: p.badge || ""
+        }))
+        .filter(p => p.category === "Học tập");
+
+      products = list;
+
+      renderProducts();
+
+    })
+    .catch(err => console.log("Lỗi:", err));
+
+})();
 
   document.addEventListener("click", function(e){
     if(e.target.classList.contains("add-to-cart")){
