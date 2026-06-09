@@ -466,3 +466,114 @@ function logout() {
   alert("Bạn đã đăng xuất");
   window.location.href = "index.html";
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    const searchInput = document.querySelector(".search-box input");
+    const searchBtn = document.querySelector(".search-box button");
+
+    if (!searchInput || !searchBtn) return;
+
+    let products = [];
+
+    try {
+        const res = await fetch("api/products.json");
+        const data = await res.json();
+
+        products = Object.keys(data).map(id => ({
+            id: id,
+            ...data[id]
+        }));
+
+        console.log(products);
+
+    } catch (err) {
+        console.error("Lỗi đọc products.json:", err);
+    }
+
+    const resultBox = document.createElement("div");
+    resultBox.id = "search-results";
+    document.querySelector(".search-box").appendChild(resultBox);
+
+    function searchProduct() {
+
+        const keyword = searchInput.value.trim().toLowerCase();
+
+        if (!keyword) {
+            resultBox.style.display = "none";
+            resultBox.innerHTML = "";
+            return;
+        }
+
+        const results = products.filter(product =>
+            product.name?.toLowerCase().includes(keyword) ||
+            product.brand?.toLowerCase().includes(keyword) ||
+            product.category?.toLowerCase().includes(keyword)
+        );
+
+        if (results.length === 0) {
+
+            resultBox.innerHTML = `
+                <div class="search-empty">
+                    Không tìm thấy sản phẩm
+                </div>
+            `;
+
+            resultBox.style.display = "block";
+            return;
+        }
+
+        resultBox.innerHTML = results.map(product => `
+
+            <div class="search-item"
+                 onclick="window.location.href='2.product-detail.html?id=${product.id}'">
+
+                <img src="${product.images && product.images.length
+                    ? product.images[0]
+                    : 'imgae/no-image.png'}">
+
+                <div class="search-info">
+
+                    <div class="search-name">
+                        ${product.name}
+                    </div>
+
+                    <div class="search-brand">
+                        ${product.brand} • ${product.category}
+                    </div>
+
+                    <div class="search-price">
+                        ${Number(product.price).toLocaleString("vi-VN")}đ
+                    </div>
+
+                </div>
+
+            </div>
+
+        `).join("");
+
+        resultBox.style.display = "block";
+    }
+
+    searchInput.addEventListener("input", searchProduct);
+
+    searchInput.addEventListener("keydown", (e) => {
+
+        if (e.key === "Enter") {
+            e.preventDefault();
+            searchProduct();
+        }
+
+    });
+
+    searchBtn.addEventListener("click", searchProduct);
+
+    document.addEventListener("click", (e) => {
+
+        if (!e.target.closest(".search-box")) {
+            resultBox.style.display = "none";
+        }
+
+    });
+
+});
